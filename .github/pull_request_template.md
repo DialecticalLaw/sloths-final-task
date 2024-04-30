@@ -1,3 +1,21 @@
+*For changes*
+
+#### 🤔 This is a ...
+
+- [ ] New feature
+- [ ] Bug fix
+- [ ] Refactoring
+- [ ] Documentation update
+- [ ] Other
+
+#### 💡 Background and solution
+
+*Describe the big picture of your changes here*
+
+---
+
+*To check the mentor*:
+
 1. Sprint: [link](https://github.com/)
 2. Screenshot:
 3. Deploy: [link](https://sloths-final-task.netlify.app/)
