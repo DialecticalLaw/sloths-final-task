@@ -16,7 +16,7 @@ module.exports = {
     ".eslintrc.cjs",
     "vite.config.ts",
     "jest.config.ts",
-      'setupTests.ts',
+    "setupTests.ts",
     "src/tests",
   ],
   parser: "@typescript-eslint/parser",
