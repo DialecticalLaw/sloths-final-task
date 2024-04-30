@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, node: "current", "jest/globals": true },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/strict-type-checked",
@@ -8,11 +8,19 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
+    "plugin:jest/recommended",
     "prettier",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: [
+    "dist",
+    ".eslintrc.cjs",
+    "vite.config.ts",
+    "jest.config.ts",
+      'setupTests.ts',
+    "src/tests",
+  ],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
+  plugins: ["react-refresh", "jest"],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
