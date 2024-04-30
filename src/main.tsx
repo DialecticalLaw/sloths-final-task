@@ -1,18 +1,18 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx'
-import './index.css'
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
 
-const root = document.getElementById('root')
+const root = document.getElementById("root");
 
-const startApp =()=>{
-    if(root){
-        createRoot(root).render(
-            <React.StrictMode>
-                <App />
-            </React.StrictMode>,
-        )
-    }
-}
+const startApp = () => {
+  if (root) {
+    createRoot(root).render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>,
+    );
+  }
+};
 
-startApp()
+startApp();
