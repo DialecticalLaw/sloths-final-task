@@ -29,6 +29,7 @@ Please install the following software before starting development:
 - Clone [repository](https://github.com/DialecticalLaw/sloths-final-task/)
 - Run `npm install` (install dependencies)
 - Run `npm run dev` to start the development server
+- Open `http://localhost:5173/` in a browser
 
 ## Available scripts
 
