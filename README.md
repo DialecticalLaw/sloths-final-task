@@ -41,3 +41,9 @@ Please install the following software before starting development:
 - **npm run tsc** - launching the TypeScript compiler
 - **npm run prettier** - checking and formatting files with prettier
 - **npm run prepare** - launching husky
+
+## Contributors
+
+* [ValeriiaKuz](https://github.com/ValeriiaKuz)
+* [DialecticalLaw](https://github.com/DialecticalLaw)
+* [SplitCode](https://github.com/SplitCode)
