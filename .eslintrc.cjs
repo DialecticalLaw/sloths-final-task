@@ -1,37 +1,45 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true, node: "current", "jest/globals": true },
+  env: { browser: true, es2020: true },
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/strict-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
+    "react-app",
+    "prettier",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-    "plugin:jest/recommended",
-    "prettier",
   ],
-  ignorePatterns: [
-    "dist",
-    ".eslintrc.cjs",
-    "vite.config.ts",
-    "jest.config.ts",
-    "setupTests.ts",
-    "src/tests",
-  ],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "jest"],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
+    "@typescript-eslint/consistent-type-imports": [
+      2,
+      { fixStyle: "separate-type-imports" },
+    ],
+    "@typescript-eslint/no-restricted-imports": [
+      2,
+      {
+        paths: [
+          {
+            name: "react-redux",
+            importNames: ["useSelector", "useStore", "useDispatch"],
+            message:
+              "Please use pre-typed versions from `src/app/hooks.ts` instead.",
+          },
+        ],
+      },
     ],
   },
+
+  overrides: [
+    { files: ["*.{c,m,}{t,j}s", "*.{t,j}sx"] },
+    { files: ["*{test,spec}.{t,j}s?(x)"], env: { jest: true } },
+  ],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
     project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
+    tsconfigRootDir: "./",
+    // tsconfigRootDir: __dirname,
   },
 
   settings: {
