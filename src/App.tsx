@@ -3,7 +3,6 @@ import './App.css';
 import { getProject } from './api/apiRoot'; //only for test
 
 function App() {
-
   // only for test
   useEffect(() => {
     getProject()
