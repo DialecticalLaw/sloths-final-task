@@ -12,7 +12,7 @@ We strive to make the shopping process as convenient and smooth as possible. Wit
 - Bundler: [Vite](https://vitejs.dev/) ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 - Framework (library): [React](https://react.dev/) ![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 - Supporting tools: [ESLint](https://eslint.org/) ![image](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white), [Prettier](https://prettier.io/) ![image](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E), [Husky](https://typicode.github.io/husky/)
-- Testing: [Jest](https://jestjs.io/)
+- Testing: [Vitest](https://vitest.dev/)
 - Task Board: [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
 - Backend: [CommerceTools](https://docs.commercetools.com/docs/)
 - Deployment: [Netlify](https://www.netlify.com/) ![image](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
