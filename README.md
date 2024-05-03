@@ -35,14 +35,16 @@ Please install the following software before starting development:
 
 ## Available scripts
 
-- **npm run test** - running tests
-- **npm run dev** - starting a local development server
-- **npm run build** - building a project in production mode
-- **npm run lint** - launching the linter and automatic error correction
-- **npm run preview** - starting the development server for preview
-- **npm run tsc** - launching the TypeScript compiler
-- **npm run prettier** - checking and formatting files with prettier
-- **npm run prepare** - launching husky
+### **npm run**
+
+- **test** - running tests
+- **dev** - starting a local development server
+- **build** - building a project in production mode
+- **lint** - launching the linter and automatic error correction
+- **preview** - starting the development server for preview
+- **tsc** - launching the TypeScript compiler
+- **prettier** - checking and formatting files with prettier
+- **prepare** - launching husky
 
 ## Contributors
 
