@@ -1,12 +1,14 @@
 # Sloths-final-task
 
-*description*
+Welcome to our e-commerce platform! We have created an online shopping experience that replicates the real-world experience in a digital setting. Our app provides users with a seamless and interactive experience from product discovery to check out 🚀.
 
-*screenshot*
+Our platform offers a wide range of products from different planets ⋆⭒˚.⋆🪐 ⋆⭒˚.⋆, which users can browse and add to their cart 🛒. Detailed product descriptions and features help users make informed decisions about what to purchase. The app includes features such as registration 📝, login 🔐, product search 🔍, and sorting 📶, to enhance the user experience.
+
+We strive to make the shopping process as convenient and smooth as possible. With our platform, users enjoy a hassle-free journey from product discovery through purchase, boosting their confidence and engagement ⭐.
 
 ## Stack
 
-- Language: [TypeScript](https://www.typescriptlang.org/)
+- Language: [TypeScript](https://www.typescriptlang.org/) :typescript:
 - Bundler: [Vite](https://vitejs.dev/)
 - Framework/library: [React](https://react.dev/)
 - Supporting tools: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Husky](https://typicode.github.io/husky/), 
