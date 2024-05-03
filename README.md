@@ -11,7 +11,7 @@ We strive to make the shopping process as convenient and smooth as possible. Wit
 - Language: [TypeScript](https://www.typescriptlang.org/) ![image](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 - Bundler: [Vite](https://vitejs.dev/) ![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 - Framework (library): [React](https://react.dev/) ![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-- Supporting tools: [ESLint](https://eslint.org/) ![image](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white), [Prettier](https://prettier.io/) ![image](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E), [Husky](https://typicode.github.io/husky/)
+- Supporting tools: [ESLint](https://eslint.org/) ![image](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white), [Prettier](https://prettier.io/) ![image](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E), [Redux ToolKit](https://redux-toolkit.js.org/) ![image](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white), [React-Router-Dom](https://reactrouter.com/) ![image](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white),[Husky](https://typicode.github.io/husky/)
 - Testing: [Vitest](https://vitest.dev/)
 - Task Board: [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
 - Backend: [CommerceTools](https://docs.commercetools.com/docs/)
