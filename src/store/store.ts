@@ -1,5 +1,5 @@
-import type { Action, ThunkAction } from "@reduxjs/toolkit";
-import { combineSlices } from "@reduxjs/toolkit";
+import type { Action, ThunkAction } from '@reduxjs/toolkit';
+import { combineSlices } from '@reduxjs/toolkit';
 
 //Закомментировано до момента создания слайсеров
 
@@ -22,9 +22,4 @@ export const store = undefined;
 
 export type AppStore = typeof store;
 // export type AppDispatch = AppStore["dispatch"];
-export type AppThunk<ThunkReturnType = void> = ThunkAction<
-  ThunkReturnType,
-  RootState,
-  unknown,
-  Action
->;
+export type AppThunk<ThunkReturnType = void> = ThunkAction<ThunkReturnType, RootState, unknown, Action>;
