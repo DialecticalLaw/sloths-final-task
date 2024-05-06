@@ -1,8 +1,6 @@
-// import fetch from 'node-fetch'; not used
+// import fetch from 'node-fetch';
 import {
   ClientBuilder,
-
-  // Import middlewares
   type AuthMiddlewareOptions, // Required for auth
   type HttpMiddlewareOptions // Required for sending HTTP requests
 } from '@commercetools/sdk-client-v2';
