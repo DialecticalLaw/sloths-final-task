@@ -9,4 +9,3 @@ const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
 export const getProducts = () => {
   return apiRoot.products().get().execute();
 };
-
