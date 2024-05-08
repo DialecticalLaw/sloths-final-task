@@ -15,6 +15,7 @@ export function Input({
   return (
     <label className={styles.label}>
       <Field className={styles.field} name={name} type={type} placeholder={placeholder}></Field>
+      <div className={styles.line}></div>
       {children}
     </label>
   );
