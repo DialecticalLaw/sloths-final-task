@@ -1,6 +1,7 @@
 import { useEffect } from 'react'; //only for test
 import './App.css';
 import { getProducts } from './api/apiRoot'; //only for test
+import { Main } from './components/Main/Main';
 
 function App() {
   // only for test
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <>
-      <h1>Final task</h1>
+      <Main />
     </>
   );
 }
