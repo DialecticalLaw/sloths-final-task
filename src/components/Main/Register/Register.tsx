@@ -1,8 +1,11 @@
 import { Formik } from 'formik';
 import { CustomForm } from '../../universal-components/CustomForm/Form';
-import { Input } from '../../universal-components/Input/Input';
+import { Input } from '../../universal-components/CustomForm/Input/Input';
 import { Button } from '../../universal-components/Button/Button';
 import { ValidError } from '../../universal-components/ValidError/ValidError';
+import { Title } from '../../universal-components/CustomForm/Title/Title';
+import styles from './Register.module.css';
+import video from '../../../assets/video/starry-sky.webm';
 
 export interface StringObj {
   [key: string]: string;
@@ -34,43 +37,42 @@ const initialValues: RegisterValues = {
 
 export function Register() {
   return (
-    <Formik initialValues={initialValues} onSubmit={(values) => console.log(values)}>
-      {() => (
-        <CustomForm>
-          <>
-            <Input name={'email'} type="email" text="Enter your email"></Input>
-            <ValidError name="email"></ValidError>
-            <Input name={'password'} text="Enter password" type="password"></Input>
-            <ValidError name="password"></ValidError>
-
-            <div>
-              <Input name={'firstName'} text="Enter your first name" type="text"></Input>
-              <ValidError name="firstName"></ValidError>
-              <Input name={'lastName'} text="Enter your surname" type="text"></Input>
-              <ValidError name="lastName"></ValidError>
-            </div>
-
-            <Input name={'dateOfBirth'} text="Enter your date of birth" type="date"></Input>
-            <ValidError name="dateOfBirth"></ValidError>
-
-            <div>
-              <Input name={'street'} text="Enter the street name" type="text"></Input>
-              <ValidError name="street"></ValidError>
-              <Input name={'city'} text="Enter the city name" type="text"></Input>
-              <ValidError name="city"></ValidError>
-            </div>
-
-            <div>
-              <Input name={'postalCode'} text="Enter your postal code" type="text"></Input>
-              <ValidError name="postalCode"></ValidError>
-              <Input name={'country'} text="Enter your country" type="text"></Input>
-              <ValidError name="country"></ValidError>
-            </div>
-
-            <Button type="submit">Register</Button>
-          </>
-        </CustomForm>
-      )}
-    </Formik>
+    <>
+      <video src={video} className={styles.video} loop muted autoPlay></video>
+      <Formik initialValues={initialValues} onSubmit={(values) => console.log(values)}>
+        {() => (
+          <CustomForm>
+            <>
+              <Title>Registration</Title>
+              <Input name={'email'} type="email" placeholder="Email"></Input>
+              <ValidError name="email"></ValidError>
+              <Input name={'password'} type="password" placeholder="Password"></Input>
+              <ValidError name="password"></ValidError>
+              <div className={styles.inputsGroup}>
+                <Input name={'firstName'} type="text" placeholder="Name"></Input>
+                <ValidError name="firstName"></ValidError>
+                <Input name={'lastName'} type="text" placeholder="Surname"></Input>
+                <ValidError name="lastName"></ValidError>
+              </div>
+              <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
+              <ValidError name="dateOfBirth"></ValidError>
+              <div className={styles.inputsGroup}>
+                <Input name={'street'} type="text" placeholder="Street"></Input>
+                <ValidError name="street"></ValidError>
+                <Input name={'city'} type="text" placeholder="City"></Input>
+                <ValidError name="city"></ValidError>
+              </div>
+              <div className={styles.inputsGroup}>
+                <Input name={'postalCode'} type="text" placeholder="Postal code"></Input>
+                <ValidError name="postalCode"></ValidError>
+                <Input name={'country'} type="text" placeholder="Country"></Input>
+                <ValidError name="country"></ValidError>
+              </div>
+              <Button type="submit">Register</Button>
+            </>
+          </CustomForm>
+        )}
+      </Formik>
+    </>
   );
 }

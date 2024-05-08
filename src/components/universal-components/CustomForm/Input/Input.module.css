@@ -1,0 +1,23 @@
+.field {
+  width: 80%;
+  padding: 6px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgb(115, 115, 115);
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-family: Megatrans;
+  transition: 0.3s;
+}
+
+.field[type='date']::-webkit-calendar-picker-indicator {
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.field:focus {
+  border-color: rgb(255, 255, 255);
+}

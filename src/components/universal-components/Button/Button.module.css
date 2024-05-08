@@ -1,0 +1,102 @@
+.button {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+  margin-top: 10px;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  border: 2px solid rgb(45, 45, 255);
+  font-family: Megatrans;
+  font-size: 1.6rem;
+  padding: 5px 40px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.underline {
+  font-weight: bold;
+}
+
+.button::after,
+.button::before {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 15px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(90deg);
+  background-color: rgb(45, 45, 255);
+  transition:
+    0.4s background-color,
+    0.1s transform;
+}
+
+.button::after {
+  left: 4px;
+  transform: rotate(-90deg);
+}
+
+.button::before {
+  right: 4px;
+  transform: rotate(90deg);
+}
+
+.button:hover::after {
+  transform: rotate(90deg);
+  animation: leftArrowAnimation 0.5s infinite ease-in-out alternate;
+  background-color: rgb(0, 228, 0);
+}
+
+.button:hover::before {
+  transform: rotate(-90deg);
+  animation: rightArrowAnimation 0.5s infinite ease-in-out alternate;
+  background-color: rgb(0, 228, 0);
+}
+
+.button:hover {
+  border: 2px solid rgb(0, 228, 0);
+  clip-path: polygon(5% 0, 95% 0, 100% 20%, 100% 80%, 95% 100%, 5% 100%, 0% 80%, 0% 20%);
+}
+
+.button:hover .underline {
+  opacity: 1;
+  animation: underlineAnimation 1s infinite;
+}
+
+@keyframes underlineAnimation {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes leftArrowAnimation {
+  from {
+    left: 4px;
+  }
+  to {
+    left: 12px;
+  }
+}
+
+@keyframes rightArrowAnimation {
+  from {
+    right: 4px;
+  }
+  to {
+    right: 12px;
+  }
+}

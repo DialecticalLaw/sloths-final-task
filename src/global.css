@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Megatrans;
+  src: url(assets/fonts/megatrans-regular.otf);
+}
+
+@font-face {
+  font-family: Dune;
+  src: url(assets/fonts/Dune_Rise.otf);
+}
+
 * {
   margin: 0;
   padding: 0;

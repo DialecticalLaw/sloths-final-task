@@ -1,9 +1,10 @@
+import styles from './Button.module.css';
+
 export function Button({ children, type }: { children: string; type: 'submit' | 'reset' | 'button' }) {
   return (
-    <button type={type}>
+    <button className={styles.button} type={type}>
       {children}
-      <span>_</span>
-      <span>click</span>
+      <span className={styles.underline}>_</span>
     </button>
   );
 }

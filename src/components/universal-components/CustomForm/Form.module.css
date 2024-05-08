@@ -1,0 +1,17 @@
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  width: 60vw;
+  height: 100dvh;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 25px 15px;
+  font-family: Megatrans;
+  color: #ffffff;
+  background: linear-gradient(0deg, rgb(0, 0, 0) 10%, rgb(35, 35, 35) 100%);
+  box-shadow: 0 0 15px 3px rgb(26, 26, 26);
+}
