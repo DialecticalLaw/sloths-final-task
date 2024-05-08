@@ -7,6 +7,8 @@ import { Title } from '../../universal-components/CustomForm/Title/Title';
 import styles from './Register.module.css';
 import video from '../../../assets/video/starry-sky.webm';
 import { Planets } from './Planets/Planets';
+import { date, object, string } from 'yup';
+import { CountrySelect } from './CountrySelect/CountrySelect';
 
 export interface StringObj {
   [key: string]: string;
@@ -25,6 +27,39 @@ export interface RegisterValues {
   planet: 'mars' | 'earth' | 'venus';
 }
 
+const RegisterSchema = object().shape({
+  email: string().email('Invalid email').required('Required'),
+  password: string()
+    .min(8, "It's too short! Minimum of 8 characters")
+    .matches(/.*[A-Z].*/, 'At least 1 uppercase letter')
+    .matches(/.*[a-z].*/, 'At least 1 lowercase letter')
+    .matches(/.*[0-9].*/, 'At least 1 number')
+    .required('Required'),
+  firstName: string()
+    .min(1, 'Too short!')
+    .matches(/^[a-zA-Z]+$/, 'No special characters or numbers')
+    .required('Required'),
+  lastName: string()
+    .min(1, 'Too short!')
+    .matches(/^[a-zA-Z]+$/, 'No special characters or numbers')
+    .required('Required'),
+  dateOfBirth: date()
+    .required('Required!')
+    .test('dateOfBirth', '13 years old or older', function (value: Date | undefined) {
+      if (!value) return false;
+      return new Date().getFullYear() - value.getFullYear() >= 13;
+    }),
+  street: string().min(1, 'Too short!').required('Required'),
+  city: string()
+    .min(1, 'Too short!')
+    .matches(/^[a-zA-Z]+$/, 'No special characters or numbers')
+    .required('Required'),
+  postalCode: string()
+    .required('Required')
+    .length(6, '6 numbers are needed')
+    .matches(/^[0-9]+$/, 'Only numbers are allowed')
+});
+
 const initialValues: RegisterValues = {
   email: '',
   password: '',
@@ -34,7 +69,7 @@ const initialValues: RegisterValues = {
   street: '',
   city: '',
   postalCode: '',
-  country: '',
+  country: 'Russia',
   planet: 'earth'
 };
 
@@ -42,35 +77,53 @@ export function Register() {
   return (
     <>
       <video src={video} className={styles.video} loop muted autoPlay></video>
-      <Formik initialValues={initialValues} onSubmit={(values) => console.log(values)}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={RegisterSchema}
+        onSubmit={(values) => console.log(values)}
+      >
         {() => (
           <CustomForm>
             <>
               <Title>Registration</Title>
-              <Input name={'email'} type="email" placeholder="Email"></Input>
-              <ValidError name="email"></ValidError>
-              <Input name={'password'} type="password" placeholder="Password"></Input>
-              <ValidError name="password"></ValidError>
+              <Input name={'email'} type="email" placeholder="Email">
+                <ValidError name="email"></ValidError>
+              </Input>
+
+              <Input name={'password'} type="password" placeholder="Password">
+                <ValidError name="password"></ValidError>
+              </Input>
+
               <div className={styles.inputsGroup}>
-                <Input name={'firstName'} type="text" placeholder="Name"></Input>
-                <ValidError name="firstName"></ValidError>
-                <Input name={'lastName'} type="text" placeholder="Surname"></Input>
-                <ValidError name="lastName"></ValidError>
+                <Input name={'firstName'} type="text" placeholder="Name">
+                  <ValidError name="firstName"></ValidError>
+                </Input>
+
+                <Input name={'lastName'} type="text" placeholder="Surname">
+                  <ValidError name="lastName"></ValidError>
+                </Input>
               </div>
-              <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
-              <ValidError name="dateOfBirth"></ValidError>
+
+              <Input name={'dateOfBirth'} type="date" placeholder="Date of birth">
+                <ValidError name="dateOfBirth"></ValidError>
+              </Input>
+
+              <CountrySelect name={'country'}></CountrySelect>
+
               <div className={styles.inputsGroup}>
-                <Input name={'street'} type="text" placeholder="Street"></Input>
-                <ValidError name="street"></ValidError>
-                <Input name={'city'} type="text" placeholder="City"></Input>
-                <ValidError name="city"></ValidError>
+                <Input name={'city'} type="text" placeholder="City">
+                  <ValidError name="city"></ValidError>
+                </Input>
+
+                <Input name={'street'} type="text" placeholder="Street">
+                  <ValidError name="street"></ValidError>
+                </Input>
               </div>
-              <div className={styles.inputsGroup}>
-                <Input name={'postalCode'} type="text" placeholder="Postal code"></Input>
+
+              <Input name={'postalCode'} type="text" placeholder="Postal code">
                 <ValidError name="postalCode"></ValidError>
-                <Input name={'country'} type="text" placeholder="Country"></Input>
-                <ValidError name="country"></ValidError>
-              </div>
+              </Input>
+
               <Planets name={'planet'}></Planets>
               <Button type="submit">Register</Button>
             </>

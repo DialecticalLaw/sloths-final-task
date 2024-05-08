@@ -1,5 +1,10 @@
-.field {
+.label {
+  position: relative;
   width: 80%;
+}
+
+.field {
+  width: 100%;
   padding: 6px;
   background-color: transparent;
   outline: none;
