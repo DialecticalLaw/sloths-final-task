@@ -6,6 +6,7 @@ import { ValidError } from '../../universal-components/ValidError/ValidError';
 import { Title } from '../../universal-components/CustomForm/Title/Title';
 import styles from './Register.module.css';
 import video from '../../../assets/video/starry-sky.webm';
+import { Planets } from './Planets/Planets';
 
 export interface StringObj {
   [key: string]: string;
@@ -21,6 +22,7 @@ export interface RegisterValues {
   city: string;
   postalCode: string;
   country: string;
+  planet: 'mars' | 'earth' | 'venus';
 }
 
 const initialValues: RegisterValues = {
@@ -32,7 +34,8 @@ const initialValues: RegisterValues = {
   street: '',
   city: '',
   postalCode: '',
-  country: ''
+  country: '',
+  planet: 'earth'
 };
 
 export function Register() {
@@ -68,6 +71,7 @@ export function Register() {
                 <Input name={'country'} type="text" placeholder="Country"></Input>
                 <ValidError name="country"></ValidError>
               </div>
+              <Planets name={'planet'}></Planets>
               <Button type="submit">Register</Button>
             </>
           </CustomForm>
