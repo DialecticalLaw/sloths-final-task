@@ -1,14 +1,7 @@
+import type { ButtonProps } from '../UniversalComponents.interfaces';
 import styles from './Button.module.css';
 
-export function Button({
-  children,
-  type,
-  onClick
-}: {
-  children: string;
-  type: 'submit' | 'reset' | 'button';
-  onClick?: () => void;
-}) {
+export function Button({ children, type, onClick }: ButtonProps) {
   return (
     <button className={styles.button} type={type} onClick={onClick}>
       {children}

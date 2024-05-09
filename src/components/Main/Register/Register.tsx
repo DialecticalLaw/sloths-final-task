@@ -8,23 +8,7 @@ import styles from './Register.module.css';
 import { CountrySelect } from './CountrySelect/CountrySelect';
 import { Planets } from './Planets/Planets';
 import { RegisterSchema } from '../validationSchemes';
-
-export interface StringObj {
-  [key: string]: string;
-}
-
-export interface RegisterValues {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  street: string;
-  city: string;
-  postalCode: string;
-  country: 'Russia' | 'Belarus';
-  planet: 'mars' | 'earth' | 'venus';
-}
+import type { RegisterValues } from '../Main.interfaces';
 
 const initialValues: RegisterValues = {
   email: '',

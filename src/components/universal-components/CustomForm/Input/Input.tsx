@@ -1,17 +1,8 @@
 import { Field } from 'formik';
 import styles from './Input.module.css';
+import type { InputProps } from '../../UniversalComponents.interfaces';
 
-export function Input({
-  name,
-  type,
-  placeholder,
-  children
-}: {
-  placeholder: string;
-  name: string;
-  type: 'text' | 'email' | 'password' | 'tel' | 'date' | 'search' | 'number';
-  children: JSX.Element;
-}) {
+export function Input({ name, type, placeholder, children }: InputProps) {
   return (
     <label className={styles.label}>
       <Field className={styles.field} name={name} type={type} placeholder={placeholder}></Field>
