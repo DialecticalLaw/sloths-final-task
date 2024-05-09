@@ -5,7 +5,6 @@ import { Button } from '../../universal-components/Button/Button';
 import { ValidError } from '../../universal-components/ValidError/ValidError';
 import { Title } from '../../universal-components/CustomForm/Title/Title';
 import styles from './Register.module.css';
-import video from '../../../assets/video/starry-sky.webm';
 import { date, object, string } from 'yup';
 import { CountrySelect } from './CountrySelect/CountrySelect';
 import { Planets } from './Planets/Planets';
@@ -76,7 +75,6 @@ const initialValues: RegisterValues = {
 export function Register() {
   return (
     <>
-      <video src={video} className={styles.video} loop muted autoPlay></video>
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
