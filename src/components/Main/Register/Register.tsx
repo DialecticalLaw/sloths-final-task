@@ -122,7 +122,7 @@ export function Register() {
                 <ValidError name="postalCode"></ValidError>
               </Input>
 
-              <Planets name={'planet'}></Planets>
+              <Planets></Planets>
               <Button type="submit">Register</Button>
             </>
           </CustomForm>
