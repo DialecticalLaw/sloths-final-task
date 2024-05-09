@@ -26,21 +26,21 @@
   box-shadow:
     inset 0 0 15px 15px rgba(0, 0, 0, 1),
     0 0 30px 5px rgb(255, 95, 32);
-  background-image: url('../../../assets/img/planets/marsSmall.jpg');
+  background-image: url('../../../../assets/img/planets/marsSmall.jpg');
 }
 
 .earth {
   box-shadow:
     inset 0 0 15px 15px rgba(0, 0, 0, 1),
     0 0 30px 5px rgb(40, 94, 255);
-  background-image: url('../../../assets/img/planets/earthSmall.webp');
+  background-image: url('../../../../assets/img/planets/earthSmall.webp');
 }
 
 .venus {
   box-shadow:
     inset 0 0 15px 15px rgba(0, 0, 0, 1),
     0 0 30px 5px rgb(213, 255, 75);
-  background-image: url('../../../assets/img/planets/venusSmall.jpg');
+  background-image: url('../../../../assets/img/planets/venusSmall.jpg');
   animation: animateVenus 8s linear infinite paused;
 }
 
