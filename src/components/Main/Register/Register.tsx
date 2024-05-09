@@ -23,7 +23,7 @@ export interface RegisterValues {
   street: string;
   city: string;
   postalCode: string;
-  country: string;
+  country: 'Russia' | 'Belarus';
   planet: 'mars' | 'earth' | 'venus';
 }
 
