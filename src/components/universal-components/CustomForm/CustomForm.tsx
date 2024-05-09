@@ -1,5 +1,5 @@
 import { Form } from 'formik';
-import styles from './Form.module.css';
+import styles from './CustomForm.module.css';
 import video from '../../../assets/video/starry-sky.webm';
 
 export function CustomForm({ children }: { children: JSX.Element }) {

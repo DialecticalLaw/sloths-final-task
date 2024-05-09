@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { CustomForm } from '../../universal-components/CustomForm/Form';
+import { CustomForm } from '../../universal-components/CustomForm/CustomForm';
 import { Input } from '../../universal-components/CustomForm/Input/Input';
 import { Button } from '../../universal-components/Button/Button';
 import { ValidError } from '../../universal-components/ValidError/ValidError';
