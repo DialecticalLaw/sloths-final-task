@@ -1,9 +1,9 @@
 import { Formik } from 'formik';
-import { CustomForm } from '../../universal-components/CustomForm/CustomForm';
-import { Input } from '../../universal-components/CustomForm/Input/Input';
-import { Button } from '../../universal-components/Button/Button';
-import { ValidError } from '../../universal-components/ValidError/ValidError';
-import { Title } from '../../universal-components/CustomForm/Title/Title';
+import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
+import { Input } from '../../univComponents/CustomForm/Input/Input';
+import { Button } from '../../univComponents/Button/Button';
+import { ValidError } from '../../univComponents/ValidError/ValidError';
+import { Title } from '../../univComponents/CustomForm/Title/Title';
 import styles from './Register.module.css';
 import { CountrySelect } from './CountrySelect/CountrySelect';
 import { Planets } from './Planets/Planets';

@@ -1,6 +1,6 @@
 import { Field } from 'formik';
 import styles from './Input.module.css';
-import type { InputProps } from '../../UniversalComponents.interfaces';
+import type { InputProps } from '../../UnivComponents.interfaces';
 
 export function Input({ name, type, placeholder, children }: InputProps) {
   return (
