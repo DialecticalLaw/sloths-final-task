@@ -6,7 +6,7 @@ import { ValidError } from '../../universal-components/ValidError/ValidError';
 import { Title } from '../../universal-components/CustomForm/Title/Title';
 import styles from './Register.module.css';
 import video from '../../../assets/video/starry-sky.webm';
-import { Planets } from './Planets/Planets';
+import { Planets } from '../../universal-components/Planets/Planets';
 import { date, object, string } from 'yup';
 import { CountrySelect } from './CountrySelect/CountrySelect';
 
