@@ -47,53 +47,51 @@ export function Register() {
         validationSchema={RegisterSchema}
         onSubmit={(values) => console.log(values)}
       >
-        {() => (
-          <CustomForm>
-            <>
-              <Title>Registration</Title>
-              <Input name={'email'} type="email" placeholder="Email">
-                <ValidError name="email"></ValidError>
+        <CustomForm>
+          <>
+            <Title>Registration</Title>
+            <Input name={'email'} type="email" placeholder="Email">
+              <ValidError name="email"></ValidError>
+            </Input>
+
+            <Input name={'password'} type="password" placeholder="Password">
+              <ValidError name="password"></ValidError>
+            </Input>
+
+            <div className={styles.inputsGroup}>
+              <Input name={'firstName'} type="text" placeholder="Name">
+                <ValidError name="firstName"></ValidError>
               </Input>
 
-              <Input name={'password'} type="password" placeholder="Password">
-                <ValidError name="password"></ValidError>
+              <Input name={'lastName'} type="text" placeholder="Surname">
+                <ValidError name="lastName"></ValidError>
+              </Input>
+            </div>
+
+            <Input name={'dateOfBirth'} type="date" placeholder="Date of birth">
+              <ValidError name="dateOfBirth"></ValidError>
+            </Input>
+
+            <CountrySelect name={'country'}></CountrySelect>
+
+            <div className={styles.inputsGroup}>
+              <Input name={'city'} type="text" placeholder="City">
+                <ValidError name="city"></ValidError>
               </Input>
 
-              <div className={styles.inputsGroup}>
-                <Input name={'firstName'} type="text" placeholder="Name">
-                  <ValidError name="firstName"></ValidError>
-                </Input>
-
-                <Input name={'lastName'} type="text" placeholder="Surname">
-                  <ValidError name="lastName"></ValidError>
-                </Input>
-              </div>
-
-              <Input name={'dateOfBirth'} type="date" placeholder="Date of birth">
-                <ValidError name="dateOfBirth"></ValidError>
+              <Input name={'street'} type="text" placeholder="Street">
+                <ValidError name="street"></ValidError>
               </Input>
+            </div>
 
-              <CountrySelect name={'country'}></CountrySelect>
+            <Input name={'postalCode'} type="text" placeholder="Postal code">
+              <ValidError name="postalCode"></ValidError>
+            </Input>
 
-              <div className={styles.inputsGroup}>
-                <Input name={'city'} type="text" placeholder="City">
-                  <ValidError name="city"></ValidError>
-                </Input>
-
-                <Input name={'street'} type="text" placeholder="Street">
-                  <ValidError name="street"></ValidError>
-                </Input>
-              </div>
-
-              <Input name={'postalCode'} type="text" placeholder="Postal code">
-                <ValidError name="postalCode"></ValidError>
-              </Input>
-
-              <Planets></Planets>
-              <Button type="submit">Register</Button>
-            </>
-          </CustomForm>
-        )}
+            <Planets></Planets>
+            <Button type="submit">Register</Button>
+          </>
+        </CustomForm>
       </Formik>
     </>
   );
