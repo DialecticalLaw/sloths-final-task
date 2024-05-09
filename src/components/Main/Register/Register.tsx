@@ -9,7 +9,6 @@ import video from '../../../assets/video/starry-sky.webm';
 import { Planets } from './Planets/Planets';
 import { date, object, string } from 'yup';
 import { CountrySelect } from './CountrySelect/CountrySelect';
-import { Link } from '../../universal-components/CustomForm/Link/Link';
 
 export interface StringObj {
   [key: string]: string;
@@ -127,7 +126,6 @@ export function Register() {
 
               <Planets name={'planet'}></Planets>
               <Button type="submit">Register</Button>
-              <Link text="Already have an account?">Log in</Link>
             </>
           </CustomForm>
         )}
