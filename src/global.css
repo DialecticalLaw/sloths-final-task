@@ -14,8 +14,28 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #171717;
+  --text-color: #f5f7fc;
+}
+html {
+  font-size: 10px;
+}
+
 body {
-  background-color: #171717;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.6rem;
+  font-family: Megatrans, serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 ::-webkit-scrollbar {
