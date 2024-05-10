@@ -32,3 +32,13 @@ export const RegisterSchema = object().shape({
     .length(6, '6 numbers are needed')
     .matches(/^[0-9]+$/, 'Only numbers are allowed')
 });
+
+export const LoginSchema = object().shape({
+  email: string().email('Invalid email').required('Required'),
+  password: string()
+    .min(8, "It's too short! Minimum of 8 characters")
+    .matches(/.*[A-Z].*/, 'At least 1 uppercase letter')
+    .matches(/.*[a-z].*/, 'At least 1 lowercase letter')
+    .matches(/.*[0-9].*/, 'At least 1 number')
+    .required('Required')
+});
