@@ -5,7 +5,7 @@ function Navigation() {
   const locationPath = useLocation().pathname;
 
   return (
-    <nav className={styles.navigation}>
+    <nav>
       <ul className={styles.navigation_list}>
         <li>
           <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to={`/catalog`}>
