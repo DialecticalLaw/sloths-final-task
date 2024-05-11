@@ -1,6 +1,8 @@
-// import { Field } from 'formik';
-// import styles from './Input.module.css';
-// import type { InputProps } from '../../UnivComponents.interfaces';
+import { useState } from 'react';
+import { Field } from 'formik';
+import type { InputProps } from '../../UnivComponents.interfaces';
+import { PasswordButton } from '../PasswordButton/PasswordButton';
+import styles from './Input.module.css';
 
 // export function Input({ name, type, placeholder, children }: InputProps) {
 //   return (
@@ -11,18 +13,6 @@
 //     </label>
 //   );
 // }
-
-import { useState } from 'react';
-import { Field } from 'formik';
-import styles from './Input.module.css'; // Стили из вашего существующего компонента Input
-import { VisibilityIcon } from '../PasswordInput/PasswordInput';
-
-interface InputProps {
-  name: string;
-  placeholder: string;
-  type: 'text' | 'email' | 'password' | 'tel' | 'date' | 'search' | 'number';
-  children?: React.ReactNode;
-}
 
 export function Input({ name, type, placeholder, children }: InputProps) {
   const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
@@ -40,7 +30,7 @@ export function Input({ name, type, placeholder, children }: InputProps) {
         placeholder={placeholder}
       />
       {type === 'password' && (
-        <VisibilityIcon
+        <PasswordButton
           togglePasswordVisibility={togglePasswordVisibility}
           passwordVisibility={passwordVisibility}
         />

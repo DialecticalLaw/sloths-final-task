@@ -1,13 +1,24 @@
 import { date, object, string } from 'yup';
 
+const email = string()
+  .email('Invalid email')
+  .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Invalid email')
+  .required('Required field');
+
+const password = string()
+  .min(8, "It's too short! Minimum of 8 characters")
+  .matches(/.*[A-Z].*/, 'At least 1 uppercase letter')
+  .matches(/.*[a-z].*/, 'At least 1 lowercase letter')
+  .matches(/.*[0-9].*/, 'At least 1 number')
+  .matches(/[!@#$%^&*]/, 'At least 1 special character !@#$%^&*')
+  .required('Required')
+  .test('no-whitespace', 'Must not contain leading or trailing whitespace', (value) => {
+    return !(/^\s/.test(value) || /\s$/.test(value));
+  });
+
 export const RegisterSchema = object().shape({
-  email: string().email('Invalid email').required('Required'),
-  password: string()
-    .min(8, "It's too short! Minimum of 8 characters")
-    .matches(/.*[A-Z].*/, 'At least 1 uppercase letter')
-    .matches(/.*[a-z].*/, 'At least 1 lowercase letter')
-    .matches(/.*[0-9].*/, 'At least 1 number')
-    .required('Required'),
+  email,
+  password,
   firstName: string()
     .min(1, 'Too short!')
     .matches(/^[a-zA-Z]+$/, 'No special characters or numbers')
@@ -34,11 +45,6 @@ export const RegisterSchema = object().shape({
 });
 
 export const LoginSchema = object().shape({
-  email: string().email('Invalid email').required('Required'),
-  password: string()
-    .min(8, "It's too short! Minimum of 8 characters")
-    .matches(/.*[A-Z].*/, 'At least 1 uppercase letter')
-    .matches(/.*[a-z].*/, 'At least 1 lowercase letter')
-    .matches(/.*[0-9].*/, 'At least 1 number')
-    .required('Required')
+  email,
+  password
 });
