@@ -1,10 +1,11 @@
 import { Formik } from 'formik';
 import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
 import { Input } from '../../univComponents/CustomForm/Input/Input';
+import { PasswordInput } from '../../univComponents/CustomForm/PasswordInput/PasswordInput';
 import { Button } from '../../univComponents/Button/Button';
 import { ValidError } from '../../univComponents/ValidError/ValidError';
 import { Title } from '../../univComponents/CustomForm/Title/Title';
-import styles from './Login.module.css';
+// import styles from './Login.module.css';
 import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 
@@ -23,14 +24,14 @@ export function Login() {
       >
         <CustomForm>
           <>
-            <Title>Login</Title>
+            <Title mainText={'Login'} additionText={'Welcome back to the future'}></Title>
             <Input name={'email'} type="email" placeholder="Email">
               <ValidError name="email"></ValidError>
             </Input>
 
-            <Input name={'password'} type="password" placeholder="Password">
+            <PasswordInput name={'password'} type="password" placeholder="Password">
               <ValidError name="password"></ValidError>
-            </Input>
+            </PasswordInput>
 
             <Button type="submit">Login</Button>
           </>
