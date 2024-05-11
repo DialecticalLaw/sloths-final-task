@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import styles from './Link.module.css';
+import styles from './CustomLink.module.css';
 
-export function Link({ children, text, to }: { children: string; text: string; to: '/login' | '/register' }) {
+export function CustomLink({
+  children,
+  text,
+  to
+}: {
+  children: string;
+  text: string;
+  to: '/login' | '/register';
+}) {
   return (
     <p className={styles.linkWrapper}>
       {text}&nbsp;
