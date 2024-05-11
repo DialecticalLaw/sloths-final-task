@@ -39,7 +39,7 @@ export function Input({ name, type, placeholder, children }: InputProps) {
         type={type === 'password' ? (passwordVisibility ? 'text' : 'password') : type}
         placeholder={placeholder}
       />
-      {type === 'password' && ( // Добавляем кнопку переключения видимости только для типа 'password'
+      {type === 'password' && (
         <VisibilityIcon
           togglePasswordVisibility={togglePasswordVisibility}
           passwordVisibility={passwordVisibility}
