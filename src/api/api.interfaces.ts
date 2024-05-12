@@ -2,7 +2,6 @@ export interface Address {
   country: 'RU' | 'BY';
   city: string;
   streetName: string;
-  streetNumber: string;
   postalCode: string;
 }
 

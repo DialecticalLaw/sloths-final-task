@@ -10,6 +10,7 @@ import { Planets } from './Planets/Planets';
 import { RegisterSchema } from '../validationSchemes';
 import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/Link/Link';
+import { createCustomer } from '../../../api/apiRoot';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -30,7 +31,23 @@ export function Register() {
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { resetForm }) =>
+          createCustomer({
+            email: values.email,
+            password: values.password,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            dateOfBirth: values.dateOfBirth,
+            addresses: [
+              {
+                country: values.country === 'Russia' ? 'RU' : 'BY',
+                city: values.city,
+                streetName: values.street,
+                postalCode: values.postalCode
+              }
+            ]
+          }).then(() => resetForm())
+        }
       >
         <CustomForm>
           <>
