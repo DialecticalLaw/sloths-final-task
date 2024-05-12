@@ -1,12 +1,12 @@
-import errorImage from '../../../assets/img/404.png';
 import styles from './Error.module.css';
 import Header from '../../Header/Header';
+import CustomNavLink from '../../Header/Navigation/NavLink';
 function ErrorPage() {
   return (
     <>
       <Header />
       <section className={styles.error_page}>
-        <img src={errorImage} alt={'Not found page'} className={styles.error_image} />
+        <CustomNavLink text={'Back to your planet'} to={'/'} />
       </section>
     </>
   );
