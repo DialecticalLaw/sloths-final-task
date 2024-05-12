@@ -1,3 +1,29 @@
+.bg {
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.planet_big {
+  position: absolute;
+  height: 80vh;
+  right: -20rem;
+  top: 8rem;
+}
+
+.planet_small {
+  position: absolute;
+  height: 50vh;
+  left: -2rem;
+  bottom: -7rem;
+}
+
 .sidebar {
   min-height: 100vh;
   display: flex;
@@ -22,8 +48,8 @@
 
 .planet {
   appearance: none;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   background-repeat: repeat-x;
   background-size: cover;
@@ -31,6 +57,7 @@
   animation-fill-mode: both;
   animation: animatePlanet 15s linear infinite reverse paused;
   transition: all 0.3s ease-in;
+  cursor: pointer;
 }
 
 .planet_item:hover .planet {
