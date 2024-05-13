@@ -2,9 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './global.css';
 import { RouterProvider } from 'react-router-dom';
-import router from './router/router';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
+import { router } from './router/router';
 
 const rootElement = document.getElementById('root');
 
