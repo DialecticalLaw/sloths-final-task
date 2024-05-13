@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <>
-      <ToastContainer autoClose={4000} />
+      <ToastContainer autoClose={4000} draggable limit={5} theme="dark" />
       <Header />
       <Main>
         <Outlet />
