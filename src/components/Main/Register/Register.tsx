@@ -9,7 +9,7 @@ import { CountrySelect } from './CountrySelect/CountrySelect';
 import { Planets } from './Planets/Planets';
 import { RegisterSchema } from '../validationSchemes';
 import type { RegisterValues } from '../Main.interfaces';
-import { CustomLink } from '../../univComponents/CustomForm/Link/Link';
+import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLink';
 
 const initialValues: RegisterValues = {
   email: '',

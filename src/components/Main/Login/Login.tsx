@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
 import { Input } from '../../univComponents/CustomForm/Input/Input';
 import { Button } from '../../univComponents/Button/Button';
-import { CustomLink } from '../../univComponents/CustomForm/Link/Link';
+import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLink';
 import { ValidError } from '../../univComponents/ValidError/ValidError';
 import { Title } from '../../univComponents/CustomForm/Title/Title';
 import { LoginSchema } from '../validationSchemes';
