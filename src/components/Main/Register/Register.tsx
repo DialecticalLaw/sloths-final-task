@@ -2,7 +2,6 @@ import { Formik } from 'formik';
 import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
 import { Input } from '../../univComponents/CustomForm/Input/Input';
 import { Button } from '../../univComponents/Button/Button';
-import { ValidError } from '../../univComponents/CustomForm/Input/ValidError/ValidError';
 import { Title } from '../../univComponents/CustomForm/Title/Title';
 import styles from './Register.module.css';
 import { CountrySelect } from './CountrySelect/CountrySelect';
@@ -35,43 +34,27 @@ export function Register() {
         <CustomForm>
           <>
             <Title mainText={'Register'} additionText={'Welcome to the future'}></Title>
-            <Input name={'email'} type="email" placeholder="Email">
-              <ValidError name="email"></ValidError>
-            </Input>
+            <Input name={'email'} type="email" placeholder="Email"></Input>
 
-            <Input name={'password'} type="password" placeholder="Password">
-              <ValidError name="password"></ValidError>
-            </Input>
+            <Input name={'password'} type="password" placeholder="Password"></Input>
 
             <div className={styles.inputsGroup}>
-              <Input name={'firstName'} type="text" placeholder="Name">
-                <ValidError name="firstName"></ValidError>
-              </Input>
+              <Input name={'firstName'} type="text" placeholder="Name"></Input>
 
-              <Input name={'lastName'} type="text" placeholder="Surname">
-                <ValidError name="lastName"></ValidError>
-              </Input>
+              <Input name={'lastName'} type="text" placeholder="Surname"></Input>
             </div>
 
-            <Input name={'dateOfBirth'} type="date" placeholder="Date of birth">
-              <ValidError name="dateOfBirth"></ValidError>
-            </Input>
+            <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
 
             <CountrySelect name={'country'}></CountrySelect>
 
             <div className={styles.inputsGroup}>
-              <Input name={'city'} type="text" placeholder="City">
-                <ValidError name="city"></ValidError>
-              </Input>
+              <Input name={'city'} type="text" placeholder="City"></Input>
 
-              <Input name={'street'} type="text" placeholder="Street">
-                <ValidError name="street"></ValidError>
-              </Input>
+              <Input name={'street'} type="text" placeholder="Street"></Input>
             </div>
 
-            <Input name={'postalCode'} type="text" placeholder="Postal code">
-              <ValidError name="postalCode"></ValidError>
-            </Input>
+            <Input name={'postalCode'} type="text" placeholder="Postal code"></Input>
 
             <Planets />
             <Button type="submit">Register</Button>
