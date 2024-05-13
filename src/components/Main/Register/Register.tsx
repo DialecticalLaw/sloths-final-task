@@ -27,27 +27,31 @@ const initialValues: RegisterValues = {
 };
 
 export function Register() {
+  const submitCustomerData = (values: RegisterValues) => {
+    return createCustomer({
+      email: values.email,
+      password: values.password,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      dateOfBirth: values.dateOfBirth,
+      addresses: [
+        {
+          country: values.country === 'Russia' ? 'RU' : 'BY',
+          city: values.city,
+          streetName: values.street,
+          postalCode: values.postalCode
+        }
+      ]
+    });
+  };
+
   return (
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
         onSubmit={(values, { resetForm }) =>
-          createCustomer({
-            email: values.email,
-            password: values.password,
-            firstName: values.firstName,
-            lastName: values.lastName,
-            dateOfBirth: values.dateOfBirth,
-            addresses: [
-              {
-                country: values.country === 'Russia' ? 'RU' : 'BY',
-                city: values.city,
-                streetName: values.street,
-                postalCode: values.postalCode
-              }
-            ]
-          }).then(() => {
+          submitCustomerData(values).then(() => {
             resetForm();
             showToast('Successful registration!', 'success');
           })
