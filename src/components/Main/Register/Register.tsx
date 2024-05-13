@@ -11,6 +11,8 @@ import { RegisterSchema } from '../validationSchemes';
 import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/Link/Link';
 import { createCustomer } from '../../../api/apiRoot';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -46,7 +48,10 @@ export function Register() {
                 postalCode: values.postalCode
               }
             ]
-          }).then(() => resetForm())
+          }).then(() => {
+            resetForm();
+            toast('Successful registration!');
+          })
         }
       >
         <CustomForm>
@@ -91,7 +96,9 @@ export function Register() {
             </Input>
 
             <Planets />
-            <Button type="submit">Register</Button>
+            <Button onClick={() => toast('Trying...')} type="submit">
+              Register
+            </Button>
 
             <CustomLink text="Already have an account?" to="/login">
               Login
