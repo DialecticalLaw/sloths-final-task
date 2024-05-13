@@ -5,7 +5,7 @@ export interface Address {
   postalCode: string;
 }
 
-export interface createCustomerBody {
+export interface CustomerBody {
   email: string;
   password: string;
   firstName: string;

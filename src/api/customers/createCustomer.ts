@@ -1,7 +1,7 @@
-import type { createCustomerBody } from '../api.interfaces';
+import type { CustomerBody } from '../api.interfaces';
 import { apiRoot } from '../apiRoot';
 
-export const createCustomer = (body: createCustomerBody) => {
+export const createCustomer = (body: CustomerBody) => {
   return apiRoot
     .customers()
     .post({
