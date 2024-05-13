@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
 import { Input } from '../../univComponents/CustomForm/Input/Input';
 import { Button } from '../../univComponents/Button/Button';
-import { ValidError } from '../../univComponents/ValidError/ValidError';
+import { ValidError } from '../../univComponents/CustomForm/Input/ValidError/ValidError';
 import { Title } from '../../univComponents/CustomForm/Title/Title';
 import styles from './Register.module.css';
 import { CountrySelect } from './CountrySelect/CountrySelect';
