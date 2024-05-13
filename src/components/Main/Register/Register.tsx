@@ -50,14 +50,12 @@ export function Register() {
         initialValues={initialValues}
         validationSchema={RegisterSchema}
         onSubmit={async (values) => {
-          try {
-            await submitCustomerData(values);
-            showToast({ text: 'Successful registration!', type: 'success' });
-          } catch (err) {
-            if (err instanceof Error) {
-              showToast({ text: err.message, type: 'error' });
-            }
-          }
+          showToast({
+            promise: submitCustomerData(values),
+            pending: 'Processing...',
+            success: 'Successful registration!',
+            error: 'error'
+          });
         }}
       >
         <CustomForm>
