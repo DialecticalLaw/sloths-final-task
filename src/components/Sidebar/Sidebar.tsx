@@ -2,11 +2,11 @@ import { Field, Form, Formik } from 'formik';
 import styles from './Sidebar.module.css';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import BgPlanets from './Bg-planets';
 import type { Planet } from '../../store/slices/planet-slice';
 import { choosePlanet } from '../../store/slices/planet-slice';
+import { BgPlanets } from './Bg-planets';
 
-function Sidebar() {
+export function Sidebar() {
   const dispatch = useAppDispatch();
   const locationPath = useLocation().pathname;
   const isShow = ['/catalog', '/', '/about'].includes(locationPath);
@@ -79,4 +79,3 @@ function Sidebar() {
     )
   );
 }
-export default Sidebar;

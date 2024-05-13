@@ -1,14 +1,14 @@
 import styles from './Sidebar.module.css';
 import { useAppSelector } from '../../store/hooks';
-import marsBig from '../../assets/img/planets/марс.png';
-import marsSmall from '../../assets/img/planets/марс1.png';
-import venusBig from '../../assets/img/planets/венера.png';
-import venusSmall from '../../assets/img/planets/венера1.png';
-import earthBig from '../../assets/img/planets/земля.png';
-import earthSmall from '../../assets/img/planets/земля1.png';
+import marsBig from '../../assets/img/planets/mars.png';
+import marsSmall from '../../assets/img/planets/mars1.png';
+import venusBig from '../../assets/img/planets/venus.png';
+import venusSmall from '../../assets/img/planets/venus1.png';
+import earthBig from '../../assets/img/planets/earth.png';
+import earthSmall from '../../assets/img/planets/earth1.png';
 import { Planets } from '../../store/slices/planet-slice';
 
-function BgPlanets() {
+export function BgPlanets() {
   const planet = useAppSelector((state) => state.planet_slice.planet);
 
   const srcBig = planet === Planets.earth ? earthBig : planet === Planets.mars ? marsBig : venusBig;
@@ -23,5 +23,3 @@ function BgPlanets() {
     )
   );
 }
-
-export default BgPlanets;
