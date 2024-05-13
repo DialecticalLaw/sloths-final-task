@@ -49,12 +49,16 @@ export function Register() {
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={(values, { resetForm }) =>
-          submitCustomerData(values).then(() => {
-            resetForm();
+        onSubmit={async (values) => {
+          try {
+            await submitCustomerData(values);
             showToast('Successful registration!', 'success');
-          })
-        }
+          } catch (err) {
+            if (err instanceof Error) {
+              showToast(err.message, 'error');
+            }
+          }
+        }}
       >
         <CustomForm>
           <>
