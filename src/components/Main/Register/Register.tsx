@@ -10,8 +10,8 @@ import { Planets } from './Planets/Planets';
 import { RegisterSchema } from '../validationSchemes';
 import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/Link/Link';
-import { createCustomer } from '../../../api/apiRoot';
 import { showToast } from '../../../helpers/showToast';
+import { createCustomer } from '../../../api/customers/createCustomer';
 
 const initialValues: RegisterValues = {
   email: '',
