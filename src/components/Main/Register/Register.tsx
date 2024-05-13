@@ -52,10 +52,10 @@ export function Register() {
         onSubmit={async (values) => {
           try {
             await submitCustomerData(values);
-            showToast('Successful registration!', 'success');
+            showToast({ text: 'Successful registration!', type: 'success' });
           } catch (err) {
             if (err instanceof Error) {
-              showToast(err.message, 'error');
+              showToast({ text: err.message, type: 'error' });
             }
           }
         }}
