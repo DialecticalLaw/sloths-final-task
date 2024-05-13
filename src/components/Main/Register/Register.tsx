@@ -9,6 +9,8 @@ import { Planets } from './Planets/Planets';
 import { RegisterSchema } from '../validationSchemes';
 import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLink';
+import { showToast } from '../../../helpers/showToast';
+import { createCustomer } from '../../../api/customers/createCustomer';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -23,13 +25,36 @@ const initialValues: RegisterValues = {
   planet: 'earth'
 };
 
+const submitCustomerData = (values: RegisterValues) => {
+  return createCustomer({
+    email: values.email,
+    password: values.password,
+    firstName: values.firstName,
+    lastName: values.lastName,
+    dateOfBirth: values.dateOfBirth,
+    addresses: [
+      {
+        country: values.country === 'Russia' ? 'RU' : 'BY',
+        city: values.city,
+        streetName: values.street,
+        postalCode: values.postalCode
+      }
+    ]
+  });
+};
+
 export function Register() {
   return (
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { resetForm }) =>
+          submitCustomerData(values).then(() => {
+            resetForm();
+            showToast('Successful registration!', 'success');
+          })
+        }
       >
         <CustomForm>
           <>

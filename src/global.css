@@ -20,6 +20,7 @@
   --error-color: #ff0000;
   --main-font: Megatrans;
   --decorative-font: Dune;
+  --toastify-color-dark: #242424f1;
 }
 html {
   font-size: 10px;
