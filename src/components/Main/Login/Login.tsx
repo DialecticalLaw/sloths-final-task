@@ -9,9 +9,13 @@ import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 import { loginCustomer } from '../../../api/customers/loginCustomer';
 
-const login = async (values: LoginValues) => {
-  const { email, password } = values;
-  return loginCustomer({ email, password });
+const login = async (values: LoginValues): Promise<void> => {
+  showToast({
+    promise: loginCustomer(values),
+    pending: 'Logging in...',
+    success: 'Successful login!',
+    error: 'error'
+  })
 };
 
 const initialValues: LoginValues = {
@@ -25,15 +29,7 @@ export function Login() {
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
-        onSubmit={async (values) => {
-          showToast({
-            promise: login(values),
-            pending: 'Logging in...',
-            success: 'Successful login!',
-            error: 'error'
-          });
-        }}
-      >
+        onSubmit={login}>
         <CustomForm>
           <>
             <Title mainText={'Login'} additionText={'Welcome back to the future'}></Title>
