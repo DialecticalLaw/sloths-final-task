@@ -20,5 +20,4 @@ export interface RegisterValues extends LoginValues {
   lastName: string;
   dateOfBirth: string;
   address: AddressField;
-  planet: 'mars' | 'earth' | 'venus';
 }

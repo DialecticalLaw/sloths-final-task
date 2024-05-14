@@ -4,7 +4,6 @@ import { Input } from '../../univComponents/CustomForm/Input/Input';
 import { Button } from '../../univComponents/Button/Button';
 import { Title } from '../../univComponents/CustomForm/Title/Title';
 import styles from './Register.module.css';
-import { Planets } from './Planets/Planets';
 import { RegisterSchema } from '../validationSchemes';
 import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLink';
@@ -24,8 +23,7 @@ const initialValues: RegisterValues = {
     postalCode: '',
     country: 'Russia',
     isDefault: false
-  },
-  planet: 'earth'
+  }
 };
 
 const submitCustomerData = (values: RegisterValues) => {
@@ -75,8 +73,6 @@ export function Register() {
             <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
 
             <Address />
-
-            <Planets />
 
             <Button type="submit">Register</Button>
 
