@@ -15,7 +15,7 @@ const login = async (values: LoginValues): Promise<void> => {
     pending: 'Logging in...',
     success: 'Successful login!',
     error: 'error'
-  })
+  });
 };
 
 const initialValues: LoginValues = {
@@ -26,10 +26,7 @@ const initialValues: LoginValues = {
 export function Login() {
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={LoginSchema}
-        onSubmit={login}>
+      <Formik initialValues={initialValues} validationSchema={LoginSchema} onSubmit={login}>
         <CustomForm>
           <>
             <Title mainText={'Login'} additionText={'Welcome back to the future'}></Title>
