@@ -1,9 +1,9 @@
-import { Input } from '../../Input/Input';
-import { Checkbox } from '../../../Checkbox/Checkbox';
-import { CountrySelect } from '../CountrySelect/CountrySelect';
+import { Input } from '../Input/Input';
+import { Checkbox } from '../../Checkbox/Checkbox';
+import { CountrySelect } from './CountrySelect/CountrySelect';
 import styles from './Address.module.css';
 import { useFormikContext } from 'formik';
-import type { RegisterValues } from '../../../../Main/Main.interfaces';
+import type { RegisterValues } from '../../../Main/Main.interfaces';
 
 export function Address({ name }: { name: 'shipping' | 'billing' }) {
   const { values }: { values: RegisterValues } = useFormikContext();

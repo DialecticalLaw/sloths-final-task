@@ -9,8 +9,8 @@ import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLink';
 import { showToast } from '../../../helpers/showToast';
 import { createCustomer } from '../../../api/customers/createCustomer';
-import { Addresses } from '../../univComponents/CustomForm/Addresses/Addresses';
 import type { CustomerBody } from '../../../api/api.interfaces';
+import { Address } from '../../univComponents/CustomForm/Address/Address';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -84,7 +84,8 @@ export function Register() {
 
             <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
 
-            <Addresses />
+            <Address name="shipping" />
+            <Address name="billing" />
 
             <Button type="submit">Register</Button>
 
