@@ -10,12 +10,20 @@ import type { LoginValues } from '../Main.interfaces';
 import { loginCustomer } from '../../../api/customers/loginCustomer';
 
 const login = async (values: LoginValues): Promise<void> => {
-  showToast({
-    promise: loginCustomer(values),
-    pending: 'Logging in...',
-    success: 'Successful login!',
-    error: 'error'
-  });
+  try {
+    await loginCustomer(values);
+    showToast({
+      text: 'Successful login!',
+      type: 'success'
+    });
+    values.email = '';
+    values.password = '';
+  } catch (error) {
+    showToast({
+      text: 'Incorrect email or password. Please try again!',
+      type: 'error'
+    });
+  }
 };
 
 const initialValues: LoginValues = {
