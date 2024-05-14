@@ -10,4 +10,5 @@
 .legend {
   padding: 8px;
   letter-spacing: 2px;
+  text-transform: capitalize;
 }

@@ -47,7 +47,8 @@ export const RegisterSchema = object().shape({
       if (!value) return false;
       return new Date().getFullYear() - value.getFullYear() >= 13;
     }),
-  address: address
+  shipping: address,
+  billing: address
 });
 
 export const LoginSchema = object().shape({

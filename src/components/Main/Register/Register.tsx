@@ -9,7 +9,7 @@ import type { RegisterValues } from '../Main.interfaces';
 import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLink';
 import { showToast } from '../../../helpers/showToast';
 import { createCustomer } from '../../../api/customers/createCustomer';
-import { Address } from '../../univComponents/CustomForm/Address/Address';
+import { Addresses } from '../../univComponents/CustomForm/Addresses/Addresses';
 import type { CustomerBody } from '../../../api/api.interfaces';
 
 const initialValues: RegisterValues = {
@@ -18,7 +18,15 @@ const initialValues: RegisterValues = {
   firstName: '',
   lastName: '',
   dateOfBirth: '',
-  address: {
+  shipping: {
+    street: '',
+    city: '',
+    postalCode: '',
+    country: 'Russia',
+    isDefault: false,
+    isSameAddress: false
+  },
+  billing: {
     street: '',
     city: '',
     postalCode: '',
@@ -36,18 +44,13 @@ const submitCustomerData = (values: RegisterValues) => {
     dateOfBirth: values.dateOfBirth,
     addresses: [
       {
-        country: values.address.country === 'Russia' ? 'RU' : 'BY',
-        city: values.address.city,
-        streetName: values.address.street,
-        postalCode: values.address.postalCode
+        country: values.shipping.country === 'Russia' ? 'RU' : 'BY',
+        city: values.shipping.city,
+        streetName: values.shipping.street,
+        postalCode: values.shipping.postalCode
       }
     ]
   };
-
-  if (values.address.isDefault) {
-    customerBody.defaultShippingAddress = 0; // Yes, the magic numbers. In the future, this functionality will be different (in RSS-ECOMM-2_15)
-    customerBody.defaultBillingAddress = 0;
-  }
   return createCustomer(customerBody);
 };
 
@@ -81,7 +84,7 @@ export function Register() {
 
             <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
 
-            <Address />
+            <Addresses />
 
             <Button type="submit">Register</Button>
 
