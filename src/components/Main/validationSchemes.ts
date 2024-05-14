@@ -34,10 +34,12 @@ export const RegisterSchema = object().shape({
   firstName: string()
     .min(1, 'Too short!')
     .matches(/^[a-zA-Z]+$/, 'No special characters or numbers')
+    .trim()
     .required('Required field!'),
   lastName: string()
     .min(1, 'Too short!')
     .matches(/^[a-zA-Z]+$/, 'No special characters or numbers')
+    .trim()
     .required('Required field!'),
   dateOfBirth: date()
     .required('Required field!')
