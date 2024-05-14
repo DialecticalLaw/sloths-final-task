@@ -13,6 +13,6 @@ export const ProtectedRoute: FC<ProtectedRouteType> = ({ element, withAuth }) =>
   if (withAuth) {
     return !auth ? <Navigate to="/login" replace state={{ from: location }} /> : element;
   } else {
-    return auth ? <Navigate to={location.state?.from || '/'} replace /> : element;
+    return auth ? <Navigate to={'/'} replace /> : element;
   }
 };
