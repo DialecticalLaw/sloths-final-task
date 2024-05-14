@@ -10,6 +10,7 @@ import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLin
 import { showToast } from '../../../helpers/showToast';
 import { createCustomer } from '../../../api/customers/createCustomer';
 import { Address } from '../../univComponents/CustomForm/Address/Address';
+import type { CustomerBody } from '../../../api/api.interfaces';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -27,7 +28,7 @@ const initialValues: RegisterValues = {
 };
 
 const submitCustomerData = (values: RegisterValues) => {
-  return createCustomer({
+  const customerBody: CustomerBody = {
     email: values.email,
     password: values.password,
     firstName: values.firstName,
@@ -41,7 +42,13 @@ const submitCustomerData = (values: RegisterValues) => {
         postalCode: values.address.postalCode
       }
     ]
-  });
+  };
+
+  if (values.address.isDefault) {
+    customerBody.defaultShippingAddress = 0; // Yes, the magic numbers. In the future, this functionality will be different (in RSS-ECOMM-2_15)
+    customerBody.defaultBillingAddress = 0;
+  }
+  return createCustomer(customerBody);
 };
 
 export function Register() {
