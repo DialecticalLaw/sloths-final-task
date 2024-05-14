@@ -48,7 +48,11 @@ export const RegisterSchema = object().shape({
       return new Date().getFullYear() - value.getFullYear() >= 13;
     }),
   shipping: address,
-  billing: address
+  billing: address.when('shipping.isSameAddress', {
+    is: true,
+    then: () => object().shape({}),
+    otherwise: () => address
+  })
 });
 
 export const LoginSchema = object().shape({
