@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { showToast } from '../../../helpers/showToast';
 import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
 import { Input } from '../../univComponents/CustomForm/Input/Input';
 import { Button } from '../../univComponents/Button/Button';
@@ -8,13 +9,10 @@ import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 import { loginCustomer } from '../../../api/customers/loginCustomer';
 
-const login = async ({ email, password }: LoginValues): Promise<void> => {
-  try {
-    await loginCustomer({ email, password });
-    console.log('Logined');
-  } catch (error) {
-    console.error('Error:', error);
-  }
+
+const login = async (values: LoginValues) => {
+  const { email, password } = values;
+  return loginCustomer({email, password})
 };
 
 const initialValues: LoginValues = {
@@ -25,7 +23,14 @@ const initialValues: LoginValues = {
 export function Login() {
   return (
     <>
-      <Formik initialValues={initialValues} validationSchema={LoginSchema} onSubmit={login}>
+      <Formik initialValues={initialValues} validationSchema={LoginSchema} onSubmit={async (values) => {
+      showToast({
+        promise: login(values),
+        pending: 'Logging in...',
+        success: 'Successful login!',
+        error: 'error'
+      });
+    }}>
         <CustomForm>
           <>
             <Title mainText={'Login'} additionText={'Welcome back to the future'}></Title>
