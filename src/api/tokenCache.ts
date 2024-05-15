@@ -15,8 +15,8 @@ class MyTokenCache implements TokenCache {
     return this.token;
   }
 
-  public set(cache: TokenStore): void {
-    this.token = cache;
+  public set(tokenCache: TokenStore): void {
+    this.token = tokenCache;
   }
 }
 
