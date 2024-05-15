@@ -1,3 +1,6 @@
+import type {
+  AnonymousAuthMiddlewareOptions
+} from '@commercetools/sdk-client-v2';
 import {
   ClientBuilder,
   type AuthMiddlewareOptions,
@@ -5,6 +8,7 @@ import {
   type PasswordAuthMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
 import { ApiData } from './apiData';
+import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 
 const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: ApiData.AUTH_URL,
@@ -46,4 +50,26 @@ export const getPasswordFlowClient = (email: string, password: string) => {
   };
 
   return new ClientBuilder().withPasswordFlow(options).withHttpMiddleware(httpMiddlewareOptions).build();
+};
+
+export const getAnonymousFlowClient = () => {
+  const options: AnonymousAuthMiddlewareOptions = {
+    host: ApiData.AUTH_URL,
+    projectKey: ApiData.PROJECT_KEY,
+    credentials: {
+      clientId: ApiData.CLIENT_ID,
+      clientSecret: ApiData.CLIENT_SECRET
+    },
+    scopes: ApiData.SCOPES.split(' '),
+    fetch
+  };
+  const client = new ClientBuilder()
+    .withAnonymousSessionFlow(options)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .build();
+
+  const ApiRoot = createApiBuilderFromCtpClient(client).withProjectKey({
+    projectKey: ApiData.PROJECT_KEY
+  });
+  return ApiRoot;
 };
