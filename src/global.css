@@ -22,6 +22,7 @@
   --decorative-font: Dune;
   --toastify-color-dark: #242424f1;
   --highlight-color: rgb(31, 163, 240);
+  --header-background: rgba(40, 40, 40, 0.615);
 }
 html {
   font-size: 10px;
@@ -53,15 +54,10 @@ h1 {
 }
 
 ::-webkit-scrollbar {
-  background-color: #000000;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 8px;
+  background-color: var(--header-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 8px;
   background-color: dodgerblue;
 }
 
