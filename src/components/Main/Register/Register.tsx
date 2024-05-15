@@ -47,8 +47,8 @@ export function Register() {
           const customerPromise = createCustomer(formatCustomerData(values));
           showToast({
             promise: customerPromise,
-            pending: 'Processing...',
-            success: 'Successful registration!',
+            pending: 'Ожидайте...',
+            success: 'Успешная регистрация!',
             error: 'error'
           });
           customerPromise.then(() => {
