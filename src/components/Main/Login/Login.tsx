@@ -1,3 +1,4 @@
+import type { FormikHelpers } from 'formik';
 import { Formik } from 'formik';
 import { showToast } from '../../../helpers/showToast';
 import { CustomForm } from '../../univComponents/CustomForm/CustomForm';
@@ -8,16 +9,18 @@ import { Title } from '../../univComponents/CustomForm/Title/Title';
 import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 import { loginCustomer } from '../../../api/customers/loginCustomer';
+import { myToken } from '../../../api/tokenCache';
 
-const login = async (values: LoginValues): Promise<void> => {
+const login = async (values: LoginValues, { resetForm }: FormikHelpers<LoginValues>): Promise<void> => {
   try {
     await loginCustomer(values);
     showToast({
       text: 'Successful login!',
       type: 'success'
     });
-    values.email = '';
-    values.password = '';
+    localStorage.setItem('token', myToken.get().token);
+    localStorage.setItem('refreshToken', myToken.get().refreshToken || '');
+    resetForm();
   } catch (error) {
     showToast({
       text: 'Incorrect email or password. Please try again!',

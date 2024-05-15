@@ -6,11 +6,17 @@ import {
 import type { Login } from '../api.interfaces';
 import { getPasswordFlowClient } from '../BuildClient';
 import { ApiData } from '../apiData';
+import { myToken } from '../tokenCache';
 
 export const loginCustomer = async ({
   email,
   password
 }: Login): Promise<ClientResponse<CustomerSignInResult>> => {
+  myToken.set({
+    token: '',
+    expirationTime: 0,
+    refreshToken: ''
+  });
   const сlient = getPasswordFlowClient(email, password);
   const ApiRoot = createApiBuilderFromCtpClient(сlient).withProjectKey({
     projectKey: ApiData.PROJECT_KEY

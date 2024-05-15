@@ -5,6 +5,7 @@ import {
   type PasswordAuthMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
 import { ApiData } from './apiData';
+import { myToken } from './tokenCache';
 
 const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: ApiData.AUTH_URL,
@@ -15,6 +16,7 @@ const authMiddlewareOptions: AuthMiddlewareOptions = {
   },
   scopes: ApiData.SCOPES.split(' '),
   fetch
+  // tokenCache: myToken
 };
 
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
@@ -42,7 +44,8 @@ export const getPasswordFlowClient = (email: string, password: string) => {
       }
     },
     scopes: ApiData.SCOPES.split(' '),
-    fetch
+    fetch,
+    tokenCache: myToken
   };
 
   return new ClientBuilder().withPasswordFlow(options).withHttpMiddleware(httpMiddlewareOptions).build();
