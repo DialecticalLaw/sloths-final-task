@@ -15,14 +15,14 @@
 }
 
 :root {
-  --bg-color: #171717;
+  --bg-color: rgb(8, 8, 8);
   --text-color: #f5f7fc;
   --error-color: #ff0000;
   --main-font: Megatrans;
   --decorative-font: Dune;
   --toastify-color-dark: #242424f1;
   --highlight-color: rgb(31, 163, 240);
-  --header-background: rgba(40, 40, 40, 0.615);
+  --header-background: rgba(20, 20, 20, 0.7);
 }
 html {
   font-size: 10px;
