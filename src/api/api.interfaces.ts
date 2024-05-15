@@ -1,9 +1,11 @@
+import type { ErrorResponse } from '@commercetools/platform-sdk';
+
 export interface Login {
   email: string;
   password: string;
 }
 
-export interface Address {
+export interface CustomerAddress {
   country: 'RU' | 'BY';
   city: string;
   streetName: string;
@@ -16,7 +18,15 @@ export interface CustomerBody {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
-  addresses: Address[];
+  addresses: CustomerAddress[];
+  shippingAddresses: number[];
+  billingAddresses: number[];
   defaultShippingAddress?: number;
   defaultBillingAddress?: number;
+}
+
+export interface ApiError {
+  body: ErrorResponse;
+  statusCode: number;
+  message: string;
 }

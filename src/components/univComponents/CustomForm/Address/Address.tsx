@@ -1,18 +1,29 @@
-import { CountrySelect } from './CountrySelect/CountrySelect';
 import { Input } from '../Input/Input';
+import { Checkbox } from '../../Checkbox/Checkbox';
+import { CountrySelect } from './CountrySelect/CountrySelect';
 import styles from './Address.module.css';
-import { Checkbox } from './Checkbox/Checkbox';
+import { useFormikContext } from 'formik';
+import type { RegisterValues } from '../../../Main/Main.interfaces';
 
-export function Address() {
+export function Address({ name }: { name: 'shipping' | 'billing' }) {
+  const { values }: { values: RegisterValues } = useFormikContext();
+
   return (
-    <fieldset name={'address'} className={styles.address}>
-      <legend className={styles.legend}>Address</legend>
-      <CountrySelect name={'address.country'}></CountrySelect>
+    <fieldset
+      className={`${styles.address} ${name === 'billing' && values.shipping.isSameAddress && styles.hidden}`}
+    >
+      <legend className={styles.legend}>
+        Адрес {name === 'shipping' ? 'доставки' : 'выставления счёта'}
+      </legend>
+      <CountrySelect name={`${name}.country`}></CountrySelect>
+      <Input name={`${name}.city`} type="text" placeholder="Город"></Input>
+      <Input name={`${name}.street`} type="text" placeholder="Улица"></Input>
+      <Input name={`${name}.postalCode`} type="text" placeholder="Почтовый индекс"></Input>
+      <Checkbox name={`${name}.isDefault`}>Использовать по умолчанию</Checkbox>
 
-      <Input name={'address.city'} type="text" placeholder="City"></Input>
-      <Input name={'address.street'} type="text" placeholder="Street"></Input>
-      <Input name={'address.postalCode'} type="text" placeholder="Postal code"></Input>
-      <Checkbox name="isDefault">Use as default</Checkbox>
+      {name === 'shipping' && (
+        <Checkbox name={'shipping.isSameAddress'}>Использовать как адрес выставления счёта</Checkbox>
+      )}
     </fieldset>
   );
 }

@@ -12,6 +12,7 @@ import { createCustomer } from '../../../api/customers/createCustomer';
 import { useAppDispatch } from '../../../store/hooks';
 import { Address } from '../../univComponents/CustomForm/Address/Address';
 import { formatCustomerData, login } from '../Login/auth';
+import type { ErrorResponse } from '@commercetools/platform-sdk';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -19,7 +20,15 @@ const initialValues: RegisterValues = {
   firstName: '',
   lastName: '',
   dateOfBirth: '',
-  address: {
+  shipping: {
+    street: '',
+    city: '',
+    postalCode: '',
+    country: 'Russia',
+    isDefault: false,
+    isSameAddress: false
+  },
+  billing: {
     street: '',
     city: '',
     postalCode: '',
@@ -27,6 +36,17 @@ const initialValues: RegisterValues = {
     isDefault: false
   }
 };
+
+function registerErrorHandler(error: ErrorResponse): string {
+  if (error.statusCode.toString()[0] === '5') return `Ошибка сервера. Код: ${error.statusCode}`;
+  if (!error.errors) throw new Error('errors array not found');
+
+  const errorCode = error.errors[0].code;
+
+  if (errorCode === 'DuplicateField') {
+    return 'Уже есть существующий клиент с указанным адресом электронной почты.';
+  } else return error.message;
+}
 
 export function Register() {
   const dispatch = useAppDispatch();
@@ -39,9 +59,9 @@ export function Register() {
           const customerPromise = createCustomer(formatCustomerData(values));
           showToast({
             promise: customerPromise,
-            pending: 'Processing...',
-            success: 'Successful registration!',
-            error: 'error'
+            pending: 'Ожидайте...',
+            success: 'Успешная регистрация!',
+            errorHandler: registerErrorHandler
           });
           customerPromise.then(() => {
             login({ email: values.email, password: values.password }, dispatch);
@@ -50,18 +70,21 @@ export function Register() {
       >
         <CustomForm>
           <>
-            <Title mainText={'Register'} additionText={'Welcome to the future'}></Title>
-            <Input name={'email'} type="email" placeholder="Email"></Input>
-            <Input name={'password'} type="password" placeholder="Password"></Input>
+            <Title mainText={'Регистрация'} additionText={'Добро пожаловать в будущее'}></Title>
+            <Input name={'email'} type="email" placeholder="Эл. почта"></Input>
+            <Input name={'password'} type="password" placeholder="Пароль"></Input>
             <div className={styles.inputsGroup}>
-              <Input name={'firstName'} type="text" placeholder="Name"></Input>
-              <Input name={'lastName'} type="text" placeholder="Surname"></Input>
+              <Input name={'firstName'} type="text" placeholder="Имя"></Input>
+              <Input name={'lastName'} type="text" placeholder="Фамилия"></Input>
             </div>
-            <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
-            <Address />
-            <Button type="submit">Register</Button>
-            <CustomLink text="Already have an account?" to="/login">
-              Login
+            <Input name={'dateOfBirth'} type="date" placeholder="Дата рождения"></Input>
+
+            <Address name="shipping" />
+            <Address name="billing" />
+
+            <Button type="submit">Создать аккаунт</Button>
+            <CustomLink text="Уже есть аккаунт?" to="/login">
+              Авторизуйтесь
             </CustomLink>
           </>
         </CustomForm>

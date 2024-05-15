@@ -4,13 +4,13 @@ import styles from './CountrySelect.module.css';
 export function CountrySelect({ name }: { name: string }) {
   return (
     <label className={styles.label}>
-      Choose your county
-      <Field className={styles.selectField} component="select" name={name} id="country-select">
+      Выберите свою страну
+      <Field className={styles.selectField} component="select" name={name} id={`${name}-select`}>
         <option className={styles.option} value="Russia">
-          Russia
+          Россия
         </option>
         <option className={styles.option} value="Belarus">
-          Belarus
+          Беларусь
         </option>
       </Field>
     </label>
