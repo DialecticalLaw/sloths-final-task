@@ -36,6 +36,9 @@ const initialValues: RegisterValues = {
 };
 
 const submitCustomerData = (values: RegisterValues) => {
+  const shippingIndex = 0;
+  const billingIndex = 1;
+
   const customerBody: CustomerBody = {
     email: values.email,
     password: values.password,
@@ -44,13 +47,35 @@ const submitCustomerData = (values: RegisterValues) => {
     dateOfBirth: values.dateOfBirth,
     addresses: [
       {
-        country: values.shipping.country === 'Russia' ? 'RU' : 'BY',
         city: values.shipping.city,
-        streetName: values.shipping.street,
-        postalCode: values.shipping.postalCode
+        country: values.shipping.country === 'Russia' ? 'RU' : 'BY',
+        postalCode: values.shipping.postalCode,
+        streetName: values.shipping.street
       }
-    ]
+    ],
+    shippingAddresses: [shippingIndex],
+    billingAddresses: values.shipping.isSameAddress ? [shippingIndex] : [billingIndex]
   };
+
+  if (values.shipping.isSameAddress && values.shipping.isDefault) {
+    customerBody.defaultShippingAddress = shippingIndex;
+    customerBody.defaultBillingAddress = shippingIndex;
+  } else if (!values.shipping.isSameAddress) {
+    customerBody.addresses.push({
+      city: values.billing.city,
+      country: values.shipping.country === 'Russia' ? 'RU' : 'BY',
+      postalCode: values.billing.postalCode,
+      streetName: values.billing.street
+    });
+
+    if (values.shipping.isDefault) {
+      customerBody.defaultShippingAddress = shippingIndex;
+    }
+    if (values.billing.isDefault) {
+      customerBody.defaultBillingAddress = billingIndex;
+    }
+  }
+
   return createCustomer(customerBody);
 };
 
