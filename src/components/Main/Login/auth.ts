@@ -6,6 +6,7 @@ import { loginCustomer } from '../../../api/customers/loginCustomer';
 import type { FormikState } from 'formik';
 import type { RegisterValues } from '../Main.interfaces';
 import type { CustomerBody } from '../../../api/api.interfaces';
+import { myToken } from '../../../api/tokenCache';
 
 export const login = async (
   values: LoginValues,
@@ -18,6 +19,10 @@ export const login = async (
         text: 'Successful login!',
         type: 'success'
       });
+      localStorage.setItem('token', myToken.get().token);
+      console.log(myToken.get().token);
+      localStorage.setItem('refreshToken', myToken.get().refreshToken || '');
+      console.log(myToken.get().refreshToken);
       if (resetForm) {
         resetForm();
       }
