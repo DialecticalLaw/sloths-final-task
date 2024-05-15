@@ -1,4 +1,9 @@
 .logo {
   width: 5rem;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }

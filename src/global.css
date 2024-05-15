@@ -31,6 +31,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-size: 1.6rem;
+  letter-spacing: 1px;
   font-family: var(--main-font), serif;
 }
 
