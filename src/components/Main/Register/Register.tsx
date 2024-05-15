@@ -12,6 +12,7 @@ import { createCustomer } from '../../../api/customers/createCustomer';
 import { useAppDispatch } from '../../../store/hooks';
 import { Address } from '../../univComponents/CustomForm/Address/Address';
 import { formatCustomerData, login } from '../Login/auth';
+import type { ErrorResponse } from '@commercetools/platform-sdk';
 
 const initialValues: RegisterValues = {
   email: '',
@@ -36,6 +37,17 @@ const initialValues: RegisterValues = {
   }
 };
 
+function registerErrorHandler(error: ErrorResponse): string {
+  if (error.statusCode.toString()[0] === '5') return `Ошибка сервера. Код: ${error.statusCode}`;
+  if (!error.errors) throw new Error('errors array not found');
+
+  const errorCode = error.errors[0].code;
+
+  if (errorCode === 'DuplicateField') {
+    return 'Уже есть существующий клиент с указанным адресом электронной почты.';
+  } else return error.message;
+}
+
 export function Register() {
   const dispatch = useAppDispatch();
   return (
@@ -49,7 +61,7 @@ export function Register() {
             promise: customerPromise,
             pending: 'Ожидайте...',
             success: 'Успешная регистрация!',
-            error: 'error'
+            errorHandler: registerErrorHandler
           });
           customerPromise.then(() => {
             login({ email: values.email, password: values.password }, dispatch);
