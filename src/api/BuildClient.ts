@@ -54,6 +54,7 @@ export const getPasswordFlowClient = (email: string, password: string) => {
   const client = new ClientBuilder()
     .withPasswordFlow(options)
     .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
     .build();
 
   const ApiRoot = createApiBuilderFromCtpClient(client).withProjectKey({
@@ -71,12 +72,14 @@ export const getRefreshFlowClient = (): ByProjectKeyRequestBuilder => {
       clientSecret: ApiData.CLIENT_SECRET
     },
     refreshToken: localStorage.getItem('sloth-refreshToken') || '',
-    fetch
+    fetch,
+    tokenCache: myToken
   };
 
   const client = new ClientBuilder()
     .withRefreshTokenFlow(options)
     .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
     .build();
 
   const ApiRoot = createApiBuilderFromCtpClient(client).withProjectKey({

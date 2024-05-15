@@ -19,7 +19,6 @@ export async function loginCustomer(email: string, password: string): Promise<Cu
         }
       })
       .execute();
-    localStorage.setItem('sloth-token', myToken.get().token);
     localStorage.setItem('sloth-refreshToken', myToken.get().refreshToken || '');
     return response.body;
   } catch (error) {
