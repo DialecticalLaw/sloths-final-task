@@ -58,21 +58,21 @@ export function Register() {
       >
         <CustomForm>
           <>
-            <Title mainText={'Register'} additionText={'Welcome to the future'}></Title>
-            <Input name={'email'} type="email" placeholder="Email"></Input>
-            <Input name={'password'} type="password" placeholder="Password"></Input>
+            <Title mainText={'Регистрация'} additionText={'Добро пожаловать в будущее'}></Title>
+            <Input name={'email'} type="email" placeholder="Эл. почта"></Input>
+            <Input name={'password'} type="password" placeholder="Пароль"></Input>
             <div className={styles.inputsGroup}>
-              <Input name={'firstName'} type="text" placeholder="Name"></Input>
-              <Input name={'lastName'} type="text" placeholder="Surname"></Input>
+              <Input name={'firstName'} type="text" placeholder="Имя"></Input>
+              <Input name={'lastName'} type="text" placeholder="Фамилия"></Input>
             </div>
-            <Input name={'dateOfBirth'} type="date" placeholder="Date of birth"></Input>
+            <Input name={'dateOfBirth'} type="date" placeholder="Дата рождения"></Input>
 
             <Address name="shipping" />
             <Address name="billing" />
 
-            <Button type="submit">Register</Button>
-            <CustomLink text="Already have an account?" to="/login">
-              Login
+            <Button type="submit">Создать аккаунт</Button>
+            <CustomLink text="Уже есть аккаунт?" to="/login">
+              Авторизуйтесь
             </CustomLink>
           </>
         </CustomForm>
