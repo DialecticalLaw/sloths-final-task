@@ -6,10 +6,12 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
 import { useEffect } from 'react';
 import { getRefreshFlowClient } from './api/BuildClient';
-import type { AppDispatch } from './store/store';
 import { setCustomer } from './store/slices/customer-slice';
+import { useAppDispatch } from './store/hooks';
+import { AppDispatch } from './store/store';
 
-export function App(dispatch: AppDispatch) {
+export function App() {
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const token = localStorage.getItem('sloth-token');
     const refreshToken = localStorage.getItem('sloth-refreshToken');
@@ -17,7 +19,7 @@ export function App(dispatch: AppDispatch) {
     if (token && refreshToken) {
       loginCustomerWithRefreshFlow(dispatch);
     }
-  }, [dispatch]);
+  }, []);
 
   const loginCustomerWithRefreshFlow = async (dispatch: AppDispatch) => {
     try {
@@ -46,10 +48,3 @@ export function App(dispatch: AppDispatch) {
     </>
   );
 }
-
-// .then(response => {
-//   if (response.statusCode === 200) {
-//     // Токен доступа действителен, пользователь автоматически вошел в систему
-//     console.log('Пользователь автоматически вошел в систему');
-// localStorage.setItem('sloth-token', myToken.get().token);
-// localStorage.setItem('sloth-refreshToken', myToken.get().refreshToken || '');

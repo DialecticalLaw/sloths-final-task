@@ -7,32 +7,6 @@ import type { FormikState } from 'formik';
 import type { RegisterValues } from '../Main.interfaces';
 import type { CustomerBody } from '../../../api/api.interfaces';
 
-// export const login = async (
-//   values: LoginValues,
-//   dispatch: AppDispatch,
-//   resetForm?: (nextState?: Partial<FormikState<LoginValues>> | undefined) => void
-// ): Promise<void> => {
-//   try {
-//     await loginCustomer(values).then(({ body }) => {
-//       showToast({
-//         text: 'Successful login!',
-//         type: 'success'
-//       });
-//       localStorage.setItem('sloth-token', myToken.get().token);
-//       localStorage.setItem('sloth-refreshToken', myToken.get().refreshToken || '');
-//       if (resetForm) {
-//         resetForm();
-//       }
-//       dispatch(setCustomer(body.customer));
-//     });
-//   } catch (error) {
-//     showToast({
-//       text: 'Incorrect email or password. Please try again!',
-//       type: 'error'
-//     });
-//   }
-// };
-
 export const login = async (
   values: LoginValues,
   dispatch: AppDispatch,
