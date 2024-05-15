@@ -7,7 +7,7 @@ import { Title } from '../../univComponents/CustomForm/Title/Title';
 import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 import { useAppDispatch } from '../../../store/hooks';
-import { login } from './helpers';
+import { login } from './auth';
 
 const initialValues: LoginValues = {
   email: '',
@@ -22,7 +22,7 @@ export function Login() {
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
-        onSubmit={({ email, password }) => login({ email, password }, dispatch)}
+        onSubmit={({ email, password }, { resetForm }) => login({ email, password }, dispatch, resetForm)}
       >
         <CustomForm>
           <Title mainText={'Login'} additionText={'Welcome back to the future'} />

@@ -10,9 +10,8 @@ import { CustomLink } from '../../univComponents/CustomForm/CustomLink/CustomLin
 import { showToast } from '../../../helpers/showToast';
 import { createCustomer } from '../../../api/customers/createCustomer';
 import { useAppDispatch } from '../../../store/hooks';
-import { formatCustomerData } from './helpers';
 import { Address } from '../../univComponents/CustomForm/Address/Address';
-import { login } from '../Login/helpers';
+import { formatCustomerData, login } from '../Login/auth';
 
 const initialValues: RegisterValues = {
   email: '',
