@@ -6,9 +6,11 @@
 .nav_link {
   position: relative;
   letter-spacing: 2px;
+  transition: 0.3s;
 }
 
 .active {
+  text-shadow: 0 0 5px #ffffff;
   cursor: default;
 }
 
@@ -22,7 +24,11 @@
   transform: scaleX(0);
   transform-origin: right;
   background-color: #ffffff;
-  transition: transform 0.25s ease-out;
+  box-shadow: 0 0px 12px 0.5px transparent;
+  border-radius: 1rem;
+  transition:
+    transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
 }
 
 .nav_link:hover::before {
@@ -32,4 +38,5 @@
 
 .active::before {
   transform: scaleX(1);
+  box-shadow: 0 3px 12px 1px #ffffff88;
 }
