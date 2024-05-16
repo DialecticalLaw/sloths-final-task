@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { Customer } from '@commercetools/platform-sdk';
 export interface customerSliceState {
   customerId: null | string;
-  customerName: null | string;
+  customerName: null | string | undefined;
 }
 const initialState: customerSliceState = {
   customerId: null,
@@ -18,9 +18,8 @@ export const customerSlice = createSlice({
       state.customerName = action.payload.firstName;
     },
     deleteCustomer(state) {
-      for (const key in state) {
-        state[key] = initialState[key];
-      }
+      state.customerId = null;
+      state.customerName = null;
     }
   }
 });
