@@ -3,6 +3,11 @@ import { getPasswordFlowClient } from '../BuildClient';
 import { myToken } from '../tokenCache';
 
 export async function loginCustomer(email: string, password: string): Promise<CustomerSignInResult> {
+  myToken.set({
+    token: '',
+    expirationTime: 0,
+    refreshToken: ''
+  });
   try {
     const client = getPasswordFlowClient(email, password);
     const response = await client
