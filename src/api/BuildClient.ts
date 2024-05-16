@@ -12,7 +12,6 @@ import { ApiData } from './apiData';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 import { myToken } from './tokenCache';
 
-
 const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: ApiData.AUTH_URL,
   projectKey: ApiData.PROJECT_KEY,

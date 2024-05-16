@@ -1,7 +1,7 @@
 import styles from './Navigation.module.css';
 import { CustomNavLink } from './NavLink';
 import { useAppSelector } from '../../../store/hooks';
-import { Logout } from '../../Main/Logout/Logout';
+import { Logout } from '../Logout/Logout';
 
 export function Navigation() {
   const isAuth = useAppSelector((state) => state.customer_slice.customerId);
