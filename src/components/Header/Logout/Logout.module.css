@@ -1,8 +1,14 @@
 .button {
-  max-height: 5rem;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
   display: flex;
+  max-height: 5rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px #ffffff);
 }

@@ -7,7 +7,7 @@ export function Logout() {
   const dispatch = useAppDispatch();
   return (
     <button className={styles.button} onClick={() => logout(dispatch)}>
-      <img src={logoutImg} alt={'Logout'} />
+      <img className={styles.logout_img} src={logoutImg} alt={'Logout'} />
     </button>
   );
 }
