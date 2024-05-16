@@ -1,9 +1,7 @@
-import type {
-  AnonymousAuthMiddlewareOptions
-} from '@commercetools/sdk-client-v2';
+import type { AnonymousAuthMiddlewareOptions } from '@commercetools/sdk-client-v2';
 import {
-  ClientBuilder,
   type AuthMiddlewareOptions,
+  ClientBuilder,
   type HttpMiddlewareOptions,
   type PasswordAuthMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
@@ -68,8 +66,7 @@ export const getAnonymousFlowClient = () => {
     .withHttpMiddleware(httpMiddlewareOptions)
     .build();
 
-  const ApiRoot = createApiBuilderFromCtpClient(client).withProjectKey({
+  return createApiBuilderFromCtpClient(client).withProjectKey({
     projectKey: ApiData.PROJECT_KEY
   });
-  return ApiRoot;
 };
