@@ -34,19 +34,3 @@
   transform: scaleX(1);
   transform-origin: left;
 }
-
-.icon {
-  position: absolute;
-  top: 160%;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  margin: auto;
-  transform: translateY(60%);
-  transition: 0.2s;
-}
-
-.button:hover .icon {
-  transform: translateY(0);
-  opacity: 1;
-}

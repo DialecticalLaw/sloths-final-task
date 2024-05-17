@@ -2,12 +2,10 @@ import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.css';
 export function CustomNavLink({
   text,
-  to,
-  src
+  to
 }: {
   text: string;
   to: '/login' | '/register' | '/catalog' | '/about' | '/' | '/profile';
-  src: string;
 }) {
   return (
     <NavLink
@@ -15,7 +13,6 @@ export function CustomNavLink({
       to={to}
     >
       {text}
-      <img className={styles.icon} src={src} alt="icon" />
     </NavLink>
   );
 }

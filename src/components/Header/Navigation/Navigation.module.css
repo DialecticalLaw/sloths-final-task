@@ -40,19 +40,3 @@
   transform: scaleX(1);
   box-shadow: 0 3px 12px 1px var(--light-shadow-color);
 }
-
-.icon {
-  position: absolute;
-  top: 160%;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  margin: auto;
-  transform: translateY(60%);
-  transition: 0.2s;
-}
-
-.nav_link:not(.active):hover .icon {
-  transform: translateY(0);
-  opacity: 1;
-}
