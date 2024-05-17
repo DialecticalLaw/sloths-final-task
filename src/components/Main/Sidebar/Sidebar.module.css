@@ -25,10 +25,11 @@
 }
 
 .sidebar {
-  min-height: 100vh;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100vh;
   padding: 0 2rem;
 }
 
@@ -73,13 +74,13 @@
 }
 
 .mars {
-  background-image: url('../../assets/img/planets/marsSmall.jpg');
+  background-image: url('../../../assets/img/planets/marsSmall.jpg');
 }
 .venus {
-  background-image: url('../../assets/img/planets/venusSmall.jpg');
+  background-image: url('../../../assets/img/planets/venusSmall.jpg');
 }
 .earth {
-  background-image: url('../../assets/img/planets/earthSmall.webp');
+  background-image: url('../../../assets/img/planets/earthSmall.webp');
 }
 
 @keyframes animatePlanet {
