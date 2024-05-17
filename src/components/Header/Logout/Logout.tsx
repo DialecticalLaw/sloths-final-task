@@ -1,13 +1,14 @@
 import { logout } from '../../../api/customers/logoutCustomer';
 import { useAppDispatch } from '../../../store/hooks';
-import logoutImg from '../../../assets/img/logout.svg';
+import logoutIcon from '../../../assets/img/log-out.svg';
 import styles from './Logout.module.css';
 
 export function Logout() {
   const dispatch = useAppDispatch();
   return (
     <button className={styles.button} onClick={() => logout(dispatch)}>
-      <img className={styles.logout_img} src={logoutImg} alt={'Logout'} />
+      <span>Выход</span>
+      <img className={styles.icon} src={logoutIcon} alt={'Logout'} />
     </button>
   );
 }
