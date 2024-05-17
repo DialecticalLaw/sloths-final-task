@@ -39,18 +39,6 @@ export function Sidebar() {
                   <Field
                     type="radio"
                     name="picked"
-                    value="Mars"
-                    className={styles.planet + ' ' + styles.mars}
-                    onClick={(e: Event) => {
-                      onPlanetClick(e);
-                    }}
-                  />
-                  _Марс
-                </label>
-                <label className={styles.planet_item}>
-                  <Field
-                    type="radio"
-                    name="picked"
                     value="Venus"
                     className={styles.planet + ' ' + styles.venus}
                     onClick={(e: Event) => {
@@ -70,6 +58,18 @@ export function Sidebar() {
                     }}
                   />
                   _Земля
+                </label>
+                <label className={styles.planet_item}>
+                  <Field
+                    type="radio"
+                    name="picked"
+                    value="Mars"
+                    className={styles.planet + ' ' + styles.mars}
+                    onClick={(e: Event) => {
+                      onPlanetClick(e);
+                    }}
+                  />
+                  _Марс
                 </label>
               </div>
             </Form>
