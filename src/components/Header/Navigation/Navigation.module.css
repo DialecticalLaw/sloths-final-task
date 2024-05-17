@@ -38,5 +38,5 @@
 
 .active::before {
   transform: scaleX(1);
-  box-shadow: 0 3px 12px 1px #ffffff88;
+  box-shadow: 0 3px 12px 1px var(--light-shadow-color);
 }
