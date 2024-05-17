@@ -23,10 +23,10 @@ export function Navigation() {
         {!isAuth && (
           <>
             <li>
-              <CustomNavLink src={loginIcon} text={'Авторизация'} to={'/login'} />
+              <CustomNavLink src={registerIcon} text={'Регистрация'} to={'/register'} />
             </li>
             <li>
-              <CustomNavLink src={registerIcon} text={'Регистрация'} to={'/register'} />
+              <CustomNavLink src={loginIcon} text={'Вход'} to={'/login'} />
             </li>
           </>
         )}
