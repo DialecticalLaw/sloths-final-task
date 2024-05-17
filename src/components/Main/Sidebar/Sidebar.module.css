@@ -1,3 +1,11 @@
+.sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .bg {
   position: absolute;
   min-width: 100vw;
@@ -24,13 +32,24 @@
   bottom: -7rem;
 }
 
-.sidebar {
-  position: fixed;
+.form {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 0 2rem;
+  background-color: var(--dark-transparent-background);
+  padding: 10px;
+  border-radius: 0 30px 30px 0;
+}
+
+.arrow_wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 50px;
 }
 
 .planet_list {

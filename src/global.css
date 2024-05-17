@@ -22,7 +22,7 @@
   --decorative-font: DecorativeFont;
   --toastify-color-dark: #242424f1;
   --highlight-color: rgb(31, 163, 240);
-  --header-background: rgba(20, 20, 20, 0.7);
+  --dark-transparent-background: rgba(20, 20, 20, 0.7);
   --light-shadow-color: #ffffff88;
 }
 html {

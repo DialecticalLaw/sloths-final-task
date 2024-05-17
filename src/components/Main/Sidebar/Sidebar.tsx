@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import type { Planet } from '../../../store/slices/planet-slice';
 import { choosePlanet } from '../../../store/slices/planet-slice';
 import { BgPlanets } from './Bg-planets';
+import arrowIcon from '../../../assets/img/arrow.svg';
 
 export function Sidebar() {
   const dispatch = useAppDispatch();
@@ -33,7 +34,7 @@ export function Sidebar() {
               console.log(values);
             }}
           >
-            <Form>
+            <Form className={styles.form}>
               <div role="group" aria-labelledby="my-radio-group" className={styles.planet_list}>
                 <label className={styles.planet_item}>
                   <Field
@@ -71,6 +72,9 @@ export function Sidebar() {
                   />
                   _Марс
                 </label>
+              </div>
+              <div className={styles.arrow_wrapper}>
+                <img src={arrowIcon} alt="arrow" className={styles.arrow} />
               </div>
             </Form>
           </Formik>
