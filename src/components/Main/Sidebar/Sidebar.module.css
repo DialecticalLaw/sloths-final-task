@@ -1,10 +1,17 @@
 .sidebar {
+  z-index: 1;
   position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
   transform: translateX(calc(-100% + 50px));
+  margin-left: -6rem;
+  transition: 0.3s;
+}
+
+.sidebar_visible {
+  transform: none;
 }
 
 .bg {

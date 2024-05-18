@@ -6,6 +6,7 @@ import type { Planet } from '../../../store/slices/planet-slice';
 import { choosePlanet } from '../../../store/slices/planet-slice';
 import { BgPlanets } from './Bg-planets';
 import arrowIcon from '../../../assets/img/arrow.svg';
+import { useState } from 'react';
 
 export function Sidebar() {
   const dispatch = useAppDispatch();
@@ -20,11 +21,12 @@ export function Sidebar() {
       }
     }
   };
+  const [isSidebarVisible, setVisibility] = useState<boolean>(false);
 
   return (
     isShow && (
       <>
-        <aside className={styles.sidebar}>
+        <aside className={isSidebarVisible ? `${styles.sidebar_visible} ${styles.sidebar}` : styles.sidebar}>
           <BgPlanets />
           <Formik
             initialValues={{
@@ -73,7 +75,7 @@ export function Sidebar() {
                   _Марс
                 </label>
               </div>
-              <div className={styles.arrow_wrapper}>
+              <div onClick={() => setVisibility(!isSidebarVisible)} className={styles.arrow_wrapper}>
                 <img src={arrowIcon} alt="arrow" className={styles.arrow} />
               </div>
             </Form>
