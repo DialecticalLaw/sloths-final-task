@@ -5,9 +5,9 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  transform: translateX(calc(-100% + 50px));
+  transform: translateX(calc(-100% + 70px));
   margin-left: -6rem;
-  transition: 0.3s;
+  transition: 0.4s;
 }
 
 .sidebar_visible {
@@ -42,10 +42,6 @@
 
 .form {
   display: flex;
-  gap: 2rem;
-  background-color: var(--dark-transparent-background);
-  padding: 2rem 0 2rem 2rem;
-  border-radius: 0 40% 40% 0;
   transition: 0.2s;
 }
 
@@ -53,14 +49,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
   outline: none;
   border: none;
+  background-color: var(--dark-transparent-background);
+  border-radius: 0 20rem 20rem 0;
+  transition: 0.2s;
   cursor: pointer;
 }
 
+.arrow_wrapper:hover {
+  background-color: rgba(60, 60, 60, 0.7);
+}
+
 .arrow {
-  width: 5rem;
+  width: 4rem;
   transition: 0.1s;
 }
 
@@ -68,21 +70,21 @@
   transform: rotate(-180deg);
 }
 
-.sidebar:has(.arrow_wrapper:hover) .arrow {
-  transform: translateX(8%);
-}
-
-.sidebar_visible:has(.arrow_wrapper:hover) .arrow {
-  transform: rotate(-180deg) translateX(8%);
-}
-
 .planet_list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: var(--dark-transparent-background);
+  transition: 0.2s;
+}
+
+.arrow_wrapper,
+.planet_list {
+  padding: 1.5rem;
 }
 
 .planet_item {
+  opacity: 0;
   display: flex;
   gap: 2rem;
   align-items: end;
@@ -90,6 +92,32 @@
   text-transform: uppercase;
   transition: 0.2s;
   cursor: pointer;
+}
+
+.sidebar .planet_list :nth-child(1) {
+  animation: planet-item-disappearance 0.3s;
+}
+
+.sidebar .planet_list :nth-child(2) {
+  animation: planet-item-disappearance 0.3s;
+}
+
+.sidebar .planet_list :nth-child(3) {
+  animation: planet-item-disappearance 0.3s;
+}
+
+.sidebar_visible .planet_list :nth-child(1) {
+  animation:
+    planet-item-appear 0.3s 0.1s forwards,
+    animatePlanet 10s linear infinite paused;
+}
+
+.sidebar_visible .planet_list :nth-child(2) {
+  animation: planet-item-appear 0.3s 0.2s forwards;
+}
+
+.sidebar_visible .planet_list :nth-child(3) {
+  animation: planet-item-appear 0.3s 0.3s forwards;
 }
 
 .planet {
@@ -100,31 +128,14 @@
   background-repeat: repeat-x;
   background-size: cover;
   filter: grayscale(1);
-  animation-fill-mode: both;
-  animation: animatePlanet 10s linear infinite paused;
+  animation: animatePlanet 10s linear infinite paused both;
+  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
   transition: 0.2s;
   cursor: pointer;
 }
 
-.planet_item:hover .planet {
-  filter: grayscale(0);
-  animation-play-state: running;
-}
-
-.planet_item:has(.planet:checked) {
-  transform: scale(1.1);
-}
-
-.mars:checked,
-.venus:checked,
-.earth:checked {
-  filter: grayscale(0);
-  animation-play-state: running;
-}
-
 .venus {
   background-image: url('../../../assets/img/planets/venusSmall.jpg');
-  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
   &:checked,
   &:hover {
     box-shadow:
@@ -135,7 +146,6 @@
 
 .earth {
   background-image: url('../../../assets/img/planets/earthSmall.webp');
-  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
   &:checked,
   &:hover {
     box-shadow:
@@ -146,7 +156,6 @@
 
 .mars {
   background-image: url('../../../assets/img/planets/marsSmall.jpg');
-  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
   &:checked,
   &:hover {
     box-shadow:
@@ -155,11 +164,48 @@
   }
 }
 
+.planet_item:hover .planet {
+  filter: grayscale(0);
+  animation-play-state: running;
+}
+
+.planet_item .mars:checked,
+.planet_item .venus:checked,
+.planet_item .earth:checked {
+  filter: grayscale(0);
+  animation-play-state: running;
+}
+
+.planet:checked {
+  scale: 1.1;
+}
+
 @keyframes animatePlanet {
   0% {
     background-position-x: 0;
   }
   100% {
     background-position-x: 12rem;
+  }
+}
+
+@keyframes planet-item-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+@keyframes planet-item-disappearance {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
   }
 }
