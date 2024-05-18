@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  transform: translateX(calc(-100% + 70px));
+  transform: translateX(calc(-100% + 80px));
   margin-left: -6rem;
   transition: 0.4s;
 }
@@ -80,7 +80,7 @@
 
 .arrow_wrapper,
 .planet_list {
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .planet_item {
