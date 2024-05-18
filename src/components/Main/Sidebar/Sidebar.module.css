@@ -44,7 +44,7 @@
   display: flex;
   gap: 2rem;
   background-color: var(--dark-transparent-background);
-  padding: 1rem 0 1rem 1rem;
+  padding: 2rem 0 2rem 2rem;
   border-radius: 0 40% 40% 0;
 }
 
@@ -67,24 +67,25 @@
 
 .planet_item {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: end;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
+  transition: 0.2s;
   cursor: pointer;
 }
 
 .planet {
   appearance: none;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
   background-repeat: repeat-x;
   background-size: cover;
   filter: grayscale(1);
   animation-fill-mode: both;
-  animation: animatePlanet 15s linear infinite reverse paused;
-  transition: all 0.3s ease-in;
+  animation: animatePlanet 10s linear infinite paused;
+  transition: 0.2s;
   cursor: pointer;
 }
 
@@ -92,6 +93,11 @@
   filter: grayscale(0);
   animation-play-state: running;
 }
+
+.planet_item:has(.planet:checked) {
+  transform: scale(1.1);
+}
+
 .mars:checked,
 .venus:checked,
 .earth:checked {
@@ -99,21 +105,44 @@
   animation-play-state: running;
 }
 
-.mars {
-  background-image: url('../../../assets/img/planets/marsSmall.jpg');
-}
 .venus {
   background-image: url('../../../assets/img/planets/venusSmall.jpg');
+  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
+  &:checked,
+  &:hover {
+    box-shadow:
+      inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1),
+      0 0 1rem 0.1rem var(--venus-color);
+  }
 }
+
 .earth {
   background-image: url('../../../assets/img/planets/earthSmall.webp');
+  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
+  &:checked,
+  &:hover {
+    box-shadow:
+      inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1),
+      0 0 1rem 0.1rem var(--earth-color);
+  }
+}
+
+.mars {
+  background-image: url('../../../assets/img/planets/marsSmall.jpg');
+  box-shadow: inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1);
+  &:checked,
+  &:hover {
+    box-shadow:
+      inset 0 0 0.7rem 0.7rem rgba(0, 0, 0, 1),
+      0 0 1rem 0.1rem var(--mars-color);
+  }
 }
 
 @keyframes animatePlanet {
   0% {
-    background-position: 0 0;
+    background-position-x: 0;
   }
   100% {
-    background-position: -100% 0;
+    background-position-x: 12rem;
   }
 }

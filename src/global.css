@@ -21,7 +21,9 @@
   --main-font: MainFont;
   --decorative-font: DecorativeFont;
   --toastify-color-dark: #242424f1;
-  --highlight-color: rgb(31, 163, 240);
+  --venus-color: rgb(213, 255, 75);
+  --earth-color: rgb(31, 163, 240);
+  --mars-color: rgb(255, 95, 32);
   --dark-transparent-background: rgba(20, 20, 20, 0.7);
   --light-shadow-color: #ffffff88;
 }

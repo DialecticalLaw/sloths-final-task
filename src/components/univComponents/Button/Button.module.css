@@ -53,12 +53,12 @@
   position: absolute;
   width: 3rem;
   height: 0.5rem;
-  background-color: var(--highlight-color);
+  background-color: var(--earth-color);
   box-shadow:
-    0 0 0.5rem var(--highlight-color),
-    0 0 1.5rem var(--highlight-color),
-    0 0 3rem var(--highlight-color),
-    0 0 6rem var(--highlight-color);
+    0 0 0.5rem var(--earth-color),
+    0 0 1.5rem var(--earth-color),
+    0 0 3rem var(--earth-color),
+    0 0 6rem var(--earth-color);
   border-radius: 1rem 1rem 0 0;
   transition: 0.4s;
 }
