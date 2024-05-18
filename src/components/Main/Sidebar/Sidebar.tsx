@@ -73,9 +73,9 @@ export function Sidebar() {
                   _Марс
                 </label>
               </div>
-              <div onClick={() => setVisibility(!isSidebarVisible)} className={styles.arrow_wrapper}>
+              <button onClick={() => setVisibility(!isSidebarVisible)} className={styles.arrow_wrapper}>
                 <img src={arrowIcon} alt="arrow" className={styles.arrow} />
-              </div>
+              </button>
             </Form>
           </Formik>
         </aside>

@@ -46,17 +46,34 @@
   background-color: var(--dark-transparent-background);
   padding: 2rem 0 2rem 2rem;
   border-radius: 0 40% 40% 0;
+  transition: 0.2s;
 }
 
 .arrow_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
   cursor: pointer;
 }
 
 .arrow {
   width: 5rem;
+  transition: 0.1s;
+}
+
+.sidebar_visible .arrow {
+  transform: rotate(-180deg);
+}
+
+.sidebar:has(.arrow_wrapper:hover) .arrow {
+  transform: translateX(8%);
+}
+
+.sidebar_visible:has(.arrow_wrapper:hover) .arrow {
+  transform: rotate(-180deg) translateX(8%);
 }
 
 .planet_list {
