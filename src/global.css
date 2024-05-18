@@ -55,7 +55,7 @@ h1 {
 }
 
 ::-webkit-scrollbar {
-  background-color: var(--header-background);
+  background-color: var(--dark-transparent-background);
 }
 
 ::-webkit-scrollbar-thumb {

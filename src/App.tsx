@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { useEffect } from 'react';
 import { reloginCustomer } from './api/customers/reloginCustomer';
 import { useAppDispatch } from './store/hooks';
+import { BgPlanets } from './components/Main/Sidebar/Bg-planets';
 
 export function App() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ export function App() {
 
       <Main>
         <>
+          <BgPlanets />
           <Sidebar />
           <Outlet />
         </>

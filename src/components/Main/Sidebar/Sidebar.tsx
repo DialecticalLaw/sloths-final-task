@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import type { Planet } from '../../../store/slices/planet-slice';
 import { choosePlanet } from '../../../store/slices/planet-slice';
-import { BgPlanets } from './Bg-planets';
 import arrowIcon from '../../../assets/img/arrow.svg';
 import { useState } from 'react';
 
@@ -27,7 +26,6 @@ export function Sidebar() {
     isShow && (
       <>
         <aside className={isSidebarVisible ? `${styles.sidebar_visible} ${styles.sidebar}` : styles.sidebar}>
-          <BgPlanets />
           <Formik
             initialValues={{
               picked: planet
