@@ -70,7 +70,6 @@ nav {
     flex-direction: column;
     padding-top: 4rem;
     padding-left: 6rem;
-    z-index: 10;
   }
 
   .navigation_list li {
@@ -81,6 +80,5 @@ nav {
     transform: translateX(-100%);
     opacity: 1;
     visibility: visible;
-    z-index: 10;
   }
 }
