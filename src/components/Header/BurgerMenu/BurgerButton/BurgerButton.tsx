@@ -1,12 +1,12 @@
 import styles from './BurgerButton.module.css';
-import visible from './../../../../assets/img/visible.svg';
-import noVisible from './../../../../assets/img/noVisible.svg';
+import openMenu from './../../../../assets/img/openMenu.svg';
+import closeMenu from './../../../../assets/img/closeMenu.svg';
 import type { BurgerButtonProps } from '../../Header.interfaces';
 
 export const BurgerButton = ({ toggleMenuOpen, menuOpen }: BurgerButtonProps) => {
   return (
     <button type="button" onClick={toggleMenuOpen} className={styles.burger_button}>
-      <img src={menuOpen ? visible : noVisible} alt="burger menu" />
+      <img src={menuOpen ? openMenu : closeMenu} alt="burger menu" />
     </button>
   );
 };

@@ -5,11 +5,6 @@
   display: none;
 }
 
-.burger_button img {
-  width: 30px;
-  height: 30px;
-}
-
 @media (max-width: 576px) {
   .burger_button {
     display: block;
