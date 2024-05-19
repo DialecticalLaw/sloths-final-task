@@ -10,7 +10,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Logo closeMenu={closeMenu} />
-      <h1 className={styles.header_title}>Sloth&apos;s galactic store</h1>
+      <h2 className={styles.header_title}>Sloth&apos;s galactic store</h2>
       <Navigation menuOpen={menuOpen} toggleMenuOpen={toggleMenuOpen} />
       <BurgerButton toggleMenuOpen={toggleMenuOpen} menuOpen={menuOpen} />
     </header>
