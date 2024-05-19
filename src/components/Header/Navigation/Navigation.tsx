@@ -3,11 +3,11 @@ import { CustomNavLink } from './NavLink';
 import { useAppSelector } from '../../../store/hooks';
 import { Logout } from '../Logout/Logout';
 
-export function Navigation() {
+export function Navigation({ menuOpen }) {
   const isAuth = useAppSelector((state) => state.customer_slice.customerId);
 
   return (
-    <nav>
+    <nav className={`${styles.nav} ${menuOpen ? styles.open : styles.closed}`}>
       <ul className={styles.navigation_list}>
         <li>
           <CustomNavLink text={'Каталог'} to={`/catalog`} />
