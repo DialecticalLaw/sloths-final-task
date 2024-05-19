@@ -7,7 +7,7 @@ export function Navigation({ menuOpen }: { menuOpen: boolean }) {
   const isAuth = useAppSelector((state) => state.customer_slice.customerId);
 
   return (
-    <nav className={`${styles.nav} ${menuOpen ? styles.open : styles.closed}`}>
+    <nav className={`${styles.nav} ${menuOpen ? styles.open : ''}`}>
       <ul className={styles.navigation_list}>
         <li>
           <CustomNavLink text={'Каталог'} to={`/catalog`} />
