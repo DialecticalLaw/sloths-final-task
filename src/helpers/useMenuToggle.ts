@@ -13,7 +13,7 @@ export function useMenuToggle() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 576) {
+      if (window.innerWidth > 768) {
         closeMenu();
       }
     };
