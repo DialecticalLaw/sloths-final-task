@@ -126,10 +126,13 @@
     transform: translateX(calc(-100% + 5rem));
     transition: 0.4s;
   }
+  .planet_list {
+    background-color: var(--bg-color);
+    padding-right: 1rem;
+  }
   .form {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
   }
   .arrow {
     width: 4rem;
@@ -166,7 +169,6 @@
   }
 
   .planet_list {
-    background-color: var(--bg-color);
     width: 100vw;
     height: 100vh;
     justify-content: center;
