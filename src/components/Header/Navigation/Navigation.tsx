@@ -3,7 +3,7 @@ import { CustomNavLink } from './NavLink';
 import { useAppSelector } from '../../../store/hooks';
 import { Logout } from '../Logout/Logout';
 
-export function Navigation({ menuOpen }) {
+export function Navigation({ menuOpen }: { menuOpen: boolean }) {
   const isAuth = useAppSelector((state) => state.customer_slice.customerId);
 
   return (
