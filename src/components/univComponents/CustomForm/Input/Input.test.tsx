@@ -5,7 +5,7 @@ import { Input } from './Input';
 import userEvent from '@testing-library/user-event';
 
 describe('Input', () => {
-  it('Displayed', () => {
+  it('Displayed correctly', () => {
     render(
       <Formik initialValues={{ name: '' }} onSubmit={() => {}}>
         <Input type="text" placeholder="Your name" name="name" />
