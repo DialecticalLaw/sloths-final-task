@@ -6,7 +6,7 @@ import type { LogoProps } from '../Header.interfaces';
 export function Logo({ closeMenu }: LogoProps) {
   return (
     <NavLink to={`/`} onClick={closeMenu}>
-      <img src={logo} alt={'Logo'} className={styles.logo} />
+      <img src={logo} alt={'Logo'} className={styles.logo} draggable="false" />
     </NavLink>
   );
 }
