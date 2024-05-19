@@ -1,11 +1,7 @@
+import styles from './BurgerButton.module.css';
 import visible from './../../../../assets/img/visible.svg';
 import noVisible from './../../../../assets/img/noVisible.svg';
-import styles from './BurgerButton.module.css';
-
-interface BurgerButtonProps {
-  toggleMenuOpen: () => void;
-  menuOpen: boolean;
-}
+import type { BurgerButtonProps } from '../../Header.interfaces';
 
 export const BurgerButton = ({ toggleMenuOpen, menuOpen }: BurgerButtonProps) => {
   return (

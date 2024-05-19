@@ -13,8 +13,8 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      <Logo />
-      <Navigation menuOpen={menuOpen} />
+      <Logo toggleMenuOpen={toggleMenuOpen} />
+      <Navigation menuOpen={menuOpen} toggleMenuOpen={toggleMenuOpen} />
       <BurgerButton toggleMenuOpen={toggleMenuOpen} menuOpen={menuOpen} />
     </header>
   );
