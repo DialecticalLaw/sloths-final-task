@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Title } from './Title';
 
-describe('Title is displayed correctly', () => {
+describe('Title', () => {
   render(<Title mainText="Main text" additionText="Additional text" />);
 
   it('All headings are displayed correctly', () => {

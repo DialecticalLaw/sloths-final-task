@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Checkbox } from './Checkbox';
 import { Formik } from 'formik';
 
-describe('Checkbox is displayed correctly', () => {
+describe('Checkbox', () => {
   render(
     <Formik initialValues={{}} onSubmit={() => {}}>
       <Checkbox name="address">It is a checkbox</Checkbox>

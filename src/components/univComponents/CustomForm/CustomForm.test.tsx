@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { CustomForm } from './CustomForm';
 import { Formik } from 'formik';
 
-describe('CustomForm is displayed correctly', () => {
+describe('CustomForm', () => {
   render(
     <Formik initialValues={{}} onSubmit={() => {}}>
       <CustomForm>

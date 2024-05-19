@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { PasswordButton } from './PasswordButton';
 import { userEvent } from '@testing-library/user-event';
 
-describe('PasswordButton is displayed correctly', () => {
+describe('PasswordButton', () => {
   it('The component is displayed', () => {
     render(<PasswordButton passwordVisibility={false} togglePasswordVisibility={() => {}} />);
     expect(screen.getByRole('button')).toBeInTheDocument();
