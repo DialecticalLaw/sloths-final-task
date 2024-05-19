@@ -14,3 +14,7 @@ export interface NavigationProps extends ToggleMenuProps {
 export interface BurgerButtonProps extends ToggleMenuProps {
   menuOpen: boolean;
 }
+
+export interface LogoProps {
+  closeMenu: () => void;
+}

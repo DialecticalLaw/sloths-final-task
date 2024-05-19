@@ -7,10 +7,14 @@ export function useMenuToggle() {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 576) {
-        setMenuOpen(false);
+        closeMenu();
       }
     };
 
@@ -21,5 +25,5 @@ export function useMenuToggle() {
     };
   }, []);
 
-  return { menuOpen, toggleMenuOpen };
+  return { menuOpen, toggleMenuOpen, closeMenu };
 }
