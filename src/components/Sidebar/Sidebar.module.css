@@ -61,10 +61,6 @@
   cursor: pointer;
 }
 
-.planet_item:hover .planet {
-  filter: grayscale(0);
-  animation-play-state: running;
-}
 .mars:checked,
 .venus:checked,
 .earth:checked {
@@ -93,12 +89,20 @@
   transition: 0.2s;
   cursor: pointer;
 }
+
 @keyframes animatePlanet {
   0% {
     background-position: 0 0;
   }
   100% {
     background-position: -100% 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .planet_item:hover .planet {
+    filter: grayscale(0);
+    animation-play-state: running;
   }
 }
 
@@ -110,6 +114,7 @@
     height: 30vh;
   }
 }
+
 @media (max-width: 860px) {
   .arrow_wrapper {
     display: flex;
