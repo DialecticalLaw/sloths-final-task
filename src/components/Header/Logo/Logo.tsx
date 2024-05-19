@@ -4,7 +4,7 @@ import styles from './Logo.module.css';
 
 export function Logo() {
   return (
-    <NavLink to={`/`}>
+    <NavLink to={`/`} className={styles.logo_link}>
       <img src={logo} alt={'Logo'} className={styles.logo} />
     </NavLink>
   );

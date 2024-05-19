@@ -1,3 +1,7 @@
+.logo_link {
+  height: 5rem;
+}
+
 .logo {
   width: 5rem;
   cursor: pointer;
