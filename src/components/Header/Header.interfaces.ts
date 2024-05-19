@@ -1,5 +1,5 @@
 export interface ToggleMenuProps {
-  toggleMenuOpen: () => void;
+  toggleMenuOpen?: () => void;
 }
 
 export interface CustomNavLinkProps extends ToggleMenuProps {
