@@ -143,7 +143,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 580px) {
   .planet_big {
     filter: brightness(80%);
     height: 50vh;
