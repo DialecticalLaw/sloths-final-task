@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../store/hooks';
 import { Logout } from '../Logout/Logout';
 import type { NavigationProps } from '../Header.interfaces';
 
-export function Navigation({ menuOpen, toggleMenuOpen }: NavigationProps) {
+export function Navigation({ menuOpen, toggleMenuOpen }: Required<NavigationProps>) {
   const isAuth = useAppSelector((state) => state.customer_slice.customerId);
 
   return (
