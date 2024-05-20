@@ -8,28 +8,27 @@ import {
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 import type { ByProjectKeyRequestBuilder } from '@commercetools/platform-sdk';
-import { ApiData } from './apiData';
 import { myToken } from './tokenCache';
 
 const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: ApiData.AUTH_URL,
-  projectKey: ApiData.PROJECT_KEY,
+  host: import.meta.env.VITE_CTP_AUTH_URL,
+  projectKey: import.meta.env.VITE_CTP_PROJECT_KEY,
   credentials: {
-    clientId: ApiData.CLIENT_ID,
-    clientSecret: ApiData.CLIENT_SECRET
+    clientId: import.meta.env.VITE_CTP_CLIENT_ID,
+    clientSecret: import.meta.env.VITE_CTP_CLIENT_SECRET
   },
-  scopes: ApiData.SCOPES.split(' '),
+  scopes: import.meta.env.VITE_CTP_SCOPES.split(' '),
   fetch,
   tokenCache: myToken
 };
 
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
-  host: ApiData.API_URL,
+  host: import.meta.env.VITE_CTP_API_URL,
   fetch
 };
 
 export const ctpClient = new ClientBuilder()
-  .withProjectKey(ApiData.PROJECT_KEY)
+  .withProjectKey(import.meta.env.VITE_CTP_PROJECT_KEY)
   .withClientCredentialsFlow(authMiddlewareOptions)
   .withHttpMiddleware(httpMiddlewareOptions)
   .withLoggerMiddleware()
@@ -37,17 +36,17 @@ export const ctpClient = new ClientBuilder()
 
 export const getPasswordFlowClient = (email: string, password: string) => {
   const options: PasswordAuthMiddlewareOptions = {
-    host: ApiData.AUTH_URL,
-    projectKey: ApiData.PROJECT_KEY,
+    host: import.meta.env.VITE_CTP_AUTH_URL,
+    projectKey: import.meta.env.VITE_CTP_PROJECT_KEY,
     credentials: {
-      clientId: ApiData.CLIENT_ID,
-      clientSecret: ApiData.CLIENT_SECRET,
+      clientId: import.meta.env.VITE_CTP_CLIENT_ID,
+      clientSecret: import.meta.env.VITE_CTP_CLIENT_SECRET,
       user: {
         username: email,
         password
       }
     },
-    scopes: ApiData.SCOPES.split(' '),
+    scopes: import.meta.env.VITE_CTP_SCOPES.split(' '),
     fetch,
     tokenCache: myToken
   };
@@ -59,18 +58,18 @@ export const getPasswordFlowClient = (email: string, password: string) => {
     .build();
 
   const ApiRoot = createApiBuilderFromCtpClient(client).withProjectKey({
-    projectKey: ApiData.PROJECT_KEY
+    projectKey: import.meta.env.VITE_CTP_PROJECT_KEY
   });
   return ApiRoot;
 };
 
 export const getRefreshFlowClient = (): ByProjectKeyRequestBuilder => {
   const options: RefreshAuthMiddlewareOptions = {
-    host: ApiData.AUTH_URL,
-    projectKey: ApiData.PROJECT_KEY,
+    host: import.meta.env.VITE_CTP_AUTH_URL,
+    projectKey: import.meta.env.VITE_CTP_PROJECT_KEY,
     credentials: {
-      clientId: ApiData.CLIENT_ID,
-      clientSecret: ApiData.CLIENT_SECRET
+      clientId: import.meta.env.VITE_CTP_CLIENT_ID,
+      clientSecret: import.meta.env.VITE_CTP_CLIENT_SECRET
     },
     refreshToken: localStorage.getItem('sloth-refreshToken') || '',
     fetch,
@@ -84,20 +83,20 @@ export const getRefreshFlowClient = (): ByProjectKeyRequestBuilder => {
     .build();
 
   const ApiRoot = createApiBuilderFromCtpClient(client).withProjectKey({
-    projectKey: ApiData.PROJECT_KEY
+    projectKey: import.meta.env.VITE_CTP_PROJECT_KEY
   });
   return ApiRoot;
 };
 
 export const getAnonymousFlowClient = () => {
   const options: AnonymousAuthMiddlewareOptions = {
-    host: ApiData.AUTH_URL,
-    projectKey: ApiData.PROJECT_KEY,
+    host: import.meta.env.VITE_CTP_AUTH_URL,
+    projectKey: import.meta.env.VITE_CTP_PROJECT_KEY,
     credentials: {
-      clientId: ApiData.CLIENT_ID,
-      clientSecret: ApiData.CLIENT_SECRET
+      clientId: import.meta.env.VITE_CTP_CLIENT_ID,
+      clientSecret: import.meta.env.VITE_CTP_CLIENT_SECRET
     },
-    scopes: ApiData.SCOPES.split(' '),
+    scopes: import.meta.env.VITE_CTP_SCOPES.split(' '),
     fetch
   };
   const client = new ClientBuilder()
@@ -106,6 +105,6 @@ export const getAnonymousFlowClient = () => {
     .build();
 
   return createApiBuilderFromCtpClient(client).withProjectKey({
-    projectKey: ApiData.PROJECT_KEY
+    projectKey: import.meta.env.VITE_CTP_PROJECT_KEY
   });
 };
