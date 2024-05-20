@@ -32,7 +32,7 @@ export function Navigation({ menuOpen, toggleMenuOpen }: NavigationProps) {
               <CustomNavLink text={'Профиль'} to={'/profile'} toggleMenuOpen={toggleMenuOpen} />
             </li>
             <li>
-              <Logout />
+              <Logout toggleMenuOpen={toggleMenuOpen} />
             </li>
           </>
         )}
