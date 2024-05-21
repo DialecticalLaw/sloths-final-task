@@ -8,6 +8,8 @@ import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 import { useAppDispatch } from '../../../store/hooks';
 import { login } from './auth';
+import { showToast } from '../../../helpers/showToast';
+import { loginErrorHandler } from '../../../helpers/errorHandler';
 
 const initialValues: LoginValues = {
   email: '',
@@ -22,7 +24,18 @@ export function Login() {
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
-        onSubmit={({ email, password }, { resetForm }) => login({ email, password }, dispatch, resetForm)}
+        onSubmit={async (values: LoginValues, { resetForm }) => {
+          const loginPromise = login(values, dispatch);
+          showToast({
+            promise: loginPromise,
+            pending: 'Ожидайте...',
+            success: 'Успешная авторизация!',
+            errorHandler: loginErrorHandler
+          });
+          loginPromise.then(() => {
+            resetForm();
+          });
+        }}
       >
         <CustomForm>
           <>
