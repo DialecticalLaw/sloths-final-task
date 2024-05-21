@@ -1,6 +1,7 @@
 import type { ErrorResponse } from '@commercetools/platform-sdk';
+import { ErrorMessages } from './helpers.interfaces';
 
-export function loginErrorHandler(error: ErrorResponse): string {
+export function errorHandler(error: ErrorResponse): string {
   if (error.statusCode.toString()[0] === '5') {
     return `Ошибка сервера. Код: ${error.statusCode}`;
   }
@@ -11,7 +12,9 @@ export function loginErrorHandler(error: ErrorResponse): string {
 
   const errorCode = error.errors[0].code as string;
   if (errorCode === 'invalid_customer_account_credentials') {
-    return 'Неверный адрес эл. почты или пароль. Попробуйте снова!';
+    return ErrorMessages.invalidLogin;
+  } else if (errorCode === 'DuplicateField') {
+    return ErrorMessages.duplicateField;
   } else {
     return error.message;
   }

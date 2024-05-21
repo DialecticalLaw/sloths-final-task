@@ -8,8 +8,6 @@ import { LoginSchema } from '../validationSchemes';
 import type { LoginValues } from '../Main.interfaces';
 import { useAppDispatch } from '../../../store/hooks';
 import { login } from './auth';
-import { showToast } from '../../../helpers/showToast';
-import { loginErrorHandler } from '../../../helpers/errorHandler';
 
 const initialValues: LoginValues = {
   email: '',
@@ -25,16 +23,7 @@ export function Login() {
         initialValues={initialValues}
         validationSchema={LoginSchema}
         onSubmit={async (values: LoginValues, { resetForm }) => {
-          const loginPromise = login(values, dispatch);
-          showToast({
-            promise: loginPromise,
-            pending: 'Ожидайте...',
-            success: 'Успешная авторизация!',
-            errorHandler: loginErrorHandler
-          });
-          loginPromise.then(() => {
-            resetForm();
-          });
+          await login(values, dispatch, resetForm);
         }}
       >
         <CustomForm>
