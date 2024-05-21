@@ -1,35 +1,9 @@
 import type { LoginValues } from '../Main.interfaces';
 import type { AppDispatch } from '../../../store/store';
-// import { showToast } from '../../../helpers/showToast';
 import { setCustomer } from '../../../store/slices/customer-slice';
 import { loginCustomer } from '../../../api/customers/loginCustomer';
-// import type { FormikState } from 'formik';
 import type { RegisterValues } from '../Main.interfaces';
 import type { CustomerBody } from '../../../api/api.interfaces';
-
-// export const login = async (
-//   values: LoginValues,
-//   dispatch: AppDispatch,
-//   resetForm?: (nextState?: Partial<FormikState<LoginValues>> | undefined) => void
-// ): Promise<void> => {
-//   try {
-//     const { email, password } = values;
-//     const response = await loginCustomer(email, password);
-//     showToast({
-//       text: 'Успешная авторизация!',
-//       type: 'success'
-//     });
-//     if (resetForm) {
-//       resetForm();
-//     }
-//     dispatch(setCustomer(response.customer));
-//   } catch (error) {
-//     showToast({
-//       text: 'Неверный адрес эл. почты или пароль. Попробуйте снова!',
-//       type: 'error'
-//     });
-//   }
-// };
 
 export const login = async (values: LoginValues, dispatch: AppDispatch): Promise<void> => {
   const { email, password } = values;
