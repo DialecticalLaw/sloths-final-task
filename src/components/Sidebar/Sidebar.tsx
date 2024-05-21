@@ -1,7 +1,6 @@
 import styles from './Sidebar.module.css';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import type { Planet } from '../../store/slices/planet-slice';
 import { choosePlanet, Planets } from '../../store/slices/planet-slice';
 import type { MouseEventHandler } from 'react';
 import { useState } from 'react';
@@ -17,7 +16,7 @@ export function Sidebar() {
 
   const onPlanetClick: MouseEventHandler<HTMLInputElement> = (e) => {
     if (e.target instanceof HTMLInputElement) {
-      const value = e.target.value as Planet;
+      const value = e.target.value as Planets;
       if (value !== planet) {
         setVisibility(false);
         dispatch(choosePlanet(value));
