@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import type { Planet } from '../../store/slices/planet-slice';
 import { choosePlanet, Planets } from '../../store/slices/planet-slice';
-import type { MouseEventHandler} from 'react';
+import type { MouseEventHandler } from 'react';
 import { useState } from 'react';
 import arrowIcon from '../../assets/img/arrow.svg';
 import { BgPlanets } from './Bg-planets';
