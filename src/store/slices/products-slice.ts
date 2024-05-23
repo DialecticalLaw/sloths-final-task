@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { Product } from '@commercetools/platform-sdk';
+import type { ProductData } from '@commercetools/platform-sdk';
 import { getProducts } from '../../api/products/getProducts';
 
-interface productsSliceState {
+export interface productsSliceState {
   isProductsLoading: boolean;
-  products: Product[];
+  products: ProductData[];
 }
 
 const initialState: productsSliceState = {
@@ -15,7 +15,7 @@ export const productsSlice = createSlice({
   name: 'products_slice',
   initialState,
   reducers: {
-    deleteProducts(state) {
+    deleteProducts(state: productsSliceState) {
       state.products = [];
     }
   },
@@ -25,7 +25,7 @@ export const productsSlice = createSlice({
         state.isProductsLoading = true;
       })
       .addCase(getProducts.fulfilled, (state: productsSliceState, action) => {
-        state.products = action.payload;
+        state.products = action.payload.map((product) => product.masterData.current);
         state.isProductsLoading = false;
       })
       .addCase(getProducts.rejected, (state: productsSliceState) => {
