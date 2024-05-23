@@ -11,14 +11,14 @@ import { Loader } from './components/Main/Loader/Loader';
 
 export function App() {
   const dispatch = useAppDispatch();
-  const { isCustomerLoading, customerId } = useAppSelector((state) => state.customer_slice);
+  const { isCustomerLoading } = useAppSelector((state) => state.customer_slice);
 
   useEffect(() => {
     const refreshToken = localStorage.getItem('sloth-refreshToken');
     if (refreshToken) {
       dispatch(reloginCustomer());
     }
-  }, [dispatch, customerId]);
+  }, [dispatch]);
 
   return isCustomerLoading ? (
     <Loader />
