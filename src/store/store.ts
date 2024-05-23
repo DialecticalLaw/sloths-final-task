@@ -14,6 +14,5 @@ export const makeStore = () => {
 
 export const store = makeStore();
 
-export type AppStore = typeof store;
-export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ThunkReturnType = void> = ThunkAction<ThunkReturnType, RootState, unknown, Action>;
