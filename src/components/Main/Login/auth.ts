@@ -69,6 +69,5 @@ export const formatCustomerData = (values: RegisterValues): CustomerBody => {
       customerBody.defaultBillingAddress = billingIndex;
     }
   }
-  console.log('=====', customerBody, '======');
   return customerBody;
 };
