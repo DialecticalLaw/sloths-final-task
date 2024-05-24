@@ -26,3 +26,7 @@ export interface RegisterValues extends LoginValues {
   shipping: ShippingAddress;
   billing: BillingAddress;
 }
+
+export interface ProfileViewerProps {
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
