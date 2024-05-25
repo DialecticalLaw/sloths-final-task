@@ -9,6 +9,8 @@ import { App } from '../App';
 import { ProtectedRoute } from './protected-route';
 import { Profile } from '../components/Main/Profile/Profile';
 import { AnonymousRoute } from './anonymous-route';
+import { ProductPage } from '../components/Main/ProductPage/ProductPage';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -38,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: '/profile',
         element: <ProtectedRoute element={<Profile />} />
+      },
+      {
+        path: '/product/:id',
+        element: <ProductPage />
       }
     ]
   }
