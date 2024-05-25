@@ -48,7 +48,10 @@ export function ProfileEditor({
       {({ submitForm }) => {
         return (
           <Form className={styles.profile_editor}>
-            <p>Режим редактирования</p>
+            <h1 className={styles.editor_title}>
+              Режим редактирования
+              <span className={styles.underline}>_</span>
+            </h1>
             <Input name={'email'} type="email" placeholder="Эл. почта"></Input>
             <div className={styles.inputs_group}>
               <Input name={'firstName'} type="text" placeholder="Имя"></Input>
