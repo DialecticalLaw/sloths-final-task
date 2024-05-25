@@ -1,0 +1,16 @@
+.profile_editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.inputs_group {
+  display: flex;
+  gap: 1rem;
+  width: 80%;
+}
+
+.cancel_btn {
+  margin-top: 1rem;
+}
