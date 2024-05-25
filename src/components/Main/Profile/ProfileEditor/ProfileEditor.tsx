@@ -5,6 +5,8 @@ import styles from './ProfileEditor.module.css';
 import { Form } from 'react-router-dom';
 import { Input } from '../../../univComponents/CustomForm/Input/Input';
 import { Address } from '../../../univComponents/CustomForm/Address/Address';
+import { showToast } from '../../../../helpers/showToast';
+import { ProfileSchema } from '../../validationSchemes';
 
 export function ProfileEditor({
   setEditMode,
@@ -39,7 +41,9 @@ export function ProfileEditor({
       onSubmit={(values) => {
         console.log(values);
         setEditMode((isEditMode) => !isEditMode);
+        showToast({ text: 'Данные сохранены', type: 'success' });
       }}
+      validationSchema={ProfileSchema}
     >
       {({ submitForm }) => {
         return (
@@ -55,12 +59,7 @@ export function ProfileEditor({
             <Address name="shipping" inProfile={true} />
             <Address name="billing" />
 
-            <Button
-              onClick={() => {
-                submitForm();
-              }}
-              type="submit"
-            >
+            <Button onClick={submitForm} type="submit">
               Сохранить изменения
             </Button>
             <Button
