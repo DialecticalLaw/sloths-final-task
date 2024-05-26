@@ -38,11 +38,16 @@ export function ProductDetail() {
   }
 
   const { name, description, masterVariant } = product.masterData.current;
-  const bgImageUrl = masterVariant?.images ? masterVariant?.images[0]?.url : '';
-
+  const images = masterVariant?.images || [];
   return (
     <div className={styles.product_detail}>
-      <div className={styles.product_image} style={{ backgroundImage: `url(${bgImageUrl})` }} />
+      <div className={styles.images_gallery}>
+        {images.map((image) => (
+          <div key={image.url} className={styles.image_container}>
+            <img src={image.url} alt={image.label} className={styles.product_image} />
+          </div>
+        ))}
+      </div>
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <p className={styles.product_desc}>{description?.ru}</p>
     </div>
