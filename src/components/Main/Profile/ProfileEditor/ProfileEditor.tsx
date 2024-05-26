@@ -11,7 +11,7 @@ import { isCorrectCountry } from '../../../../helpers/isCorrectCountry';
 import { updateCustomer } from '../../../../api/customers/updateCustomer';
 import { formatForUpdate } from '../../../../helpers/formatForUpdate';
 import { errorHandler } from '../../../../helpers/errorHandler';
-import { Customer } from '@commercetools/platform-sdk';
+import type { Customer } from '@commercetools/platform-sdk';
 import { useAppDispatch } from '../../../../store/hooks';
 import { getCustomer } from '../../../../api/customers/getCustomer';
 
