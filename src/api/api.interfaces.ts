@@ -33,5 +33,6 @@ export interface ApiError {
 
 export interface UpdateCustomerData {
   ID: string;
+  version: number;
   actions: CustomerUpdateAction[];
 }
