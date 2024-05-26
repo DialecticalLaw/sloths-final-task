@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { ProductData } from '@commercetools/platform-sdk';
+import type { ProductData } from '../../components/Main/Catalog/ProductCard/ProductCard';
 import { getProducts } from '../../api/products/getProducts';
 
 export interface ProductsSliceState {
@@ -25,7 +25,7 @@ export const productsSlice = createSlice({
         state.isProductsLoading = true;
       })
       .addCase(getProducts.fulfilled, (state: ProductsSliceState, action) => {
-        state.products = action.payload.map((product) => product.masterData.current);
+        state.products = action.payload;
         state.isProductsLoading = false;
       })
       .addCase(getProducts.rejected, (state: ProductsSliceState) => {

@@ -9,7 +9,7 @@ import { App } from '../App';
 import { ProtectedRoute } from './protected-route';
 import { Profile } from '../components/Main/Profile/Profile';
 import { AnonymousRoute } from './anonymous-route';
-import { ProductPage } from '../components/Main/ProductPage/ProductPage';
+import { ProductDetail } from '../components/Main/ProductDetail/ProductDetail';
 
 export const router = createBrowserRouter([
   {
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/product/:id',
-        element: <ProductPage />
+        element: <ProductDetail />
       }
     ]
   }
