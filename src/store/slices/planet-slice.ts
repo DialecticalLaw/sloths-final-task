@@ -7,9 +7,9 @@ export enum Planets {
   mars = 'mars'
 }
 enum PlanetsColor {
-  earth = 'rgb(79,166,217)',
-  mars = 'rgb(183,44,20)',
-  venus = 'rgb(246,212,146)'
+  venus = 'rgb(255,219,75)',
+  earth = 'rgb(31, 163, 240)',
+  mars = 'rgb(197,42,9)'
 }
 export interface planetSliceState {
   planet: Planets;

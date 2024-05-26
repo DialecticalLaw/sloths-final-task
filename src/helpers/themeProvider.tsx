@@ -1,4 +1,4 @@
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from '../store/hooks';
 interface ThemeProviderProps {
