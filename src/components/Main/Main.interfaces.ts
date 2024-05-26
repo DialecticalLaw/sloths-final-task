@@ -13,7 +13,7 @@ interface BillingAddress {
   street: string;
   city: string;
   postalCode: string;
-  country: 'Russia' | 'Belarus';
+  country: 'RU' | 'BY';
   isDefault: boolean;
 }
 

@@ -42,7 +42,7 @@ export const formatCustomerData = (values: RegisterValues): CustomerBody => {
     addresses: [
       {
         city: values.shipping.city,
-        country: values.shipping.country === 'Russia' ? 'RU' : 'BY',
+        country: values.shipping.country,
         postalCode: values.shipping.postalCode,
         streetName: values.shipping.street
       }
@@ -57,7 +57,7 @@ export const formatCustomerData = (values: RegisterValues): CustomerBody => {
   } else if (!values.shipping.isSameAddress) {
     customerBody.addresses.push({
       city: values.billing.city,
-      country: values.billing.country === 'Russia' ? 'RU' : 'BY',
+      country: values.billing.country,
       postalCode: values.billing.postalCode,
       streetName: values.billing.street
     });

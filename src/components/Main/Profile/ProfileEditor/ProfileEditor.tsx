@@ -7,6 +7,7 @@ import { Input } from '../../../univComponents/CustomForm/Input/Input';
 import { Address } from '../../../univComponents/CustomForm/Address/Address';
 import { showToast } from '../../../../helpers/showToast';
 import { ProfileSchema } from '../../validationSchemes';
+import { isCorrectCountry } from '../../../../helpers/isCorrectCountry';
 
 export function ProfileEditor({
   setEditMode,
@@ -14,6 +15,10 @@ export function ProfileEditor({
   shippingAddress,
   billingAddress
 }: ProfileComponentsProps) {
+  if (!isCorrectCountry(shippingAddress.country) || !isCorrectCountry(billingAddress.country)) {
+    throw new Error('incorrect country');
+  }
+
   const initialValues: ProfileEditorValues = {
     email: customerData.email,
     firstName: customerData.firstName || '',
@@ -23,14 +28,14 @@ export function ProfileEditor({
       street: shippingAddress.streetName || '',
       city: shippingAddress.city || '',
       postalCode: shippingAddress.postalCode || '',
-      country: shippingAddress.country === 'RU' ? 'Russia' : 'Belarus',
+      country: shippingAddress.country,
       isDefault: Boolean(customerData.defaultShippingAddressId)
     },
     billing: {
       street: billingAddress.streetName || '',
       city: billingAddress.city || '',
       postalCode: billingAddress.postalCode || '',
-      country: billingAddress.country === 'RU' ? 'Russia' : 'Belarus',
+      country: billingAddress.country,
       isDefault: Boolean(customerData.defaultBillingAddressId)
     }
   };

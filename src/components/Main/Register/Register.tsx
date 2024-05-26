@@ -24,7 +24,7 @@ const initialValues: RegisterValues = {
     street: '',
     city: '',
     postalCode: '',
-    country: 'Russia',
+    country: 'RU',
     isDefault: false,
     isSameAddress: false
   },
@@ -32,7 +32,7 @@ const initialValues: RegisterValues = {
     street: '',
     city: '',
     postalCode: '',
-    country: 'Russia',
+    country: 'RU',
     isDefault: false
   }
 };
