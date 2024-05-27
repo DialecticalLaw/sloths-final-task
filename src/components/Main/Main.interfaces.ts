@@ -41,6 +41,11 @@ export interface ProfileComponentsProps {
   customerId: string;
 }
 
+export interface PasswordEditorValues {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface ProductCardProps {
   product: ProductData;
 }

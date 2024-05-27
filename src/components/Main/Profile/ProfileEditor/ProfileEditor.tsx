@@ -86,7 +86,7 @@ export function ProfileEditor({
             <Address name="billing" />
 
             <Button onClick={submitForm} type="submit">
-              Сохранить изменения
+              Сохранить
             </Button>
             <Button
               classes={[styles.cancel_btn]}

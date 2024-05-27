@@ -2,6 +2,7 @@ import styles from './ProfileViewer.module.css';
 import avatarSrc from '../../../../assets/img/avatar.svg';
 import { Button } from '../../../univComponents/Button/Button';
 import type { ProfileComponentsProps } from '../../Main.interfaces';
+import { PasswordEditor } from './PasswordEditor/PasswordEditor';
 
 export function ProfileViewer({
   setEditMode,
@@ -18,6 +19,8 @@ export function ProfileViewer({
         <p>Email: {customerData.email}</p>
         <p>Дата рождения: {customerData.dateOfBirth}</p>
       </section>
+
+      <PasswordEditor />
 
       <section className={styles.addresses_data}>
         <fieldset className={styles.address_data}>
