@@ -29,11 +29,11 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className={styles.product_info_wrapper}>
         <h3 className={styles.product_name}>{product.name.ru}</h3>
         {price !== null && (
-        <span className={discountPrice ? styles.crossed_price : styles.product_price}>
-          {formatPrice(price)}
-        </span>
-      )}
-      {discountPrice && <span className={styles.discount_price}>{formatPrice(discountPrice)}</span>}
+          <span className={discountPrice ? styles.crossed_price : styles.product_price}>
+            {formatPrice(price)}
+          </span>
+        )}
+        {discountPrice && <span className={styles.discount_price}>{formatPrice(discountPrice)}</span>}
       </div>
     </div>
   );
