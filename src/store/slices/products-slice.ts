@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { ProductData } from '../../components/Main/Catalog/ProductCard/ProductCard';
+import type { ProductData } from '@commercetools/platform-sdk';
 import { getProducts } from '../../api/products/getProducts';
 
 export interface ProductsSliceState {
