@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getProduct } from '../../../api/products/getProducts';
 import type { Product } from '@commercetools/platform-sdk';
 import { Loader } from '../Loader/Loader';
+import { formatPrice } from '../../../helpers/formatPrice';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
@@ -39,6 +40,9 @@ export function ProductDetail() {
 
   const { name, description, masterVariant } = product.masterData.current;
   const images = masterVariant?.images || [];
+  const price = masterVariant?.prices ? masterVariant.prices[0]?.value.centAmount : null;
+  const discountPrice = masterVariant?.prices ? masterVariant.prices[0]?.discounted?.value.centAmount : null;
+
   return (
     <div className={styles.product_detail}>
       <div className={styles.images_gallery}>
@@ -50,6 +54,16 @@ export function ProductDetail() {
       </div>
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <p className={styles.product_desc}>{description?.ru}</p>
+      {price !== null && (
+      <span className={discountPrice ? styles.crossed_price : styles.product_price}>
+      {formatPrice(price)}
+      </span>
+      )}
+      {discountPrice && (
+      <span className={styles.discount_price}>
+        {formatPrice(discountPrice)}
+        </span>
+        )}
     </div>
   );
 }
