@@ -2,9 +2,9 @@ import { apiRoot } from '../apiRoot';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiData } from '../apiData';
 import { Planets } from '../../store/slices/planet-slice';
-import type { Product, ProductData } from '@commercetools/platform-sdk';
+import type { Product } from '@commercetools/platform-sdk';
 
-export const getProducts = createAsyncThunk<ProductData[], Planets>('products/get', async (planet) => {
+export const getProducts = createAsyncThunk<Product[], Planets>('products/get', async (planet) => {
   const planetId =
     planet === Planets.earth
       ? ApiData.EARTH_CATALOG_ID
@@ -20,10 +20,7 @@ export const getProducts = createAsyncThunk<ProductData[], Planets>('products/ge
         }
       })
       .execute();
-    return response.body.results.map((product) => ({
-      ...product.masterData.current,
-      id: product.id
-    }));
+    return response.body.results;
   } catch (error) {
     console.error(error);
     throw error;

@@ -25,7 +25,7 @@ export const productsSlice = createSlice({
         state.isProductsLoading = true;
       })
       .addCase(getProducts.fulfilled, (state: ProductsSliceState, action) => {
-        state.products = action.payload;
+        state.products = action.payload.map((product) => product.masterData.current);
         state.isProductsLoading = false;
       })
       .addCase(getProducts.rejected, (state: ProductsSliceState) => {
