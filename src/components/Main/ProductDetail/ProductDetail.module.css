@@ -39,7 +39,6 @@
 .product_desc {
   text-align: center;
   font-size: clamp(1.2rem, 2.5vw, 2rem);
-  /* max-width: 60rem; */
 }
 
 @media (min-width: 769px) {

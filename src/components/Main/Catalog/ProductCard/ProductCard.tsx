@@ -1,14 +1,6 @@
-import type { ProductData as BaseProductData } from '@commercetools/platform-sdk';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
-
-export interface ProductCardProps {
-  product: ProductData;
-}
-
-export interface ProductData extends BaseProductData {
-  readonly id: string;
-}
+import type { ProductCardProps } from '../../Main.interfaces';
 
 export function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
@@ -18,15 +10,17 @@ export function ProductCard({ product }: ProductCardProps) {
     ? product.masterVariant.prices[0]?.discounted?.value.centAmount
     : '';
 
-  const handleClick = (id: string): void => {
-    navigate({ pathname: `/product/${id}` });
+  const handleClick = (productKey: string): void => {
+    navigate({ pathname: `/product/${productKey}` });
   };
 
   return (
     <div
       className={styles.product_card}
       onClick={() => {
-        handleClick(product.id);
+        if (product.masterVariant.key) {
+          handleClick(product.masterVariant.key);
+        }
       }}
     >
       <div className={styles.product_image} style={{ backgroundImage: `url(${bgImageUrl})` }} />

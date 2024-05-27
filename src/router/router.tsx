@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute element={<Profile />} />
       },
       {
-        path: '/product/:id',
+        path: '/product/:productKey',
         element: <ProductDetail />
       }
     ]

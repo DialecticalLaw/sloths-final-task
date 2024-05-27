@@ -6,7 +6,7 @@ import type { Product } from '@commercetools/platform-sdk';
 import { Loader } from '../Loader/Loader';
 
 export function ProductDetail() {
-  const { id } = useParams<{ id: string }>();
+  const { productKey } = useParams<{ productKey: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,10 +14,10 @@ export function ProductDetail() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        if (!id) {
+        if (!productKey) {
           throw new Error('Товар не найден');
         }
-        const fetchedProduct = await getProduct(id);
+        const fetchedProduct = await getProduct(productKey);
         setProduct(fetchedProduct || null);
         setIsLoading(false);
       } catch (error) {
@@ -27,14 +27,14 @@ export function ProductDetail() {
     };
 
     fetchData();
-  }, [id]);
+  }, [productKey]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!product) {
     return <div>Товар не найден</div>;
-  }
-
-  if (isLoading) {
-    <Loader />;
   }
 
   const { name, description, masterVariant } = product.masterData.current;
