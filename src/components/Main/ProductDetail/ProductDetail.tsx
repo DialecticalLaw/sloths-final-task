@@ -55,15 +55,11 @@ export function ProductDetail() {
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <p className={styles.product_desc}>{description?.ru}</p>
       {price !== null && (
-      <span className={discountPrice ? styles.crossed_price : styles.product_price}>
-      {formatPrice(price)}
-      </span>
-      )}
-      {discountPrice && (
-      <span className={styles.discount_price}>
-        {formatPrice(discountPrice)}
+        <span className={discountPrice ? styles.crossed_price : styles.product_price}>
+          {formatPrice(price)}
         </span>
-        )}
+      )}
+      {discountPrice && <span className={styles.discount_price}>{formatPrice(discountPrice)}</span>}
     </div>
   );
 }

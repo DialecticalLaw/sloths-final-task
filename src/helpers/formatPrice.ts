@@ -3,6 +3,6 @@ export const formatPrice = (amount: number) => {
     style: 'currency',
     currency: 'RUB',
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 2
   }).format(amount / 100);
 };
