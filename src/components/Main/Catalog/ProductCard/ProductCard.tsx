@@ -28,7 +28,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <p className={styles.product_desc}>{product.description?.ru}</p>
       <div className={styles.product_info_wrapper}>
         <h3 className={styles.product_name}>{product.name.ru}</h3>
-        {price !== null && (
+        {price && (
           <span className={discountPrice ? styles.crossed_price : styles.product_price}>
             {formatPrice(price)}
           </span>

@@ -13,16 +13,19 @@ export function ProductDetail() {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!productKey) {
+        setProduct(null);
+        setIsLoading(false);
+        return;
+      }
       setIsLoading(true);
       try {
-        if (!productKey) {
-          throw new Error('Товар не найден');
-        }
         const fetchedProduct = await getProduct(productKey);
         setProduct(fetchedProduct || null);
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setProduct(null);
+      } finally {
         setIsLoading(false);
       }
     };
@@ -54,7 +57,7 @@ export function ProductDetail() {
       </div>
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <p className={styles.product_desc}>{description?.ru}</p>
-      {price !== null && (
+      {price && (
         <span className={discountPrice ? styles.crossed_price : styles.product_price}>
           {formatPrice(price)}
         </span>
