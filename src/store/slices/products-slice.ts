@@ -26,6 +26,9 @@ export const productsSlice = createSlice({
   reducers: {
     deleteProducts(state: ProductsSliceState) {
       state.products = [];
+    },
+    deleteFilteredProducts(state) {
+      state.filteredProducts = [];
     }
   },
   extraReducers: (builder) => {
@@ -60,3 +63,4 @@ export const productsSlice = createSlice({
 });
 
 export const deleteProducts = productsSlice.actions.deleteProducts;
+export const deleteFilteredProducts = productsSlice.actions.deleteFilteredProducts;

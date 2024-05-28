@@ -2,7 +2,8 @@ import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { useEffect, useState } from 'react';
 import styles from '../../../univComponents/Checkbox/Checkbox.module.css';
 import style from './Filters.module.css';
-import { getFilteredProducts, getPlanetProducts } from '../../../../api/products/getProducts';
+import { getFilteredProducts } from '../../../../api/products/getProducts';
+import { deleteFilteredProducts } from '../../../../store/slices/products-slice';
 
 export function Filters() {
   const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ export function Filters() {
   }, [filteredProducts]);
   const onClick = (atr: string) => {
     if (atr === checkedValue) {
-      dispatch(getPlanetProducts(planet));
+      dispatch(deleteFilteredProducts());
     } else {
       dispatch(
         getFilteredProducts({
