@@ -3,6 +3,7 @@ import avatarSrc from '../../../../assets/img/avatar.svg';
 import { Button } from '../../../univComponents/Button/Button';
 import type { ProfileComponentsProps } from '../../Main.interfaces';
 import { PasswordEditor } from './PasswordEditor/PasswordEditor';
+import editIcon from '../../../../assets/img/edit.svg';
 
 export function ProfileViewer({
   setEditMode,
@@ -48,7 +49,9 @@ export function ProfileViewer({
         classes={[styles.button]}
         type="button"
       >
-        Редактировать
+        <>
+          Редактировать <img src={editIcon} alt="edit" className={styles.edit_icon} />
+        </>
       </Button>
     </>
   );
