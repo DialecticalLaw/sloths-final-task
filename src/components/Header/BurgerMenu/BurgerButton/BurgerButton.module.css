@@ -18,10 +18,11 @@
     left: 0;
     top: 50%;
     width: 100%;
-    height: 2px;
+    height: 3px;
     transform: translateY(-50%);
     transition: opacity 0.3s ease-in-out;
     background-color: white;
+    border-radius: 1px;
   }
 
   .burger_button::before,
@@ -30,12 +31,13 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 3px;
     transition:
       transform 0.3s ease-in-out,
       top 0.3s ease-in-out,
       bottom 0.3s ease-in-out;
     background-color: white;
+    border-radius: 1px;
   }
 
   .burger_button::before {
