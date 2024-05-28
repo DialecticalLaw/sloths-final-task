@@ -1,4 +1,4 @@
-import type { Address, Customer } from '@commercetools/platform-sdk';
+import type { Address, Customer, ProductData } from '@commercetools/platform-sdk';
 
 export interface StringObj {
   [key: string]: string;
@@ -13,7 +13,7 @@ interface BillingAddress {
   street: string;
   city: string;
   postalCode: string;
-  country: 'Russia' | 'Belarus';
+  country: 'RU' | 'BY';
   isDefault: boolean;
 }
 
@@ -38,4 +38,9 @@ export interface ProfileComponentsProps {
   customerData: Customer;
   shippingAddress: Address;
   billingAddress: Address;
+  customerId: string;
+}
+
+export interface ProductCardProps {
+  product: ProductData;
 }
