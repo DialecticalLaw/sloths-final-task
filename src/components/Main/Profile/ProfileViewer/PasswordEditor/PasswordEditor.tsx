@@ -50,7 +50,9 @@ export function PasswordEditor({ customerData }: { customerData: Customer }) {
         validationSchema={PasswordEditorSchema}
       >
         <Form className={styles.form}>
-          <h2 className={styles.title}>Изменение пароля</h2>
+          <h2 className={styles.title}>
+            Изменение пароля <img className={styles.password_icon} src={passwordIcon} alt="password" />
+          </h2>
           <Input placeholder="Текущий пароль" name="currentPassword" type="password" />
           <Input placeholder="Новый пароль" name="newPassword" type="password" />
           <Button classes={[styles.submit_btn]} type="submit">
