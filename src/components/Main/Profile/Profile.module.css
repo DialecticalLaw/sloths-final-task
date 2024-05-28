@@ -23,3 +23,12 @@
   background-color: transparent;
   backdrop-filter: none;
 }
+
+.button {
+  margin-top: 3rem;
+}
+
+.icon {
+  width: 2rem;
+  margin-left: 0.6rem;
+}

@@ -1,4 +1,4 @@
-import type { Address, Customer, ProductData } from '@commercetools/platform-sdk';
+import type { Customer, ProductData } from '@commercetools/platform-sdk';
 
 export interface StringObj {
   [key: string]: string;
@@ -29,15 +29,17 @@ export interface RegisterValues extends LoginValues {
   billing: BillingAddress;
 }
 
-export interface ProfileEditorValues extends Omit<RegisterValues, 'shipping' | 'password'> {
-  shipping: BillingAddress;
-}
+export type ProfileEditorValues = Pick<RegisterValues, 'email' | 'firstName' | 'lastName' | 'dateOfBirth'>;
 
-export interface ProfileComponentsProps {
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+export interface EditorProps {
+  setEditMode: React.Dispatch<
+    React.SetStateAction<{
+      isPersonalEdit: boolean;
+      isAddressesEdit: boolean;
+      isPasswordEdit: boolean;
+    }>
+  >;
   customerData: Customer;
-  shippingAddress: Address;
-  billingAddress: Address;
 }
 
 export interface PasswordEditorValues {

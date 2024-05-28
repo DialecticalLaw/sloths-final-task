@@ -5,12 +5,6 @@
   gap: 2rem;
 }
 
-.inputs_group {
-  display: flex;
-  gap: 1rem;
-  width: 80%;
-}
-
 .cancel_btn {
   margin-top: 1rem;
 }
