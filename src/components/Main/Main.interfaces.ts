@@ -38,7 +38,6 @@ export interface ProfileComponentsProps {
   customerData: Customer;
   shippingAddress: Address;
   billingAddress: Address;
-  customerId: string;
 }
 
 export interface PasswordEditorValues {

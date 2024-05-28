@@ -9,7 +9,7 @@ export function ProfileViewer({
   customerData,
   shippingAddress,
   billingAddress
-}: Omit<ProfileComponentsProps, 'customerId'>) {
+}: ProfileComponentsProps) {
   return (
     <>
       <img src={avatarSrc} alt="avatar" className={styles.avatar} />
@@ -20,7 +20,7 @@ export function ProfileViewer({
         <p>Дата рождения: {customerData.dateOfBirth}</p>
       </section>
 
-      <PasswordEditor />
+      <PasswordEditor customerData={customerData} />
 
       <section className={styles.addresses_data}>
         <fieldset className={styles.address_data}>

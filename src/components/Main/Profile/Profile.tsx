@@ -46,7 +46,6 @@ export function Profile() {
             shippingAddress={shippingAddress}
             billingAddress={billingAddress}
             customerData={customerData}
-            customerId={customerId}
           />
         ) : (
           <ProfileViewer

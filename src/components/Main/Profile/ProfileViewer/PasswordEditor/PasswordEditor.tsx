@@ -5,20 +5,47 @@ import styles from './PasswordEditor.module.css';
 import { Input } from '../../../../univComponents/CustomForm/Input/Input';
 import type { PasswordEditorValues } from '../../../Main.interfaces';
 import { PasswordEditorSchema } from '../../../validationSchemes';
+import type { Customer } from '@commercetools/platform-sdk';
+import { updatePassword } from '../../../../../api/customers/updateCustomer';
+import { showToast } from '../../../../../helpers/showToast';
+import { errorHandler } from '../../../../../helpers/errorHandler';
+import { loginCustomer } from '../../../../../api/customers/loginCustomer';
+import { useAppDispatch } from '../../../../../store/hooks';
+import { getCustomer } from '../../../../../api/customers/getCustomer';
 
-export function PasswordEditor() {
+export function PasswordEditor({ customerData }: { customerData: Customer }) {
   const initialValues: PasswordEditorValues = {
     currentPassword: '',
     newPassword: ''
   };
+  const dispatch = useAppDispatch();
 
   return (
     <>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { resetForm }) => {
-          console.log(values);
+          const customerPromise: Promise<Customer> = updatePassword({
+            ID: customerData.id,
+            version: customerData.version,
+            currentPassword: values.currentPassword,
+            newPassword: values.newPassword
+          });
+
+          showToast({
+            promise: customerPromise,
+            pending: 'Обновляем...',
+            success: 'Пароль обновлён!',
+            errorHandler: errorHandler
+          });
           resetForm();
+
+          customerPromise
+            .then(() => {
+              loginCustomer(customerData.email, values.newPassword);
+              dispatch(getCustomer(customerData.id));
+            })
+            .catch((error: Error) => console.error(error));
         }}
         validationSchema={PasswordEditorSchema}
       >
