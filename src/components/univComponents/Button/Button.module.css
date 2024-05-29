@@ -24,6 +24,7 @@
 .button_minimal {
   padding: 1rem 2.5rem;
   outline: 2px solid var(--highlight-color);
+  transition: 0.5s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
 .button_minimal::after {
@@ -115,6 +116,10 @@
 
   .button_standart:hover::before {
     bottom: 0;
+  }
+
+  .button_minimal:hover {
+    transform: translateY(-10%);
   }
 
   .button_minimal:hover::after {

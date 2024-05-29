@@ -13,6 +13,7 @@ export function ProfileAddress({ index }: { index: number }) {
       <Input name="street" type="text" placeholder="Улица"></Input>
       <Input name="postalCode" type="text" placeholder="Почтовый индекс"></Input>
       <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>
+
       <div className={styles.buttons}>
         <Button minimal={true} type="submit">
           Сохранить
