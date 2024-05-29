@@ -8,26 +8,3 @@
 .cancel_btn {
   margin-top: 1rem;
 }
-
-.editor_title {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-.underline {
-  animation: flashing 1s step-end infinite;
-  font-size: 3rem;
-}
-
-@keyframes flashing {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: #ffffff;
-  }
-}

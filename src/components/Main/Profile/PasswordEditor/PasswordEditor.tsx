@@ -1,5 +1,4 @@
 import { Button } from '../../../univComponents/Button/Button';
-import passwordIcon from '../../../../assets/img/change_password.svg';
 import { Form, Formik } from 'formik';
 import styles from './PasswordEditor.module.css';
 import { Input } from '../../../univComponents/CustomForm/Input/Input';
@@ -12,6 +11,7 @@ import { errorHandler } from '../../../../helpers/errorHandler';
 import { loginCustomer } from '../../../../api/customers/loginCustomer';
 import { useAppDispatch } from '../../../../store/hooks';
 import { getCustomer } from '../../../../api/customers/getCustomer';
+import { EditorTitle } from '../EditorTitle/EditorTitle';
 
 export function PasswordEditor({ customerData, setEditMode }: EditorProps) {
   const initialValues: PasswordEditorValues = {
@@ -56,9 +56,7 @@ export function PasswordEditor({ customerData, setEditMode }: EditorProps) {
         validationSchema={PasswordEditorSchema}
       >
         <Form className={styles.form}>
-          <h2 className={styles.title}>
-            Изменение пароля <img className={styles.password_icon} src={passwordIcon} alt="password" />
-          </h2>
+          <EditorTitle>Изменение пароля</EditorTitle>
           <Input placeholder="Текущий пароль" name="currentPassword" type="password" />
           <Input placeholder="Новый пароль" name="newPassword" type="password" />
           <Button classes={[styles.submit_btn]} type="submit">

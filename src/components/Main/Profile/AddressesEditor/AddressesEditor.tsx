@@ -1,8 +1,8 @@
 import { Form, Formik } from 'formik';
 import type { BillingAddress, EditorProps } from '../../Main.interfaces';
 import { Button } from '../../../univComponents/Button/Button';
-import styles from './AddressesEditor.module.css';
 import { ProfileAddress } from './ProfileAddress/ProfileAddress';
+import { EditorTitle } from '../EditorTitle/EditorTitle';
 
 export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
   console.log(customerData);
@@ -11,8 +11,8 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
 
   return (
     <>
+      <EditorTitle>Управление адресами</EditorTitle>
       <Button
-        classes={[styles.button]}
         type="button"
         onClick={() => {
           setEditMode((editModes) => {

@@ -12,6 +12,7 @@ import { errorHandler } from '../../../../helpers/errorHandler';
 import type { Customer } from '@commercetools/platform-sdk';
 import { useAppDispatch } from '../../../../store/hooks';
 import { getCustomer } from '../../../../api/customers/getCustomer';
+import { EditorTitle } from '../EditorTitle/EditorTitle';
 
 export function PersonalEditor({ setEditMode, customerData }: EditorProps) {
   const dispatch = useAppDispatch();
@@ -52,9 +53,7 @@ export function PersonalEditor({ setEditMode, customerData }: EditorProps) {
       {({ submitForm }) => {
         return (
           <Form className={styles.profile_editor}>
-            <h1 className={styles.editor_title}>
-              Режим редактирования<span className={styles.underline}>_</span>
-            </h1>
+            <EditorTitle>Редактирование</EditorTitle>
 
             <Input name={'email'} type="email" placeholder="Эл. почта"></Input>
             <Input name={'firstName'} type="text" placeholder="Имя"></Input>
