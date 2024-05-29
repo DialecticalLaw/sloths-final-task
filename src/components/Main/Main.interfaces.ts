@@ -9,7 +9,7 @@ export interface LoginValues {
   password: string;
 }
 
-interface BillingAddress {
+export interface BillingAddress {
   street: string;
   city: string;
   postalCode: string;
