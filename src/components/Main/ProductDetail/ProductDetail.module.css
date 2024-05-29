@@ -10,7 +10,7 @@
   margin: 5rem auto;
   border-radius: 1rem;
   background-color: var(--dark-transparent-background);
-  border: 1px solid var(--accent-color);
+  border: 0.1rem solid var(--accent-color);
   box-shadow:
     0 0 3rem var(--accent-color),
     0 0 0.6rem white;
@@ -95,7 +95,7 @@
   position: absolute;
   content: '';
   background-color: var(--accent-color);
-  height: 2px;
+  height: 0.2rem;
   width: 100%;
   top: 50%;
 }
