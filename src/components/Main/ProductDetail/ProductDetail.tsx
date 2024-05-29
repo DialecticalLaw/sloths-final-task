@@ -50,6 +50,7 @@ export function ProductDetail() {
 
   return (
     <div className={styles.product_detail}>
+      <h1 className={styles.product_name}>{name?.ru}</h1>
       <div className={styles.images_gallery}>
         <Carousel
           className={styles.images_carousel}
@@ -61,6 +62,7 @@ export function ProductDetail() {
           infiniteLoop={true}
           interval={5000}
           stopOnHover
+          swipeable
         >
           {images.map((image) => (
             <div key={image.url} className={styles.image_container}>
@@ -76,7 +78,7 @@ export function ProductDetail() {
           </div>
         ))}
       </div> */}
-      <h1 className={styles.product_name}>{name?.ru}</h1>
+
       <p className={styles.product_desc}>{description?.ru}</p>
       {price && (
         <span className={discountPrice ? styles.crossed_price : styles.product_price}>
