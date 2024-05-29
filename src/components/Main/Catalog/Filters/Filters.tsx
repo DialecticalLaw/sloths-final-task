@@ -9,18 +9,18 @@ export function Filters() {
   const dispatch = useAppDispatch();
   const { products, filteredProducts } = useAppSelector((state) => state.products_slice);
   const [attributes, setAttributes] = useState<string[]>([]);
-  const { planet } = useAppSelector((state) => state.planet_slice);
+  const { planet, subcategory } = useAppSelector((state) => state.planet_slice);
   const [checkedValue, setCheckedValue] = useState<null | string>(null);
 
   useEffect(() => {
-    if (products && products.length) {
+    if (subcategory && products && products.length) {
       setAttributes(
         products.map((product) =>
           product.masterVariant?.attributes ? product.masterVariant?.attributes[0]?.value[0] : []
         )
       );
     }
-  }, [products]);
+  }, [products, subcategory]);
 
   useEffect(() => {
     if (filteredProducts && filteredProducts.length) {
