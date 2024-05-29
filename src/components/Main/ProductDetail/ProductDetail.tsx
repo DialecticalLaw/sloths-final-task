@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import styles from './ProductDetail.module.css';
 import { useParams } from 'react-router-dom';
 import { getProduct } from '../../../api/products/getProducts';
 import type { Product } from '@commercetools/platform-sdk';
 import { Loader } from '../Loader/Loader';
 import { formatPrice } from '../../../helpers/formatPrice';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import styles from './ProductDetail.module.css';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
@@ -48,13 +50,21 @@ export function ProductDetail() {
 
   return (
     <div className={styles.product_detail}>
-      <div className={styles.images_gallery}>
+      <Carousel
+        className={styles.car}
+        showArrows={true}
+        showIndicators={false}
+        showStatus={false}
+        infiniteLoop={true}
+        autoPlay={true}
+        interval={5000}
+      >
         {images.map((image) => (
           <div key={image.url} className={styles.image_container}>
             <img src={image.url} alt={image.label} className={styles.product_image} />
           </div>
         ))}
-      </div>
+      </Carousel>
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <p className={styles.product_desc}>{description?.ru}</p>
       {price && (
