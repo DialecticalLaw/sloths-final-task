@@ -58,7 +58,8 @@ export function ProductDetail() {
       <div className={styles.images_gallery}>
         <Carousel
           className={styles.images_carousel}
-          centerMode
+          centerMode={true}
+          centerSlidePercentage={100}
           showArrows
           showIndicators={false}
           showStatus={false}
