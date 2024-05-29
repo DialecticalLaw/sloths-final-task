@@ -7,6 +7,7 @@ import type { ProductsSliceState } from '../../../store/slices/products-slice';
 import styles from './Catalog.module.css';
 import { getSubcategoryId } from '../../../helpers/idsMapper';
 import { Filters } from './Filters/Filters';
+import { Sort } from './Sort/Sort';
 
 export function Catalog() {
   const dispatch = useAppDispatch();
@@ -37,7 +38,10 @@ export function Catalog() {
     <Loader />
   ) : (
     <>
-      <Filters />
+      <div className={styles.filters_wrapper}>
+        <Filters />
+        <Sort />
+      </div>
       <section className={styles.cards_wrapper}>
         {(filteredProducts.length ? filteredProducts : products).map((productData, index) => (
           <ProductCard product={productData} key={index} />
