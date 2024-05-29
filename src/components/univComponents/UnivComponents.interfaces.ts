@@ -10,4 +10,5 @@ export interface InputProps {
   placeholder: string;
   name: string;
   type: 'text' | 'email' | 'password' | 'tel' | 'date' | 'search' | 'number';
+  disabled: boolean;
 }

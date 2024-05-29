@@ -5,12 +5,22 @@
   gap: 3.5rem;
   width: 100%;
   padding: 2.5rem 1rem;
+  border-color: #ffffff;
   transition: 0.3s;
+}
+
+.editing_address {
+  border-color: var(--accent-color);
+}
+
+.editing_address .legend {
+  color: var(--accent-color);
 }
 
 .legend {
   padding: 0.8rem;
   letter-spacing: 2px;
+  font-weight: bold;
 }
 
 .buttons {

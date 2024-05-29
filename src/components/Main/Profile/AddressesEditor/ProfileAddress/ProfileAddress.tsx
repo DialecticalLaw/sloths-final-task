@@ -9,13 +9,13 @@ export function ProfileAddress({ index }: { index: number }) {
   const [isEditMode, setEditMode] = useState(false);
 
   return (
-    <fieldset className={styles.address}>
+    <fieldset className={`${styles.address} ${isEditMode && styles.editing_address}`}>
       <legend className={styles.legend}>Адрес {index + 1}</legend>
-      <CountrySelect name="country"></CountrySelect>
-      <Input name="city" type="text" placeholder="Город"></Input>
-      <Input name="street" type="text" placeholder="Улица"></Input>
-      <Input name="postalCode" type="text" placeholder="Почтовый индекс"></Input>
-      <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>
+      <CountrySelect disabled={!isEditMode} name="country"></CountrySelect>
+      <Input disabled={!isEditMode} name="city" type="text" placeholder="Город"></Input>
+      <Input disabled={!isEditMode} name="street" type="text" placeholder="Улица"></Input>
+      <Input disabled={!isEditMode} name="postalCode" type="text" placeholder="Почтовый индекс"></Input>
+      {isEditMode && <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>}
 
       {isEditMode ? (
         <div className={styles.buttons}>
