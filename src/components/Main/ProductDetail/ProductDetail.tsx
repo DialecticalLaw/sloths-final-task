@@ -50,21 +50,32 @@ export function ProductDetail() {
 
   return (
     <div className={styles.product_detail}>
-      <Carousel
-        className={styles.car}
-        showArrows={true}
-        showIndicators={false}
-        showStatus={false}
-        infiniteLoop={true}
-        autoPlay={true}
-        interval={5000}
-      >
+      <div className={styles.images_gallery}>
+        <Carousel
+          className={styles.images_carousel}
+          centerMode
+          showArrows={true}
+          showIndicators={false}
+          showStatus={false}
+          autoPlay={true}
+          infiniteLoop={true}
+          interval={5000}
+          stopOnHover
+        >
+          {images.map((image) => (
+            <div key={image.url} className={styles.image_container}>
+              <img src={image.url} alt={image.label} className={styles.product_image} />
+            </div>
+          ))}
+        </Carousel>
+      </div>
+      {/* <div className={styles.images_gallery}>
         {images.map((image) => (
           <div key={image.url} className={styles.image_container}>
             <img src={image.url} alt={image.label} className={styles.product_image} />
           </div>
         ))}
-      </Carousel>
+      </div> */}
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <p className={styles.product_desc}>{description?.ru}</p>
       {price && (
