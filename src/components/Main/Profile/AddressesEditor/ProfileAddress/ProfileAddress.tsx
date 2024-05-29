@@ -15,10 +15,10 @@ export function ProfileAddress({ index }: { index: number }) {
       <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>
 
       <div className={styles.buttons}>
-        <Button minimal={true} type="submit">
+        <Button classes={[styles.button]} minimal={true} type="submit">
           Сохранить
         </Button>
-        <Button minimal={true} type="button">
+        <Button classes={[styles.button]} minimal={true} type="button">
           Отмена
         </Button>
       </div>

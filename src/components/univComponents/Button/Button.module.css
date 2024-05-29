@@ -22,8 +22,11 @@
 }
 
 .button_minimal {
-  padding: 1rem 2.5rem;
-  outline: 2px solid var(--highlight-color);
+  padding: 0.8rem 1.5rem;
+  box-shadow:
+    inset 2px 0 0 0 var(--highlight-color),
+    inset -2px 0 0 0 var(--highlight-color);
+  backdrop-filter: blur(0.5rem);
   transition: 0.5s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
