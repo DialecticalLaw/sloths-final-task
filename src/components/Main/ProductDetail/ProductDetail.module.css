@@ -7,10 +7,10 @@
   height: fit-content;
   gap: 3rem;
   padding: 3rem;
-  margin: 5rem;
+  margin: 5rem auto;
+  border-radius: 1rem;
   background-color: var(--dark-transparent-background);
   border: 1px solid var(--accent-color);
-  border-radius: 1rem;
   box-shadow:
     0 0 3rem var(--accent-color),
     0 0 0.6rem white;
@@ -50,19 +50,45 @@
 
 .product_price {
   color: var(--accent-color);
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .discount_price {
   background-color: var(--accent-color);
   max-width: max-content;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .crossed_price {
   position: relative;
   background-color: transparent;
   max-width: max-content;
+  font-size: 2rem;
+}
+
+:global(.carousel .thumbs-wrapper) {
+  margin: 2rem 2rem 0 2rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+:global(.carousel .control-next.control-arrow:before) {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  background-image: url('./../../../assets/img/arrow.svg');
+  border: none;
+}
+
+:global(.carousel .control-prev.control-arrow:before) {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  background-image: url('./../../../assets/img/arrow.svg');
+  transform: rotate(180deg);
+  border: none;
 }
 
 .crossed_price::before {
@@ -93,6 +119,10 @@
 }
 
 @media (max-width: 640px) {
+  .product_detail {
+    gap: 1rem;
+  }
+
   .images_carousel {
     width: 35rem;
     padding: 1rem;

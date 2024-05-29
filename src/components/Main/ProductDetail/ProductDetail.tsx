@@ -55,7 +55,7 @@ export function ProductDetail() {
         <Carousel
           className={styles.images_carousel}
           centerMode
-          showArrows={true}
+          showArrows
           showIndicators={false}
           showStatus={false}
           autoPlay={true}
@@ -63,6 +63,8 @@ export function ProductDetail() {
           interval={5000}
           stopOnHover
           swipeable
+          useKeyboardArrows
+          thumbWidth={65}
         >
           {images.map((image) => (
             <div key={image.url} className={styles.image_container}>
@@ -71,14 +73,6 @@ export function ProductDetail() {
           ))}
         </Carousel>
       </div>
-      {/* <div className={styles.images_gallery}>
-        {images.map((image) => (
-          <div key={image.url} className={styles.image_container}>
-            <img src={image.url} alt={image.label} className={styles.product_image} />
-          </div>
-        ))}
-      </div> */}
-
       <p className={styles.product_desc}>{description?.ru}</p>
       {price && (
         <span className={discountPrice ? styles.crossed_price : styles.product_price}>
