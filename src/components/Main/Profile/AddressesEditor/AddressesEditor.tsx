@@ -4,6 +4,7 @@ import { Button } from '../../../univComponents/Button/Button';
 import { ProfileAddress } from './ProfileAddress/ProfileAddress';
 import { EditorTitle } from '../EditorTitle/EditorTitle';
 import { AddressSchema } from '../../validationSchemes';
+import searchIcon from '../../../../assets/img/search.svg';
 import styles from './AddressesEditor.module.css';
 
 export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
@@ -29,7 +30,12 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
       </Button>
 
       {!addresses.length ? (
-        <p>Добавьте адреса, иначе мы будем вынуждены отправить вам почтового космоголубя со счётом</p>
+        <>
+          <p className={styles.empty_info}>
+            Добавьте адреса, иначе мы будем вынуждены отправить Вам почтового космоголубя со счётом
+          </p>
+          <img className={styles.search_icon} src={searchIcon} alt="empty"></img>
+        </>
       ) : (
         addresses.map((address, index) => {
           if (address.country !== 'RU' && address.country !== 'BY') throw new Error('wrong country name');
@@ -53,7 +59,7 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
               validationSchema={AddressSchema}
             >
               <Form className={styles.address_form}>
-                <ProfileAddress id={address.id} index={index} />
+                <ProfileAddress customerData={customerData} addressId={address.id} index={index} />
               </Form>
             </Formik>
           );

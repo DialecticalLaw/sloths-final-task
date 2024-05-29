@@ -5,8 +5,23 @@ import { Input } from '../../../../univComponents/CustomForm/Input/Input';
 import { CountrySelect } from '../../../../univComponents/CustomForm/RegisterAddress/CountrySelect/CountrySelect';
 import trashIcon from '../../../../../assets/img/trash.svg';
 import styles from './ProfileAddress.module.css';
+import { updateSimpleData } from '../../../../../api/customers/updateSimpleData';
+import type { Customer } from '@commercetools/platform-sdk';
+import { showToast } from '../../../../../helpers/showToast';
+import { errorHandler } from '../../../../../helpers/errorHandler';
+import { getCustomer } from '../../../../../api/customers/getCustomer';
+import { useAppDispatch } from '../../../../../store/hooks';
 
-export function ProfileAddress({ index, id }: { index: number; id: string }) {
+export function ProfileAddress({
+  index,
+  addressId,
+  customerData
+}: {
+  index: number;
+  addressId: string;
+  customerData: Customer;
+}) {
+  const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
 
   return (
@@ -16,7 +31,26 @@ export function ProfileAddress({ index, id }: { index: number; id: string }) {
         type="button"
         className={styles.delete_btn}
         onClick={() => {
-          console.log('DELETE ' + id);
+          const customerPromise: Promise<Customer> = updateSimpleData({
+            version: customerData.version,
+            ID: customerData.id,
+            actions: [
+              {
+                action: 'removeAddress',
+                addressId: addressId
+              }
+            ]
+          });
+
+          showToast({
+            promise: customerPromise,
+            pending: 'Удаляем...',
+            success: 'Адрес удалён!',
+            errorHandler: errorHandler
+          });
+          customerPromise.then(() => {
+            dispatch(getCustomer(customerData.id));
+          });
         }}
         title="Удалить адрес"
       >
