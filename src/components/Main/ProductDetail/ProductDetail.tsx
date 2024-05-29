@@ -7,11 +7,14 @@ import { formatPrice } from '../../../helpers/formatPrice';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './ProductDetail.module.css';
+import { BgPlanets } from '../../Sidebar/Bg-planets';
+import { useAppSelector } from '../../../store/hooks';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const planet = useAppSelector((state) => state.planet_slice.planet);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,6 +53,7 @@ export function ProductDetail() {
 
   return (
     <div className={styles.product_detail}>
+      {planet && <BgPlanets />}
       <h1 className={styles.product_name}>{name?.ru}</h1>
       <div className={styles.images_gallery}>
         <Carousel
