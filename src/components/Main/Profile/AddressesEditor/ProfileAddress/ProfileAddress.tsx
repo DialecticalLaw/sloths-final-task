@@ -1,6 +1,6 @@
 import { Checkbox } from '../../../../univComponents/Checkbox/Checkbox';
-import { CountrySelect } from '../../../../univComponents/CustomForm/Address/CountrySelect/CountrySelect';
 import { Input } from '../../../../univComponents/CustomForm/Input/Input';
+import { CountrySelect } from '../../../../univComponents/CustomForm/RegisterAddress/CountrySelect/CountrySelect';
 import styles from './ProfileAddress.module.css';
 
 export function ProfileAddress({ index }: { index: number }) {
