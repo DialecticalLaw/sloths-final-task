@@ -6,7 +6,7 @@ import { Form } from 'react-router-dom';
 import { Input } from '../../../univComponents/CustomForm/Input/Input';
 import { showToast } from '../../../../helpers/showToast';
 import { PersonalDataSchema } from '../../validationSchemes';
-import { updateSimpleData } from '../../../../api/customers/updateCustomer';
+import { updateSimpleData } from '../../../../api/customers/updateSimpleData';
 import { formatForUpdate } from '../../../../helpers/formatForUpdate';
 import { errorHandler } from '../../../../helpers/errorHandler';
 import type { Customer } from '@commercetools/platform-sdk';

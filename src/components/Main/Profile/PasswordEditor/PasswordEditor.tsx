@@ -5,13 +5,13 @@ import { Input } from '../../../univComponents/CustomForm/Input/Input';
 import type { EditorProps, PasswordEditorValues } from '../../Main.interfaces';
 import { PasswordEditorSchema } from '../../validationSchemes';
 import type { Customer } from '@commercetools/platform-sdk';
-import { updatePassword } from '../../../../api/customers/updateCustomer';
 import { showToast } from '../../../../helpers/showToast';
 import { errorHandler } from '../../../../helpers/errorHandler';
 import { loginCustomer } from '../../../../api/customers/loginCustomer';
 import { useAppDispatch } from '../../../../store/hooks';
 import { getCustomer } from '../../../../api/customers/getCustomer';
 import { EditorTitle } from '../EditorTitle/EditorTitle';
+import { updatePassword } from '../../../../api/customers/updatePassword';
 
 export function PasswordEditor({ customerData, setEditMode }: EditorProps) {
   const initialValues: PasswordEditorValues = {
