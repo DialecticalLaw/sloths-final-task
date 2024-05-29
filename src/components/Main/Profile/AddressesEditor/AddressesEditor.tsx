@@ -3,6 +3,7 @@ import type { BillingAddress, EditorProps } from '../../Main.interfaces';
 import { Button } from '../../../univComponents/Button/Button';
 import { ProfileAddress } from './ProfileAddress/ProfileAddress';
 import { EditorTitle } from '../EditorTitle/EditorTitle';
+import { AddressSchema } from '../../validationSchemes';
 
 export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
   console.log(customerData);
@@ -47,6 +48,7 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
               onSubmit={(values) => {
                 console.log(values);
               }}
+              validationSchema={AddressSchema}
             >
               <Form>
                 <ProfileAddress index={index} />

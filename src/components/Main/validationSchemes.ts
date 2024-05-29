@@ -77,3 +77,5 @@ export const PasswordEditorSchema = object().shape({
   currentPassword: password,
   newPassword: password
 });
+
+export const AddressSchema = address;

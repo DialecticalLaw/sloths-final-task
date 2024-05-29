@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '../../../../univComponents/Button/Button';
 import { Checkbox } from '../../../../univComponents/Checkbox/Checkbox';
 import { Input } from '../../../../univComponents/CustomForm/Input/Input';
@@ -5,6 +6,8 @@ import { CountrySelect } from '../../../../univComponents/CustomForm/RegisterAdd
 import styles from './ProfileAddress.module.css';
 
 export function ProfileAddress({ index }: { index: number }) {
+  const [isEditMode, setEditMode] = useState(false);
+
   return (
     <fieldset className={styles.address}>
       <legend className={styles.legend}>Адрес {index + 1}</legend>
@@ -14,14 +17,20 @@ export function ProfileAddress({ index }: { index: number }) {
       <Input name="postalCode" type="text" placeholder="Почтовый индекс"></Input>
       <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>
 
-      <div className={styles.buttons}>
-        <Button classes={[styles.button]} minimal={true} type="submit">
-          Сохранить
+      {isEditMode ? (
+        <div className={styles.buttons}>
+          <Button classes={[styles.button]} minimal={true} type="submit">
+            Сохранить
+          </Button>
+          <Button onClick={() => setEditMode(false)} classes={[styles.button]} minimal={true} type="button">
+            Отмена
+          </Button>
+        </div>
+      ) : (
+        <Button onClick={() => setEditMode(true)} type="button">
+          Изменить
         </Button>
-        <Button classes={[styles.button]} minimal={true} type="button">
-          Отмена
-        </Button>
-      </div>
+      )}
     </fieldset>
   );
 }
