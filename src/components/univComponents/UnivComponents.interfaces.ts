@@ -3,6 +3,7 @@ export interface ButtonProps {
   type: 'submit' | 'reset' | 'button';
   onClick?: (...args: unknown[]) => unknown;
   classes?: string[];
+  minimal?: boolean;
 }
 
 export interface InputProps {
