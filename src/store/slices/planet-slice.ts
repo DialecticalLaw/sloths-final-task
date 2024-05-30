@@ -20,11 +20,12 @@ export interface planetSliceState {
   subcategory: Subcategories | null;
 }
 
+export const defaultPlanet: Planets = Planets.earth;
 const savedPlanet = localStorage.getItem('selectedPlanet') as Planets | null;
 
 const initialState: planetSliceState = {
-  planet: savedPlanet ?? Planets.earth,
-  accentColor: savedPlanet ? PlanetsColor[savedPlanet] : PlanetsColor.earth,
+  planet: savedPlanet ?? defaultPlanet,
+  accentColor: savedPlanet ? PlanetsColor[savedPlanet] : PlanetsColor[defaultPlanet],
   subcategory: null
 };
 
