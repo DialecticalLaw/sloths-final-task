@@ -42,13 +42,11 @@ export function ProductDetail() {
   }, [productKey]);
 
   const openModal = (imageUrl: string) => {
-    console.log('Opening modal with image:', imageUrl);
     setModalImage(imageUrl);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log('Closing modal');
     setIsModalOpen(false);
     setModalImage(null);
   };
