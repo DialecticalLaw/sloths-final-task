@@ -3,6 +3,8 @@ import styles from './ImageModal.module.css';
 import { Button } from '../../../univComponents/Button/Button';
 import type { ImageModalProps } from '../../Main.interfaces';
 
+const animationTime = 500;
+
 export function ImageModal({ imageUrl, onClose }: ImageModalProps) {
   const [closing, setClosing] = useState(false);
   const [opening, setOpening] = useState(false);
@@ -19,7 +21,7 @@ export function ImageModal({ imageUrl, onClose }: ImageModalProps) {
     setClosing(true);
     setTimeout(() => {
       onClose();
-    }, 800);
+    }, animationTime);
   };
 
   return (
