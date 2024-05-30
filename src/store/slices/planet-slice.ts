@@ -21,7 +21,7 @@ export interface planetSliceState {
 }
 
 export const defaultPlanet: Planets = Planets.earth;
-const savedPlanet = localStorage.getItem('selectedPlanet') as Planets | null;
+const savedPlanet = localStorage.getItem('sloth-selectedPlanet') as Planets | null;
 
 const initialState: planetSliceState = {
   planet: savedPlanet ?? defaultPlanet,
@@ -36,7 +36,7 @@ export const planetSlice = createSlice({
     setPlanet(state, action: PayloadAction<Planets>) {
       state.planet = action.payload;
       state.accentColor = PlanetsColor[action.payload];
-      localStorage.setItem('selectedPlanet', action.payload);
+      localStorage.setItem('sloth-selectedPlanet', action.payload);
     },
     setSubcategory(state: planetSliceState, action) {
       state.subcategory = action.payload;
