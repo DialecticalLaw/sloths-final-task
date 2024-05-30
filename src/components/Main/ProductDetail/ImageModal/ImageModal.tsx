@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './ImageModal.module.css';
 import { Button } from '../../../univComponents/Button/Button';
-
-interface ImageModalProps {
-  imageUrl: string;
-  onClose: () => void;
-}
+import type { ImageModalProps } from '../../Main.interfaces';
 
 export function ImageModal({ imageUrl, onClose }: ImageModalProps) {
   const [closing, setClosing] = useState(false);
