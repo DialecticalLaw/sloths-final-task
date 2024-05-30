@@ -65,7 +65,6 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
                     }
                   ]
                 });
-
                 showToast({
                   promise: customerPromise,
                   pending: 'Добавляем...',
@@ -111,7 +110,31 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
               key={address.id}
               initialValues={initialValues}
               onSubmit={(values) => {
-                console.log(values);
+                const customerPromise: Promise<Customer> = updateSimpleData({
+                  version: customerData.version,
+                  ID: customerData.id,
+                  actions: [
+                    {
+                      action: 'changeAddress',
+                      addressId: address.id,
+                      address: {
+                        country: values.country,
+                        city: values.city,
+                        streetName: values.street,
+                        postalCode: values.postalCode
+                      }
+                    }
+                  ]
+                });
+                showToast({
+                  promise: customerPromise,
+                  pending: 'Изменяем...',
+                  success: 'Адрес изменён!',
+                  errorHandler: errorHandler
+                });
+                customerPromise.then(() => {
+                  dispatch(getCustomer(customerData.id));
+                });
               }}
               validationSchema={AddressSchema}
             >

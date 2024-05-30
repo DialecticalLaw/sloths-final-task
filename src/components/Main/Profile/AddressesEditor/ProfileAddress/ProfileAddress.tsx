@@ -46,7 +46,6 @@ export function ProfileAddress({
                 }
               ]
             });
-
             showToast({
               promise: customerPromise,
               pending: 'Удаляем...',
