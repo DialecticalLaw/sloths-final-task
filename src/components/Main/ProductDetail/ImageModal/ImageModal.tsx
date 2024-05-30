@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ImageModal.module.css';
 import { Button } from '../../../univComponents/Button/Button';
 
@@ -8,25 +8,33 @@ interface ImageModalProps {
 }
 
 export function ImageModal({ imageUrl, onClose }: ImageModalProps) {
+  const [closing, setClosing] = useState(false);
+  const [opening, setOpening] = useState(false);
+
   useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
     document.body.classList.add('no-scroll');
-    window.addEventListener('keydown', handleEsc);
+    setOpening(true);
     return () => {
-      window.removeEventListener('keydown', handleEsc);
       document.body.classList.remove('no-scroll');
     };
   }, [onClose]);
 
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 800);
+  };
+
   return (
-    <div className={styles.modal_overlay} onClick={onClose}>
+    <div
+      className={`${styles.modal_overlay} ${closing ? styles.closing : ''} ${opening ? styles.opening : ''}`}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className={styles.starry_background}></div>
       <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
         <img src={imageUrl} alt="Enlarged" className={styles.enlarged_image} />
-        <Button onClick={onClose} type="button">
+        <Button onClick={handleClose} type="button">
           Закрыть
         </Button>
       </div>
