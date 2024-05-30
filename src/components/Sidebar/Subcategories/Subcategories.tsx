@@ -7,11 +7,11 @@ export enum Subcategories {
   appliances = 'техника'
 }
 
-interface SubcategoriesListProps {
+export function SubcategoriesList({
+  setVisibility
+}: {
   setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export function SubcategoriesList({ setVisibility }: SubcategoriesListProps) {
+}) {
   const { subcategory } = useAppSelector((state) => state.planet_slice);
   const dispatch = useAppDispatch();
   const onSubcategoryClick = (subcategory: Subcategories) => {
