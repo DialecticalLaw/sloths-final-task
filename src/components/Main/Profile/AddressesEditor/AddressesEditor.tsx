@@ -88,7 +88,7 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
       {!addresses.length ? (
         <>
           <p className={styles.empty_info}>
-            Добавьте адреса, иначе нам придется искать вас методом &ldquo;проб и почтовых голубей&ldquo;
+            Если Вы не укажете адрес, то посылки будут приходить к Деду Морозу
           </p>
           <img className={styles.search_icon} src={searchIcon} alt="empty"></img>
         </>

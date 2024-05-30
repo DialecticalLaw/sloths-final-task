@@ -27,10 +27,12 @@ export function ProfileAddress({
 }) {
   const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
+  console.log(customerData);
 
   return (
     <fieldset className={styles.address}>
       <legend className={styles.legend}>{isNew ? 'Новый адрес' : `Адрес ${(index || 0) + 1}`}</legend>
+
       {!isNew && customerData && (
         <button
           type="button"

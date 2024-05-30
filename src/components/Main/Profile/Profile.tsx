@@ -1,4 +1,3 @@
-import type { Address } from '@commercetools/platform-sdk';
 import { getCustomer } from '../../../api/customers/getCustomer';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import type { CustomerSliceState } from '../../../store/slices/customer-slice';
@@ -26,15 +25,6 @@ export function Profile() {
       dispatch(getCustomer(customerId));
     }
   }, [customerId, dispatch]);
-
-  const shippingAddress = customerData?.addresses.find((address: Address) => {
-    if (customerData.shippingAddressIds) return address.id === customerData.shippingAddressIds[0];
-    return false;
-  });
-  const billingAddress = customerData?.addresses.find((address: Address) => {
-    if (customerData.billingAddressIds) return address.id === customerData.billingAddressIds[0];
-    return false;
-  });
 
   const [editModes, setEditMode] = useState({
     isPersonalEdit: false,
