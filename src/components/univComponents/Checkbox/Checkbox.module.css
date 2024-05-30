@@ -58,6 +58,11 @@
   filter: drop-shadow(0 0 0.5rem var(--accent-color));
 }
 
+.checked::before {
+  transform: rotate(45deg) scale(1);
+  filter: drop-shadow(0 0 0.5rem var(--accent-color));
+}
+
 @keyframes checkboxAnimation {
   from {
     transform: scale(1, 1);
