@@ -181,7 +181,7 @@
   }
 
   .planet_list {
-    width: 100vw;
+    width: calc(100vw - 4rem);
     height: 100vh;
     justify-content: center;
     align-items: center;
