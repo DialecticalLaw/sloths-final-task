@@ -6,11 +6,18 @@ import { EditorTitle } from '../EditorTitle/EditorTitle';
 import { AddressSchema } from '../../validationSchemes';
 import searchIcon from '../../../../assets/img/search.svg';
 import styles from './AddressesEditor.module.css';
+import { useState } from 'react';
+import type { Customer } from '@commercetools/platform-sdk';
+import { updateSimpleData } from '../../../../api/customers/updateSimpleData';
+import { showToast } from '../../../../helpers/showToast';
+import { errorHandler } from '../../../../helpers/errorHandler';
+import { getCustomer } from '../../../../api/customers/getCustomer';
+import { useAppDispatch } from '../../../../store/hooks';
 
 export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
-  console.log(customerData);
+  const dispatch = useAppDispatch();
   const addresses = customerData.addresses;
-  console.log(addresses);
+  const [isAddingAddress, setAddingAddress] = useState(false);
 
   return (
     <>
@@ -28,6 +35,56 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
       >
         Вернуться назад
       </Button>
+      {addresses.length && (
+        <>
+          <Button onClick={() => setAddingAddress(true)} classes={[styles.add_address_btn]} type="button">
+            Добавить адрес
+          </Button>
+          {isAddingAddress && (
+            <Formik
+              initialValues={{
+                country: 'RU',
+                city: '',
+                street: '',
+                postalCode: '',
+                isDefault: false
+              }}
+              onSubmit={(values: BillingAddress) => {
+                const customerPromise: Promise<Customer> = updateSimpleData({
+                  version: customerData.version,
+                  ID: customerData.id,
+                  actions: [
+                    {
+                      action: 'addAddress',
+                      address: {
+                        country: values.country,
+                        city: values.city,
+                        streetName: values.street,
+                        postalCode: values.postalCode
+                      }
+                    }
+                  ]
+                });
+
+                showToast({
+                  promise: customerPromise,
+                  pending: 'Добавляем...',
+                  success: 'Адрес добавлен!',
+                  errorHandler: errorHandler
+                });
+                customerPromise.then(() => {
+                  dispatch(getCustomer(customerData.id));
+                });
+              }}
+              validationSchema={AddressSchema}
+            >
+              <Form className={styles.address_form}>
+                <ProfileAddress isNew setAddingAddress={setAddingAddress} />
+              </Form>
+            </Formik>
+          )}
+        </>
+      )}
 
       {!addresses.length ? (
         <>

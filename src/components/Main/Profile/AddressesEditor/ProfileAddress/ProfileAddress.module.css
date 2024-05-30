@@ -10,11 +10,11 @@
   transition: 0.3s;
 }
 
-.editing_address {
+.address:has(.save_btn) {
   border-color: var(--accent-color);
 }
 
-.editing_address .legend {
+.address:has(.save_btn) .legend {
   color: var(--accent-color);
 }
 
@@ -22,6 +22,7 @@
   padding: 0.8rem;
   letter-spacing: 2px;
   font-weight: bold;
+  transition: 0.3s;
 }
 
 .buttons {

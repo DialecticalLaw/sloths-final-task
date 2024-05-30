@@ -15,60 +15,78 @@ import { useAppDispatch } from '../../../../../store/hooks';
 export function ProfileAddress({
   index,
   addressId,
-  customerData
+  customerData,
+  isNew,
+  setAddingAddress
 }: {
-  index: number;
-  addressId: string;
-  customerData: Customer;
+  index?: number;
+  addressId?: string;
+  customerData?: Customer;
+  isNew?: boolean;
+  setAddingAddress?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
 
   return (
-    <fieldset className={`${styles.address} ${isEditMode && styles.editing_address}`}>
-      <legend className={styles.legend}>Адрес {index + 1}</legend>
-      <button
-        type="button"
-        className={styles.delete_btn}
-        onClick={() => {
-          const customerPromise: Promise<Customer> = updateSimpleData({
-            version: customerData.version,
-            ID: customerData.id,
-            actions: [
-              {
-                action: 'removeAddress',
-                addressId: addressId
-              }
-            ]
-          });
+    <fieldset className={styles.address}>
+      <legend className={styles.legend}>{isNew ? 'Новый адрес' : `Адрес ${(index || 0) + 1}`}</legend>
+      {!isNew && customerData && (
+        <button
+          type="button"
+          className={styles.delete_btn}
+          onClick={() => {
+            const customerPromise: Promise<Customer> = updateSimpleData({
+              version: customerData.version,
+              ID: customerData.id,
+              actions: [
+                {
+                  action: 'removeAddress',
+                  addressId: addressId
+                }
+              ]
+            });
 
-          showToast({
-            promise: customerPromise,
-            pending: 'Удаляем...',
-            success: 'Адрес удалён!',
-            errorHandler: errorHandler
-          });
-          customerPromise.then(() => {
-            dispatch(getCustomer(customerData.id));
-          });
-        }}
-        title="Удалить адрес"
-      >
-        <img className={styles.delete_icon} src={trashIcon} alt="delete" />
-      </button>
+            showToast({
+              promise: customerPromise,
+              pending: 'Удаляем...',
+              success: 'Адрес удалён!',
+              errorHandler: errorHandler
+            });
+            customerPromise.then(() => {
+              dispatch(getCustomer(customerData.id));
+            });
+          }}
+          title="Удалить адрес"
+        >
+          <img className={styles.delete_icon} src={trashIcon} alt="delete" />
+        </button>
+      )}
 
-      <CountrySelect disabled={!isEditMode} name="country"></CountrySelect>
-      <Input disabled={!isEditMode} name="city" type="text" placeholder="Город"></Input>
-      <Input disabled={!isEditMode} name="street" type="text" placeholder="Улица"></Input>
-      <Input disabled={!isEditMode} name="postalCode" type="text" placeholder="Почтовый индекс"></Input>
+      <CountrySelect disabled={isNew ? false : !isEditMode} name="country"></CountrySelect>
+      <Input disabled={isNew ? false : !isEditMode} name="city" type="text" placeholder="Город"></Input>
+      <Input disabled={isNew ? false : !isEditMode} name="street" type="text" placeholder="Улица"></Input>
+      <Input
+        disabled={isNew ? false : !isEditMode}
+        name="postalCode"
+        type="text"
+        placeholder="Почтовый индекс"
+      ></Input>
       {isEditMode && <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>}
 
-      {isEditMode ? (
+      {isEditMode || isNew ? (
         <div className={styles.buttons}>
-          <Button classes={[styles.button]} minimal={true} type="submit">
-            Сохранить
+          <Button classes={[styles.button, styles.save_btn]} minimal={true} type="submit">
+            {isNew ? 'Добавить' : 'Сохранить'}
           </Button>
-          <Button onClick={() => setEditMode(false)} classes={[styles.button]} minimal={true} type="button">
+          <Button
+            onClick={() => {
+              setAddingAddress ? setAddingAddress(false) : setEditMode(false);
+            }}
+            classes={[styles.button]}
+            minimal={true}
+            type="button"
+          >
             Отмена
           </Button>
         </div>

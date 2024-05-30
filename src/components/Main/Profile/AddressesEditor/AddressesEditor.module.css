@@ -9,6 +9,10 @@
   text-align: center;
 }
 
+.add_address_btn {
+  margin-top: 2rem;
+}
+
 .search_icon {
   width: 10rem;
   animation: search_animation 8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
