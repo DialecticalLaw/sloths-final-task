@@ -5,6 +5,14 @@
   gap: 2rem;
 }
 
-.cancel_btn {
-  margin-top: 1rem;
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.button {
+  width: 50%;
 }

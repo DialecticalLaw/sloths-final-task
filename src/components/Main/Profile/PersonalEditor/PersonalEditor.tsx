@@ -60,23 +60,26 @@ export function PersonalEditor({ setEditMode, customerData }: EditorProps) {
             <Input name={'lastName'} type="text" placeholder="Фамилия"></Input>
             <Input name={'dateOfBirth'} type="date" placeholder="Дата рождения"></Input>
 
-            <Button onClick={submitForm} type="submit">
-              Сохранить
-            </Button>
-            <Button
-              classes={[styles.cancel_btn]}
-              onClick={() =>
-                setEditMode((editModes) => {
-                  return {
-                    ...editModes,
-                    isPersonalEdit: false
-                  };
-                })
-              }
-              type="button"
-            >
-              Отмена
-            </Button>
+            <div className={styles.buttons}>
+              <Button classes={[styles.button]} minimal onClick={submitForm} type="submit">
+                Сохранить
+              </Button>
+              <Button
+                minimal
+                classes={[styles.button]}
+                onClick={() =>
+                  setEditMode((editModes) => {
+                    return {
+                      ...editModes,
+                      isPersonalEdit: false
+                    };
+                  })
+                }
+                type="button"
+              >
+                Отмена
+              </Button>
+            </div>
           </Form>
         );
       }}

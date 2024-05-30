@@ -32,7 +32,7 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
       {!addresses.length ? (
         <>
           <p className={styles.empty_info}>
-            Добавьте адреса, иначе мы будем вынуждены отправить Вам почтового космоголубя со счётом
+            Добавьте адреса, иначе нам придется искать вас методом &ldquo;проб и почтовых голубей&ldquo;
           </p>
           <img className={styles.search_icon} src={searchIcon} alt="empty"></img>
         </>

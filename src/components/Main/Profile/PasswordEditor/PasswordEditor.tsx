@@ -59,22 +59,26 @@ export function PasswordEditor({ customerData, setEditMode }: EditorProps) {
           <EditorTitle>Изменение пароля</EditorTitle>
           <Input placeholder="Текущий пароль" name="currentPassword" type="password" />
           <Input placeholder="Новый пароль" name="newPassword" type="password" />
-          <Button classes={[styles.submit_btn]} type="submit">
-            Сохранить
-          </Button>
-          <Button
-            onClick={() => {
-              setEditMode((editModes) => {
-                return {
-                  ...editModes,
-                  isPasswordEdit: false
-                };
-              });
-            }}
-            type="button"
-          >
-            Отмена
-          </Button>
+          <div className={styles.buttons}>
+            <Button minimal classes={[styles.button]} type="submit">
+              Сохранить
+            </Button>
+            <Button
+              minimal
+              classes={[styles.button]}
+              onClick={() => {
+                setEditMode((editModes) => {
+                  return {
+                    ...editModes,
+                    isPasswordEdit: false
+                  };
+                });
+              }}
+              type="button"
+            >
+              Отмена
+            </Button>
+          </div>
         </Form>
       </Formik>
     </>
