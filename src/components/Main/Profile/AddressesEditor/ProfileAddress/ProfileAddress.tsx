@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '../../../../univComponents/Button/Button';
 import { Input } from '../../../../univComponents/CustomForm/Input/Input';
 import { CountrySelect } from '../../../../univComponents/CustomForm/RegisterAddress/CountrySelect/CountrySelect';
-import trashIcon from '../../../../../assets/img/trash.svg';
+import deleteIcon from '../../../../../assets/img/delete.svg';
 import styles from './ProfileAddress.module.css';
 import { updateSimpleData } from '../../../../../api/customers/updateSimpleData';
 import type { Customer } from '@commercetools/platform-sdk';
@@ -60,7 +60,7 @@ export function ProfileAddress({
           }}
           title="Удалить адрес"
         >
-          <img className={styles.delete_icon} src={trashIcon} alt="delete" />
+          <img className={styles.delete_icon} src={deleteIcon} alt="delete" />
         </button>
       )}
 
