@@ -15,7 +15,7 @@ export function ImageModal({ imageUrl, onClose }: ImageModalProps) {
     return () => {
       document.body.classList.remove('no-scroll');
     };
-  }, [onClose]);
+  }, []);
 
   const handleClose = () => {
     setClosing(true);
