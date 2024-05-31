@@ -1,6 +1,7 @@
 import styles from './Subcategories.module.css';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { setSubcategory } from '../../../store/slices/planet-slice';
+import { setFilter } from '../../../store/slices/products-slice';
 export enum Subcategories {
   food = 'еда',
   pets = 'питомцы',
@@ -10,6 +11,11 @@ export enum Subcategories {
 export function SubcategoriesList() {
   const { subcategory } = useAppSelector((state) => state.planet_slice);
   const dispatch = useAppDispatch();
+
+  const handleClick = (subcategory: Subcategories) => {
+    dispatch(setSubcategory(subcategory));
+    dispatch(setFilter(null));
+  };
   return (
     <div className={styles.list}>
       <label className={styles.list_item}>
@@ -19,7 +25,7 @@ export function SubcategoriesList() {
           value={Subcategories.pets}
           defaultChecked={subcategory === Subcategories.pets}
           onClick={() => {
-            dispatch(setSubcategory(Subcategories.pets));
+            handleClick(Subcategories.pets);
           }}
           className={styles.radio}
         />
@@ -32,7 +38,7 @@ export function SubcategoriesList() {
           value={Subcategories.food}
           defaultChecked={subcategory === Subcategories.food}
           onClick={() => {
-            dispatch(setSubcategory(Subcategories.food));
+            handleClick(Subcategories.food);
           }}
           className={styles.radio}
         />
@@ -45,7 +51,7 @@ export function SubcategoriesList() {
           value={Subcategories.appliances}
           defaultChecked={subcategory === Subcategories.appliances}
           onClick={() => {
-            dispatch(setSubcategory(Subcategories.appliances));
+            handleClick(Subcategories.appliances);
           }}
           className={styles.radio}
         />

@@ -2,15 +2,14 @@ import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { useEffect, useState } from 'react';
 import styles from '../../../univComponents/Checkbox/Checkbox.module.css';
 import style from './Filters.module.css';
-import { getProducts } from '../../../../api/products/getProducts';
 import type { Filter } from '../../Main.interfaces';
+import { setFilter } from '../../../../store/slices/products-slice';
 
 export function Filters() {
   const dispatch = useAppDispatch();
-  const { products } = useAppSelector((state) => state.products_slice);
+  const { products, filter } = useAppSelector((state) => state.products_slice);
   const [attributes, setAttributes] = useState<Filter[]>([]);
-  const { planet, subcategory } = useAppSelector((state) => state.planet_slice);
-  const [checkedValue, setCheckedValue] = useState<null | string>(null);
+  const { subcategory } = useAppSelector((state) => state.planet_slice);
 
   useEffect(() => {
     if (subcategory && products.length) {
@@ -31,22 +30,12 @@ export function Filters() {
     }
   }, [products, subcategory]);
 
-  useEffect(() => {
-    if (attributes.length === 1) {
-      setCheckedValue(attributes[0].value);
-    }
-  }, [attributes]);
-
   const handleClick = (atr: Filter) => {
-    const newValue = atr.value === checkedValue ? null : atr.value;
-    dispatch(
-      getProducts({
-        planet: planet,
-        subcategory: subcategory ?? undefined,
-        filter: newValue ? { type: atr.type, value: atr.value } : undefined
-      })
-    );
+    const newValue = atr.value[0] === filter.value[0] ? null : atr.value;
+    const filterValue = newValue ? { type: atr.type, value: atr.value } : null;
+    dispatch(setFilter(filterValue));
   };
+
   return (
     <div className={style.filters}>
       {attributes.length > 0 &&
@@ -55,10 +44,10 @@ export function Filters() {
             atr && (
               <label key={index} className={style.filter_item} onClick={() => handleClick(atr)}>
                 <input
-                  className={styles.checkbox + ' ' + (checkedValue === atr.value ? styles.checked : '')}
+                  className={styles.checkbox + ' ' + (filter.value[0] === atr.value[0] ? styles.checked : '')}
                   type="checkbox"
                   value={atr.value}
-                  defaultChecked={checkedValue === atr.value}
+                  defaultChecked={filter.value === atr.value}
                 />
                 {atr.value}
               </label>

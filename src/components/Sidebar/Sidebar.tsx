@@ -7,13 +7,14 @@ import { useState } from 'react';
 import arrowIcon from '../../assets/img/arrow.svg';
 import { BgPlanets } from './Bg-planets';
 import { SubcategoriesList } from './Subcategories/Subcategories';
+import { setFilter } from '../../store/slices/products-slice';
 
 export function Sidebar() {
   const dispatch = useAppDispatch();
   const locationPath = useLocation().pathname;
   const isShow = ['/catalog', '/', '/about', '/profile'].includes(locationPath);
   const isShowSubcategory = locationPath.startsWith('/catalog');
-  const planet = useAppSelector((state) => state.planet_slice.planet);
+  const { planet } = useAppSelector((state) => state.planet_slice);
   const [isSidebarVisible, setVisibility] = useState<boolean>(false);
   const onPlanetClick: MouseEventHandler<HTMLInputElement> = (e) => {
     if (e.target instanceof HTMLInputElement) {
@@ -21,6 +22,7 @@ export function Sidebar() {
       setVisibility(false);
       dispatch(setPlanet(value));
       dispatch(setSubcategory(null));
+      dispatch(setFilter(null));
     }
   };
 

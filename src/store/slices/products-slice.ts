@@ -2,15 +2,20 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { ProductProjection } from '@commercetools/platform-sdk';
 import { getProducts } from '../../api/products/getProducts';
+import type { Filter, SortValues } from '../../components/Main/Main.interfaces';
 
 export interface ProductsSliceState {
   isProductsLoading: boolean;
   products: ProductProjection[];
+  filter: Filter;
+  sort: SortValues | null;
 }
 
 const initialState: ProductsSliceState = {
   isProductsLoading: false,
-  products: []
+  products: [],
+  filter: { type: '', value: '' },
+  sort: null
 };
 export const productsSlice = createSlice({
   name: 'products_slice',
@@ -18,6 +23,17 @@ export const productsSlice = createSlice({
   reducers: {
     deleteProducts(state: ProductsSliceState) {
       state.products = [];
+    },
+    setFilter(state: ProductsSliceState, action: PayloadAction<Filter | null>) {
+      if (action.payload) {
+        state.filter.type = action.payload.type;
+        state.filter.value = action.payload.value;
+      } else {
+        state.filter = initialState.filter;
+      }
+    },
+    setSort(state: ProductsSliceState, action: PayloadAction<SortValues | null>) {
+      state.sort = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -38,3 +54,5 @@ export const productsSlice = createSlice({
 });
 
 export const deleteProducts = productsSlice.actions.deleteProducts;
+export const setFilter = productsSlice.actions.setFilter;
+export const setSort = productsSlice.actions.setSort;

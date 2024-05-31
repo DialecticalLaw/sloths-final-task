@@ -7,19 +7,27 @@ import type { ProductsSliceState } from '../../../store/slices/products-slice';
 import styles from './Catalog.module.css';
 import { Filters } from './Filters/Filters';
 import { Sort } from './Sort/Sort';
+import type { getProductsRequestProps } from '../Main.interfaces';
 
 export function Catalog() {
   const dispatch = useAppDispatch();
-  const { isProductsLoading, products }: ProductsSliceState = useAppSelector((state) => state.products_slice);
+  const { isProductsLoading, products, filter, sort }: ProductsSliceState = useAppSelector(
+    (state) => state.products_slice
+  );
   const { planet } = useAppSelector((state) => state.planet_slice);
   const { subcategory } = useAppSelector((state) => state.planet_slice);
 
   useEffect(() => {
     if (planet) {
-      const actionPayload = subcategory ? { planet, subcategory } : { planet };
+      const actionPayload: getProductsRequestProps = {
+        planet: planet,
+        subcategory: subcategory ? subcategory : undefined,
+        filter: filter.value && filter.type ? filter : undefined,
+        sortValue: sort ? sort : undefined
+      };
       dispatch(getProducts(actionPayload));
     }
-  }, [dispatch, planet, subcategory]);
+  }, [dispatch, planet, subcategory, sort, filter.value]);
 
   return isProductsLoading ? (
     <Loader />
