@@ -13,6 +13,7 @@ import { showToast } from '../../../../helpers/showToast';
 import { errorHandler } from '../../../../helpers/errorHandler';
 import { getCustomer } from '../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../store/hooks';
+import addIcon from '../../../../assets/img/plus.svg';
 
 export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
   const dispatch = useAppDispatch();
@@ -38,7 +39,9 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
       {addresses.length && (
         <>
           <Button onClick={() => setAddingAddress(true)} classes={[styles.add_address_btn]} type="button">
-            Добавить адрес
+            <>
+              Добавить адрес <img className={styles.add_icon} src={addIcon} alt="Добавить" />
+            </>
           </Button>
           {isAddingAddress && (
             <Formik
@@ -46,10 +49,9 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
                 country: 'RU',
                 city: '',
                 street: '',
-                postalCode: '',
-                isDefault: false
+                postalCode: ''
               }}
-              onSubmit={(values: BillingAddress) => {
+              onSubmit={(values: Omit<BillingAddress, 'isDefault'>) => {
                 const customerPromise: Promise<Customer> = updateSimpleData({
                   version: customerData.version,
                   ID: customerData.id,

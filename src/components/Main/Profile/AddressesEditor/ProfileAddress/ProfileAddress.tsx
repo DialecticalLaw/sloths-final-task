@@ -11,6 +11,7 @@ import { showToast } from '../../../../../helpers/showToast';
 import { errorHandler } from '../../../../../helpers/errorHandler';
 import { getCustomer } from '../../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../../store/hooks';
+import { AddressLabels } from './AddressLabels/AddressLabels';
 
 export function ProfileAddress({
   index,
@@ -32,6 +33,7 @@ export function ProfileAddress({
   return (
     <fieldset className={styles.address}>
       <legend className={styles.legend}>{isNew ? 'Новый адрес' : `Адрес ${(index || 0) + 1}`}</legend>
+      {!isNew && <AddressLabels customerData={customerData} addressId={addressId} />}
 
       {!isNew && customerData && (
         <button

@@ -18,6 +18,10 @@
   animation: search_animation 8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.add_icon {
+  width: 2rem;
+}
+
 @keyframes search_animation {
   0% {
     transform: translate(20%, 50%) scale(1.15) rotate(15deg);
