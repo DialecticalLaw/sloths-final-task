@@ -3,7 +3,7 @@ import styles from './AddressLabels.module.css';
 import { useAppDispatch } from '../../../../../../store/hooks';
 import { updateAddressType } from '../../../../../../helpers/updateAddressType';
 
-export function AddressLabels({ customerData, addressId }: { customerData?: Customer; addressId?: string }) {
+export function AddressLabels({ customerData, addressId }: { customerData: Customer; addressId?: string }) {
   const dispatch = useAppDispatch();
 
   const isShipping = Boolean(
@@ -20,7 +20,6 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
     <div className={styles.label_wrapper}>
       <input
         onClick={() => {
-          if (!customerData) return;
           updateAddressType({
             action: isShipping ? 'removeShippingAddressId' : 'addShippingAddressId',
             addressId: addressId,
@@ -37,7 +36,6 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
 
       <input
         onClick={() => {
-          if (!customerData) return;
           updateAddressType({
             action: 'setDefaultShippingAddress',
             addressId: isDefaultShipping ? undefined : addressId,
@@ -54,7 +52,6 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
 
       <input
         onClick={() => {
-          if (!customerData) return;
           updateAddressType({
             action: isBilling ? 'removeBillingAddressId' : 'addBillingAddressId',
             addressId: addressId,
@@ -71,7 +68,6 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
 
       <input
         onClick={() => {
-          if (!customerData) return;
           updateAddressType({
             action: 'setDefaultBillingAddress',
             addressId: isDefaultBilling ? undefined : addressId,

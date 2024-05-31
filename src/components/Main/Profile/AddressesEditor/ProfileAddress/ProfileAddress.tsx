@@ -31,7 +31,7 @@ export function ProfileAddress({
   return (
     <fieldset className={styles.address}>
       <legend className={styles.legend}>{isNew ? 'Новый адрес' : `Адрес ${(index || 0) + 1}`}</legend>
-      <AddressLabels customerData={customerData} addressId={addressId} />
+      {!isNew && customerData && <AddressLabels customerData={customerData} addressId={addressId} />}
 
       {!isNew && customerData && (
         <button

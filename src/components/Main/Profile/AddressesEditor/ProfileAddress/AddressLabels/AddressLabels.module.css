@@ -20,7 +20,8 @@
   cursor: pointer;
 }
 
-.label[checked] {
+.label[checked],
+.label[value='true'] {
   background-color: var(--accent-color);
   box-shadow: 0 0 1rem 0.3rem var(--accent-color);
 }

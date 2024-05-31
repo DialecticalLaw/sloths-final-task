@@ -52,6 +52,7 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
                 postalCode: ''
               }}
               onSubmit={(values: Omit<BillingAddress, 'isDefault'>) => {
+                console.log(values);
                 const customerPromise: Promise<Customer> = updateSimpleData({
                   version: customerData.version,
                   ID: customerData.id,
@@ -80,7 +81,7 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
               validationSchema={AddressSchema}
             >
               <Form className={styles.address_form}>
-                <ProfileAddress isNew setAddingAddress={setAddingAddress} />
+                <ProfileAddress isNew={true} setAddingAddress={setAddingAddress} />
               </Form>
             </Formik>
           )}
@@ -99,12 +100,11 @@ export function AddressesEditor({ customerData, setEditMode }: EditorProps) {
           if (address.country !== 'RU' && address.country !== 'BY') throw new Error('wrong country name');
           if (!address.id) throw new Error('id is undefined');
 
-          const initialValues: BillingAddress = {
+          const initialValues: Omit<BillingAddress, 'isDefault'> = {
             country: address.country || '',
             city: address.city || '',
             street: address.streetName || '',
-            postalCode: address.postalCode || '',
-            isDefault: false
+            postalCode: address.postalCode || ''
           };
 
           return (
