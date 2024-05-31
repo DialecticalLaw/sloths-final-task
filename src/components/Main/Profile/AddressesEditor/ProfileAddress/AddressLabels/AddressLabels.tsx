@@ -1,7 +1,5 @@
 import type { Customer } from '@commercetools/platform-sdk';
 import styles from './AddressLabels.module.css';
-import shippingIcon from '../../../../../../assets/img/shipping.svg';
-import billingIcon from '../../../../../../assets/img/billing.svg';
 
 export function AddressLabels({ customerData, addressId }: { customerData?: Customer; addressId?: string }) {
   const isShipping = Boolean(
@@ -16,37 +14,33 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
 
   return (
     <div className={styles.label_wrapper}>
-      <button
-        type="button"
-        className={`${styles.label} ${isShipping && styles.active_label}`}
+      <input
+        type="checkbox"
+        checked={isShipping}
+        className={`${styles.label} ${styles.shipping}`}
         title="Адрес доставки"
-      >
-        <img src={shippingIcon} alt="shipping" className={styles.label_icon} />
-      </button>
+      />
 
-      <button
-        type="button"
-        className={`${styles.label} ${styles.default} ${isDefaultShipping && styles.active_label}`}
+      <input
+        type="checkbox"
+        checked={isDefaultShipping}
+        className={`${styles.label} ${styles.default} ${styles.shipping}`}
         title="Адрес доставки по умолчанию"
-      >
-        <img src={shippingIcon} alt="shipping" className={styles.label_icon} />
-      </button>
+      />
 
-      <button
-        type="button"
-        className={`${styles.label} ${isBilling && styles.active_label}`}
+      <input
+        type="checkbox"
+        checked={isBilling}
+        className={`${styles.label} ${styles.billing}`}
         title="Адрес выставления счёта"
-      >
-        <img src={billingIcon} alt="billing" className={styles.label_icon} />
-      </button>
+      />
 
-      <button
-        type="button"
-        className={`${styles.label} ${styles.default} ${isDefaultBilling && styles.active_label}`}
+      <input
+        type="checkbox"
+        checked={isDefaultBilling}
+        className={`${styles.label} ${styles.default} ${styles.billing}`}
         title="Адрес выставления счёта по умолчанию"
-      >
-        <img src={billingIcon} alt="billing" className={styles.label_icon} />
-      </button>
+      />
     </div>
   );
 }

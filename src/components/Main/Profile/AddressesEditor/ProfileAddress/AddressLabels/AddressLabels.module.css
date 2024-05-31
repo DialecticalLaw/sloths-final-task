@@ -4,6 +4,9 @@
 }
 
 .label {
+  appearance: none;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   padding: 0.7rem;
   background-color: transparent;
@@ -11,18 +14,15 @@
   outline: none;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-origin: content-box;
   transition: 0.3s;
   cursor: pointer;
 }
 
-.active_label {
+.label[checked] {
   background-color: var(--accent-color);
-  box-shadow: 0 0 12px 2px var(--accent-color);
-}
-
-.label_icon {
-  width: 3rem;
+  box-shadow: 0 0 1rem 0.3rem var(--accent-color);
 }
 
 .line {
@@ -31,9 +31,17 @@
   background-color: var(--accent-color);
 }
 
+.shipping {
+  background-image: url('../../../../../../assets/img/shipping.svg');
+}
+
+.billing {
+  background-image: url('../../../../../../assets/img/billing.svg');
+}
+
 .default {
-  border-left: 0.3rem solid #ffffff;
-  border-right: 0.3rem solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
 }
 
 .label:hover {
