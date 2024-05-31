@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import styles from '../../../univComponents/Checkbox/Checkbox.module.css';
 import style from './Filters.module.css';
 import type { Filter } from '../../Main.interfaces';
@@ -8,32 +8,30 @@ import { setFilter } from '../../../../store/slices/products-slice';
 export function Filters() {
   const dispatch = useAppDispatch();
   const { products, filter } = useAppSelector((state) => state.products_slice);
-  const [attributes, setAttributes] = useState<Filter[]>([]);
   const { subcategory } = useAppSelector((state) => state.planet_slice);
 
-  useEffect(() => {
-    if (subcategory && products.length) {
-      const attributeSet = new Set<string>();
-      const uniqueAttributes: Filter[] = [];
+  const attributes = useMemo(() => {
+    if (!subcategory || !products.length) return [];
 
-      products.forEach((product) => {
-        product.masterVariant?.attributes?.forEach((attribute) => {
-          const attributeString = JSON.stringify({ type: attribute.name, value: attribute.value });
-          if (!attributeSet.has(attributeString)) {
-            attributeSet.add(attributeString);
-            uniqueAttributes.push({ type: attribute.name, value: attribute.value });
-          }
-        });
+    const attributeSet = new Set<string>();
+    const uniqueAttributes: Filter[] = [];
+
+    products.forEach((product) => {
+      product.masterVariant?.attributes?.forEach((attribute) => {
+        const attributeString = JSON.stringify({ type: attribute.name, value: attribute.value });
+        if (!attributeSet.has(attributeString)) {
+          attributeSet.add(attributeString);
+          uniqueAttributes.push({ type: attribute.name, value: attribute.value[0] });
+        }
       });
+    });
 
-      setAttributes(uniqueAttributes);
-    }
+    return uniqueAttributes;
   }, [products, subcategory]);
 
   const handleClick = (atr: Filter) => {
-    const newValue = atr.value[0] === filter.value[0] ? null : atr.value;
-    const filterValue = newValue ? { type: atr.type, value: atr.value } : null;
-    dispatch(setFilter(filterValue));
+    const newValue = atr.value === filter?.value ? null : atr.value;
+    dispatch(setFilter(newValue ? { type: atr.type, value: atr.value } : null));
   };
 
   return (
@@ -44,7 +42,7 @@ export function Filters() {
             atr && (
               <label key={index} className={style.filter_item} onClick={() => handleClick(atr)}>
                 <input
-                  className={styles.checkbox + ' ' + (filter.value[0] === atr.value[0] ? styles.checked : '')}
+                  className={`${styles.checkbox} ${filter?.value === atr.value ? styles.checked : ''}`}
                   type="checkbox"
                   value={atr.value}
                   defaultChecked={filter.value === atr.value}

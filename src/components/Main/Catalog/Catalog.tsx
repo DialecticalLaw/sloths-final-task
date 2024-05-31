@@ -21,9 +21,9 @@ export function Catalog() {
     if (planet) {
       const actionPayload: getProductsRequestProps = {
         planet: planet,
-        subcategory: subcategory ? subcategory : undefined,
+        subcategory: subcategory ?? undefined,
         filter: filter.value && filter.type ? filter : undefined,
-        sortValue: sort ? sort : undefined
+        sortValue: sort ?? undefined
       };
       dispatch(getProducts(actionPayload));
     }
