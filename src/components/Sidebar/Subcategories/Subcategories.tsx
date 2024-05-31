@@ -7,13 +7,17 @@ export enum Subcategories {
   appliances = 'техника'
 }
 
-export function SubcategoriesList() {
+export function SubcategoriesList({
+  setVisibility
+}: {
+  setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const { subcategory } = useAppSelector((state) => state.products_slice);
   const dispatch = useAppDispatch();
-
-  const handleClick = (subcategory: Subcategories) => {
+  const onSubcategoryClick = (subcategory: Subcategories) => {
     dispatch(setSubcategory(subcategory));
     dispatch(setFilter(null));
+    setVisibility(false);
   };
   return (
     <div className={styles.list}>
@@ -23,9 +27,7 @@ export function SubcategoriesList() {
           name="subcategory"
           value={Subcategories.pets}
           defaultChecked={subcategory === Subcategories.pets}
-          onClick={() => {
-            handleClick(Subcategories.pets);
-          }}
+          onClick={() => onSubcategoryClick(Subcategories.pets)}
           className={styles.radio}
         />
         {Subcategories.pets.toUpperCase()}
@@ -36,9 +38,7 @@ export function SubcategoriesList() {
           name="subcategory"
           value={Subcategories.food}
           defaultChecked={subcategory === Subcategories.food}
-          onClick={() => {
-            handleClick(Subcategories.food);
-          }}
+          onClick={() => onSubcategoryClick(Subcategories.food)}
           className={styles.radio}
         />
         {Subcategories.food.toUpperCase()}
@@ -49,9 +49,7 @@ export function SubcategoriesList() {
           name="subcategory"
           value={Subcategories.appliances}
           defaultChecked={subcategory === Subcategories.appliances}
-          onClick={() => {
-            handleClick(Subcategories.appliances);
-          }}
+          onClick={() => onSubcategoryClick(Subcategories.appliances)}
           className={styles.radio}
         />
         {Subcategories.appliances.toUpperCase()}

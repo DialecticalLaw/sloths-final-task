@@ -68,3 +68,8 @@ export interface getProductsRequestProps {
   filter?: Filter;
   sortValue?: SortValues;
 }
+
+export interface ImageModalProps {
+  imageUrl: string;
+  onClose: () => void;
+}

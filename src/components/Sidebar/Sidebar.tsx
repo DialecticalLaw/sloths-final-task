@@ -45,7 +45,9 @@ export function Sidebar() {
                   />
                   _Марс
                 </label>
-                {planet === Planets.mars && isShowSubcategory && <SubcategoriesList />}
+                {planet === Planets.mars && isShowSubcategory && (
+                  <SubcategoriesList setVisibility={setVisibility} />
+                )}
               </div>
               <div className={styles.catalog_item}>
                 <label className={styles.planet_item}>
@@ -59,7 +61,9 @@ export function Sidebar() {
                   />
                   _Венера
                 </label>
-                {planet === Planets.venus && isShowSubcategory && <SubcategoriesList />}
+                {planet === Planets.venus && isShowSubcategory && (
+                  <SubcategoriesList setVisibility={setVisibility} />
+                )}
               </div>
               <div className={styles.catalog_item}>
                 <label className={styles.planet_item}>
@@ -73,7 +77,9 @@ export function Sidebar() {
                   />
                   _Земля
                 </label>
-                {planet === Planets.earth && isShowSubcategory && <SubcategoriesList />}
+                {planet === Planets.earth && isShowSubcategory && (
+                  <SubcategoriesList setVisibility={setVisibility} />
+                )}
               </div>
             </div>
             <div onClick={() => setVisibility(!isSidebarVisible)} className={styles.arrow_wrapper}>
