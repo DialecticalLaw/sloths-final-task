@@ -41,8 +41,15 @@
 }
 
 .default {
-  border-left: 3px solid #ffffff;
-  border-right: 3px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.default.shipping {
+  background-image: url('../../../../../../assets//img/default_shipping.svg');
+}
+
+.default.billing {
+  background-image: url('../../../../../../assets//img/default_billing.svg');
 }
 
 .label:hover {
