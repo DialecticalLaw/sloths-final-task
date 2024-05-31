@@ -8,7 +8,7 @@ import { setFilter } from '../../../../store/slices/products-slice';
 export function Filters() {
   const dispatch = useAppDispatch();
   const { products, filter } = useAppSelector((state) => state.products_slice);
-  const { subcategory } = useAppSelector((state) => state.planet_slice);
+  const { subcategory } = useAppSelector((state) => state.products_slice);
 
   const attributes = useMemo(() => {
     if (!subcategory || !products.length) return [];

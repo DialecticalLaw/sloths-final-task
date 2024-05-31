@@ -11,11 +11,10 @@ import type { getProductsRequestProps } from '../Main.interfaces';
 
 export function Catalog() {
   const dispatch = useAppDispatch();
-  const { isProductsLoading, products, filter, sort }: ProductsSliceState = useAppSelector(
+  const { isProductsLoading, products, filter, sort, subcategory }: ProductsSliceState = useAppSelector(
     (state) => state.products_slice
   );
   const { planet } = useAppSelector((state) => state.planet_slice);
-  const { subcategory } = useAppSelector((state) => state.planet_slice);
 
   useEffect(() => {
     if (planet) {

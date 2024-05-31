@@ -1,7 +1,6 @@
 import styles from './Subcategories.module.css';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { setSubcategory } from '../../../store/slices/planet-slice';
-import { setFilter } from '../../../store/slices/products-slice';
+import { setFilter, setSubcategory } from '../../../store/slices/products-slice';
 export enum Subcategories {
   food = 'еда',
   pets = 'питомцы',
@@ -9,7 +8,7 @@ export enum Subcategories {
 }
 
 export function SubcategoriesList() {
-  const { subcategory } = useAppSelector((state) => state.planet_slice);
+  const { subcategory } = useAppSelector((state) => state.products_slice);
   const dispatch = useAppDispatch();
 
   const handleClick = (subcategory: Subcategories) => {

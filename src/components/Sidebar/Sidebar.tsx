@@ -1,13 +1,13 @@
 import styles from './Sidebar.module.css';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setPlanet, Planets, setSubcategory } from '../../store/slices/planet-slice';
+import { setPlanet, Planets } from '../../store/slices/planet-slice';
 import type { MouseEventHandler } from 'react';
 import { useState } from 'react';
 import arrowIcon from '../../assets/img/arrow.svg';
 import { BgPlanets } from './Bg-planets';
 import { SubcategoriesList } from './Subcategories/Subcategories';
-import { setFilter } from '../../store/slices/products-slice';
+import { setFilter, setSubcategory } from '../../store/slices/products-slice';
 
 export function Sidebar() {
   const dispatch = useAppDispatch();
