@@ -6,9 +6,6 @@
   inset: 0;
   padding: 2rem;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(2rem);
-  transition: opacity 0.8s ease;
 }
 
 .modal_content {
@@ -31,12 +28,22 @@
   animation: close-stripe 0.8s ease-out both;
 }
 
+.image_container {
+  padding: 0 0.2rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
 .enlarged_image {
   width: 100%;
   height: 100%;
   max-width: 50vw;
   max-height: 70vh;
   object-fit: contain;
+  border-radius: 1rem;
 }
 
 .starry_background {
@@ -48,6 +55,13 @@
   background: #000 url('./../../../../assets/img/stardust.png') repeat;
   z-index: -1;
   animation: twinkling 200s linear infinite;
+}
+
+.images_carousel {
+  width: 60rem;
+  max-width: 90%;
+  object-fit: contain;
+  margin: auto;
 }
 
 @keyframes twinkling {

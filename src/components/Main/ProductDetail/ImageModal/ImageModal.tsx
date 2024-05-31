@@ -11,11 +11,7 @@ export function ImageModal({ images, startIndex, onClose }: ImageModalProps) {
   const [opening, setOpening] = useState(false);
 
   useEffect(() => {
-    document.body.classList.add('no-scroll');
     setOpening(true);
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
   }, []);
 
   const handleClose = () => {
@@ -33,6 +29,7 @@ export function ImageModal({ images, startIndex, onClose }: ImageModalProps) {
       <div className={styles.starry_background}></div>
       <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
         <Carousel
+          className={styles.images_carousel}
           selectedItem={startIndex}
           showArrows
           showIndicators={false}
@@ -45,8 +42,8 @@ export function ImageModal({ images, startIndex, onClose }: ImageModalProps) {
           showThumbs={false}
         >
           {images.map((image) => (
-            <div key={image.url} className="styles.image_container">
-              <img src={image.url} alt={image.label} className="styles.enlarged_image" />
+            <div key={image.url} className={styles.image_container}>
+              <img src={image.url} alt={image.label} className={styles.enlarged_image} />
             </div>
           ))}
         </Carousel>

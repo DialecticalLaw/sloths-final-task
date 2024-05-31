@@ -17,7 +17,6 @@ export function ProductDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
-  // const [modalImage, setModalImage] = useState<string | null>(null);
   const planet = useAppSelector((state) => state.planet_slice.planet);
 
   useEffect(() => {
