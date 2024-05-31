@@ -33,20 +33,20 @@ export function ImageModal({ images, startIndex, onClose }: ImageModalProps) {
       <div className={styles.starry_background}></div>
       <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
         <Carousel
-        selectedItem={startIndex}
-        showArrows
-        showIndicators={false}
-        showStatus={false}
-        infiniteLoop={true}
-        useKeyboardArrows
-        autoPlay={true}
-        stopOnHover
-        swipeable
-        showThumbs={false}
+          selectedItem={startIndex}
+          showArrows
+          showIndicators={false}
+          showStatus={false}
+          infiniteLoop={true}
+          useKeyboardArrows
+          autoPlay={true}
+          stopOnHover
+          swipeable
+          showThumbs={false}
         >
           {images.map((image) => (
-            <div key={image.url} className='styles.image_container'>
-              <img src={image.url} alt={image.label} className='styles.enlarged_image'/>
+            <div key={image.url} className="styles.image_container">
+              <img src={image.url} alt={image.label} className="styles.enlarged_image" />
             </div>
           ))}
         </Carousel>
