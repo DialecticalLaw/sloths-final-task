@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button } from '../../../../univComponents/Button/Button';
-import { Checkbox } from '../../../../univComponents/Checkbox/Checkbox';
 import { Input } from '../../../../univComponents/CustomForm/Input/Input';
 import { CountrySelect } from '../../../../univComponents/CustomForm/RegisterAddress/CountrySelect/CountrySelect';
 import trashIcon from '../../../../../assets/img/trash.svg';
@@ -33,7 +32,7 @@ export function ProfileAddress({
   return (
     <fieldset className={styles.address}>
       <legend className={styles.legend}>{isNew ? 'Новый адрес' : `Адрес ${(index || 0) + 1}`}</legend>
-      {!isNew && <AddressLabels customerData={customerData} addressId={addressId} />}
+      <AddressLabels customerData={customerData} addressId={addressId} />
 
       {!isNew && customerData && (
         <button
@@ -75,7 +74,6 @@ export function ProfileAddress({
         type="text"
         placeholder="Почтовый индекс"
       ></Input>
-      {isEditMode && <Checkbox name="isDefault">Использовать по умолчанию</Checkbox>}
 
       {isEditMode || isNew ? (
         <div className={styles.buttons}>
