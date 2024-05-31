@@ -41,8 +41,3 @@ export interface UpdatePasswordData extends Omit<UpdateSimpleData, 'actions'> {
   currentPassword: string;
   newPassword: string;
 }
-
-// export interface AddressActionData {
-//   customerId: string;
-//   addressId: string;
-// }

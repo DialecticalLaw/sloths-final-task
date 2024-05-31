@@ -1,10 +1,7 @@
 import type { Customer } from '@commercetools/platform-sdk';
 import styles from './AddressLabels.module.css';
-import { updateSimpleData } from '../../../../../../api/customers/updateSimpleData';
-import { errorHandler } from '../../../../../../helpers/errorHandler';
-import { showToast } from '../../../../../../helpers/showToast';
-import { getCustomer } from '../../../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../../../store/hooks';
+import { updateAddressType } from '../../../../../../helpers/updateAddressType';
 
 export function AddressLabels({ customerData, addressId }: { customerData?: Customer; addressId?: string }) {
   const dispatch = useAppDispatch();
@@ -24,24 +21,12 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
       <input
         onClick={() => {
           if (!customerData) return;
-          const customerPromise: Promise<Customer> = updateSimpleData({
-            version: customerData.version,
-            ID: customerData.id,
-            actions: [
-              {
-                action: isShipping ? 'removeShippingAddressId' : 'addShippingAddressId',
-                addressId: addressId
-              }
-            ]
-          });
-          showToast({
-            promise: customerPromise,
-            pending: 'Изменяем...',
-            success: 'Изменено!',
-            errorHandler: errorHandler
-          });
-          customerPromise.then(() => {
-            dispatch(getCustomer(customerData.id));
+          updateAddressType({
+            action: isShipping ? 'removeShippingAddressId' : 'addShippingAddressId',
+            addressId: addressId,
+            version: customerData?.version,
+            customerId: customerData.id,
+            dispatch
           });
         }}
         type="checkbox"
@@ -53,24 +38,12 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
       <input
         onClick={() => {
           if (!customerData) return;
-          const customerPromise: Promise<Customer> = updateSimpleData({
-            version: customerData.version,
-            ID: customerData.id,
-            actions: [
-              {
-                action: 'setDefaultShippingAddress',
-                addressId: isDefaultShipping ? undefined : addressId
-              }
-            ]
-          });
-          showToast({
-            promise: customerPromise,
-            pending: 'Изменяем...',
-            success: 'Изменено!',
-            errorHandler: errorHandler
-          });
-          customerPromise.then(() => {
-            dispatch(getCustomer(customerData.id));
+          updateAddressType({
+            action: 'setDefaultShippingAddress',
+            addressId: isDefaultShipping ? undefined : addressId,
+            version: customerData?.version,
+            customerId: customerData.id,
+            dispatch
           });
         }}
         type="checkbox"
@@ -82,24 +55,12 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
       <input
         onClick={() => {
           if (!customerData) return;
-          const customerPromise: Promise<Customer> = updateSimpleData({
-            version: customerData.version,
-            ID: customerData.id,
-            actions: [
-              {
-                action: isBilling ? 'removeBillingAddressId' : 'addBillingAddressId',
-                addressId: addressId
-              }
-            ]
-          });
-          showToast({
-            promise: customerPromise,
-            pending: 'Изменяем...',
-            success: 'Изменено!',
-            errorHandler: errorHandler
-          });
-          customerPromise.then(() => {
-            dispatch(getCustomer(customerData.id));
+          updateAddressType({
+            action: isBilling ? 'removeBillingAddressId' : 'addBillingAddressId',
+            addressId: addressId,
+            version: customerData?.version,
+            customerId: customerData.id,
+            dispatch
           });
         }}
         type="checkbox"
@@ -111,24 +72,12 @@ export function AddressLabels({ customerData, addressId }: { customerData?: Cust
       <input
         onClick={() => {
           if (!customerData) return;
-          const customerPromise: Promise<Customer> = updateSimpleData({
-            version: customerData.version,
-            ID: customerData.id,
-            actions: [
-              {
-                action: 'setDefaultBillingAddress',
-                addressId: isDefaultBilling ? undefined : addressId
-              }
-            ]
-          });
-          showToast({
-            promise: customerPromise,
-            pending: 'Изменяем...',
-            success: 'Изменено!',
-            errorHandler: errorHandler
-          });
-          customerPromise.then(() => {
-            dispatch(getCustomer(customerData.id));
+          updateAddressType({
+            action: 'setDefaultBillingAddress',
+            addressId: isDefaultBilling ? undefined : addressId,
+            version: customerData?.version,
+            customerId: customerData.id,
+            dispatch
           });
         }}
         type="checkbox"

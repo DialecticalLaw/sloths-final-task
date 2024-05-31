@@ -27,7 +27,6 @@ export function ProfileAddress({
 }) {
   const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
-  console.log(customerData);
 
   return (
     <fieldset className={styles.address}>
