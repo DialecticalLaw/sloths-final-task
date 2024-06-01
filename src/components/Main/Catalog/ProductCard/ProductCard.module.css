@@ -100,6 +100,7 @@
 .product_desc_wrapper {
   position: absolute;
   opacity: 0;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   padding: 2rem;
@@ -137,4 +138,52 @@
 
 .product_card:hover .product_desc {
   transform: none;
+}
+
+@media screen and (max-width: 560px) {
+  .product_desc_wrapper {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .product_card {
+    height: 50dvh;
+  }
+
+  .product_desc_wrapper {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .product_card {
+    height: 55dvh;
+  }
+
+  .product_desc_wrapper {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .product_card {
+    height: 60dvh;
+  }
+
+  .product_desc_wrapper {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-height: 520px) {
+  .product_card {
+    height: 65dvh;
+  }
+}
+
+@media screen and (max-height: 440px) {
+  .product_card {
+    height: 70dvh;
+  }
 }
