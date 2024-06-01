@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  padding: 2rem 2rem 5vh 2rem;
   margin-top: 1rem;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
