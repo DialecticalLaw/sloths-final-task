@@ -5,11 +5,13 @@
   justify-content: space-between;
   width: clamp(30rem, 32%, 40rem);
   height: calc((100dvh - var(--header-height) - 4.2rem) / 2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 0.1rem solid rgba(255, 255, 255, 0.1);
   font-family: var(--main-font);
   font-weight: 200;
   border-radius: 1.5rem;
-  transition: 0.4s cubic-bezier(0.175, 0.885, 0.45, 1.475);
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.45, 1.475),
+    box-shadow 0.25s;
   cursor: pointer;
 }
 
@@ -90,7 +92,7 @@
   position: absolute;
   content: '';
   background-color: rgb(220, 220, 220);
-  height: 1px;
+  height: 0.1rem;
   width: 100%;
   top: 55%;
 }
@@ -116,10 +118,11 @@
 .product_card:hover {
   z-index: 1;
   transform: scale(1.05);
+  box-shadow: 0 0 2rem 0.1rem rgb(10, 10, 10);
 }
 
 .product_card:has(.discount_price):hover {
-  box-shadow: 0 0 15px 2px var(--accent-color);
+  box-shadow: 0 0 1.5rem 0.2rem var(--accent-color);
 }
 
 .product_card:hover .product_image::after {
