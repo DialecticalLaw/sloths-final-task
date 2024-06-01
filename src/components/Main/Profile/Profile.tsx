@@ -32,11 +32,10 @@ export function Profile() {
     isPasswordEdit: false
   });
 
-  return isCustomerLoading ? (
-    <Loader />
-  ) : errorMessage ? (
-    <p>Упс... Что-то пошло не так: {errorMessage}</p>
-  ) : customerData && customerId ? (
+  if (isCustomerLoading) return <Loader />;
+  if (errorMessage) return <p>Упс... Что-то пошло не так: {errorMessage}</p>;
+
+  return customerData && customerId ? (
     <div className={styles.profile}>
       <div className={styles.profile_wrapper}>
         <h1>Профиль</h1>
