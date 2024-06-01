@@ -58,3 +58,8 @@ export interface ProfileAddressProps {
   isNew?: boolean;
   setAddingAddress?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface ImageModalProps {
+  imageUrl: string;
+  onClose: () => void;
+}
