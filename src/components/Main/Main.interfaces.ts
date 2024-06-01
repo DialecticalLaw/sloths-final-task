@@ -50,3 +50,11 @@ export interface PasswordEditorValues {
 export interface ProductCardProps {
   product: ProductData;
 }
+
+export interface ProfileAddressProps {
+  index?: number;
+  addressId?: string;
+  customerData?: Customer;
+  isNew?: boolean;
+  setAddingAddress?: React.Dispatch<React.SetStateAction<boolean>>;
+}

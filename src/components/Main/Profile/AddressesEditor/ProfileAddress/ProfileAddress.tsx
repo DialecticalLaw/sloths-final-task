@@ -11,6 +11,7 @@ import { errorHandler } from '../../../../../helpers/errorHandler';
 import { getCustomer } from '../../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../../store/hooks';
 import { AddressLabels } from './AddressLabels/AddressLabels';
+import type { ProfileAddressProps } from '../../../Main.interfaces';
 
 export function ProfileAddress({
   index,
@@ -18,13 +19,7 @@ export function ProfileAddress({
   customerData,
   isNew,
   setAddingAddress
-}: {
-  index?: number;
-  addressId?: string;
-  customerData?: Customer;
-  isNew?: boolean;
-  setAddingAddress?: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+}: ProfileAddressProps) {
   const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
 
