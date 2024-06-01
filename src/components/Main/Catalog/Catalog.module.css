@@ -1,7 +1,9 @@
 .cards_wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-top: 1rem;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 1rem;
+  background-color: var(--transparent-background);
+  backdrop-filter: var(--backdrop-blur);
 }
