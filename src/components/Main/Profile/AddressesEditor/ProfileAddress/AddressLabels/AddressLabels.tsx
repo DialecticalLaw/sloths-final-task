@@ -2,6 +2,7 @@ import type { Customer } from '@commercetools/platform-sdk';
 import styles from './AddressLabels.module.css';
 import { useAppDispatch } from '../../../../../../store/hooks';
 import { updateAddressType } from '../../../../../../helpers/updateAddressType';
+import { Hint } from '../../../../../univComponents/Hint/Hint';
 
 export function AddressLabels({ customerData, addressId }: { customerData: Customer; addressId?: string }) {
   const dispatch = useAppDispatch();
@@ -18,69 +19,73 @@ export function AddressLabels({ customerData, addressId }: { customerData: Custo
 
   return (
     <div className={styles.label_wrapper}>
-      <input
-        onClick={() => {
-          updateAddressType({
-            action: isShipping ? 'removeShippingAddressId' : 'addShippingAddressId',
-            addressId: addressId,
-            version: customerData?.version,
-            customerId: customerData.id,
-            dispatch
-          });
-        }}
-        type="checkbox"
-        checked={isShipping}
-        className={`${styles.label} ${styles.shipping}`}
-        title="Адрес доставки"
-      />
+      <Hint hint="Адрес доставки">
+        <input
+          onClick={() => {
+            updateAddressType({
+              action: isShipping ? 'removeShippingAddressId' : 'addShippingAddressId',
+              addressId: addressId,
+              version: customerData?.version,
+              customerId: customerData.id,
+              dispatch
+            });
+          }}
+          type="checkbox"
+          defaultChecked={isShipping}
+          className={`${styles.label} ${styles.shipping}`}
+        />
+      </Hint>
 
-      <input
-        onClick={() => {
-          updateAddressType({
-            action: 'setDefaultShippingAddress',
-            addressId: isDefaultShipping ? undefined : addressId,
-            version: customerData?.version,
-            customerId: customerData.id,
-            dispatch
-          });
-        }}
-        type="checkbox"
-        checked={isDefaultShipping}
-        className={`${styles.label} ${styles.default} ${styles.shipping}`}
-        title="Адрес доставки по умолчанию"
-      />
+      <Hint hint="Адрес доставки по умолчанию">
+        <input
+          onClick={() => {
+            updateAddressType({
+              action: 'setDefaultShippingAddress',
+              addressId: isDefaultShipping ? undefined : addressId,
+              version: customerData?.version,
+              customerId: customerData.id,
+              dispatch
+            });
+          }}
+          type="checkbox"
+          defaultChecked={isDefaultShipping}
+          className={`${styles.label} ${styles.default} ${styles.shipping}`}
+        />
+      </Hint>
 
-      <input
-        onClick={() => {
-          updateAddressType({
-            action: isBilling ? 'removeBillingAddressId' : 'addBillingAddressId',
-            addressId: addressId,
-            version: customerData?.version,
-            customerId: customerData.id,
-            dispatch
-          });
-        }}
-        type="checkbox"
-        checked={isBilling}
-        className={`${styles.label} ${styles.billing}`}
-        title="Адрес выставления счёта"
-      />
+      <Hint hint="Адрес выставления счёта">
+        <input
+          onClick={() => {
+            updateAddressType({
+              action: isBilling ? 'removeBillingAddressId' : 'addBillingAddressId',
+              addressId: addressId,
+              version: customerData?.version,
+              customerId: customerData.id,
+              dispatch
+            });
+          }}
+          type="checkbox"
+          defaultChecked={isBilling}
+          className={`${styles.label} ${styles.billing}`}
+        />
+      </Hint>
 
-      <input
-        onClick={() => {
-          updateAddressType({
-            action: 'setDefaultBillingAddress',
-            addressId: isDefaultBilling ? undefined : addressId,
-            version: customerData?.version,
-            customerId: customerData.id,
-            dispatch
-          });
-        }}
-        type="checkbox"
-        checked={isDefaultBilling}
-        className={`${styles.label} ${styles.default} ${styles.billing}`}
-        title="Адрес выставления счёта по умолчанию"
-      />
+      <Hint hint="Адрес выставления счёта по умолчанию">
+        <input
+          onClick={() => {
+            updateAddressType({
+              action: 'setDefaultBillingAddress',
+              addressId: isDefaultBilling ? undefined : addressId,
+              version: customerData?.version,
+              customerId: customerData.id,
+              dispatch
+            });
+          }}
+          type="checkbox"
+          defaultChecked={isDefaultBilling}
+          className={`${styles.label} ${styles.default} ${styles.billing}`}
+        />
+      </Hint>
     </div>
   );
 }
