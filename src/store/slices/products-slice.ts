@@ -3,12 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { ProductProjection } from '@commercetools/platform-sdk';
 import { getProducts } from '../../api/products/getProducts';
 import type { Filter, SortValues } from '../../components/Main/Main.interfaces';
-import type { Subcategories } from '../../components/Sidebar/Subcategories/Subcategories';
 
 export interface ProductsSliceState {
   isProductsLoading: boolean;
   products: ProductProjection[];
-  subcategory: Subcategories | null;
   filter: Filter;
   sort: SortValues | null;
   searchQuery: string;
@@ -17,7 +15,6 @@ export interface ProductsSliceState {
 const initialState: ProductsSliceState = {
   isProductsLoading: false,
   products: [],
-  subcategory: null,
   filter: { type: '', value: '' },
   sort: null,
   searchQuery: ''
@@ -30,9 +27,6 @@ export const productsSlice = createSlice({
     deleteProducts(state: ProductsSliceState) {
       state.products = [];
     },
-    setSubcategory(state: ProductsSliceState, action: PayloadAction<Subcategories | null>) {
-      state.subcategory = action.payload;
-    },
     setFilter(state: ProductsSliceState, action: PayloadAction<Filter | null>) {
       if (action.payload) {
         state.filter.type = action.payload.type;
@@ -43,16 +37,6 @@ export const productsSlice = createSlice({
     },
     setSort(state: ProductsSliceState, action: PayloadAction<SortValues | null>) {
       state.sort = action.payload;
-    },
-    setSearchQuery(state: ProductsSliceState, action: PayloadAction<string>) {
-      state.searchQuery = action.payload;
-    },
-    setProductsLoading(state: ProductsSliceState, action: PayloadAction<boolean>) {
-      state.isProductsLoading = action.payload;
-    },
-    setProducts(state: ProductsSliceState, action: PayloadAction<ProductProjection[]>) {
-      state.products = action.payload;
-      state.isProductsLoading = false;
     }
   },
   extraReducers: (builder) => {
@@ -72,12 +56,7 @@ export const productsSlice = createSlice({
   }
 });
 
-export const {
-  deleteProducts,
-  setSubcategory,
-  setFilter,
-  setSort,
-  setSearchQuery,
-  setProductsLoading,
-  setProducts
-} = productsSlice.actions;
+export const deleteProducts = productsSlice.actions.deleteProducts;
+
+export const setFilter = productsSlice.actions.setFilter;
+export const setSort = productsSlice.actions.setSort;
