@@ -1,0 +1,31 @@
+.search_wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.search_input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--accent-color);
+  background-color: transparent;
+  color: white;
+}
+
+input:focus {
+  outline-color: var(--accent-color);
+}
+
+.search_button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+
+.search_button:hover {
+  box-shadow: 0 0 1.5rem 0.2rem var(--accent-color);
+}

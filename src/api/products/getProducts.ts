@@ -1,12 +1,22 @@
 import { apiRoot } from '../apiRoot';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { Product, ProductProjection } from '@commercetools/platform-sdk';
+import type {
+  ClientResponse,
+  Product,
+  ProductProjection,
+  ProductProjectionPagedSearchResponse
+} from '@commercetools/platform-sdk';
 import { getPlanetCatalogId, getSubcategoryId } from '../../helpers/idsMapper';
 import type { getProductsRequestProps } from '../../components/Main/Main.interfaces';
 
 export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequestProps>(
   'products/get',
-  async ({ planet, subcategory, filter, sortValue }: getProductsRequestProps) => {
+  async ({ planet, subcategory, filter, sortValue, searchQuery }: getProductsRequestProps) => {
+    if (searchQuery) {
+      const response = await getSearchProducts([], '', searchQuery);
+      return response.body.results;
+    }
+
     const getSearchedValue = () => {
       const categoryCondition =
         subcategory && planet
@@ -23,6 +33,7 @@ export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequ
           ? [categoryCondition]
           : [];
     };
+
     const queryArguments = sortValue
       ? { filter: getSearchedValue(), sort: sortValue }
       : { filter: getSearchedValue() };
@@ -38,6 +49,25 @@ export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequ
     return response.body.results;
   }
 );
+
+export const getSearchProducts = (
+  filter: string[] = [],
+  sortBy: string,
+  search = ''
+): Promise<ClientResponse<ProductProjectionPagedSearchResponse>> => {
+  return apiRoot
+    .productProjections()
+    .search()
+    .get({
+      queryArgs: {
+        filter,
+        sort: sortBy ? sortBy : 'price asc',
+        'text.ru': search.toLowerCase(),
+        fuzzy: true
+      }
+    })
+    .execute();
+};
 
 export const getProduct = async (productKey: string): Promise<Product | undefined> => {
   try {

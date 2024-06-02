@@ -3,6 +3,7 @@ import { getProducts } from '../../../api/products/getProducts';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Loader } from '../Loader/Loader';
 import { ProductCard } from './ProductCard/ProductCard';
+import { Search } from './Search/Search';
 import type { ProductsSliceState } from '../../../store/slices/products-slice';
 import styles from './Catalog.module.css';
 import { Filters } from './Filters/Filters';
@@ -26,13 +27,14 @@ export function Catalog() {
       };
       dispatch(getProducts(actionPayload));
     }
-  }, [dispatch, planet, subcategory, sort, filter.value]);
+  }, [dispatch, planet, subcategory, sort, filter]);
 
   return isProductsLoading ? (
     <Loader />
   ) : (
     <>
       <div className={styles.filters_wrapper}>
+        <Search />
         <Filters />
         <Sort />
       </div>
