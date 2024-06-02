@@ -23,18 +23,22 @@ export function App() {
     dispatch(deleteCustomer());
   }, [dispatch]);
 
-  return isCustomerLoading ? (
-    <Loader />
-  ) : (
+  return (
     <ThemeProvider>
       <ToastContainer autoClose={4000} draggable limit={5} theme="dark" />
-      <Header />
-      <Main>
+      {isCustomerLoading ? (
+        <Loader />
+      ) : (
         <>
-          <Sidebar />
-          <Outlet />
+          <Header />
+          <Main>
+            <>
+              <Sidebar />
+              <Outlet />
+            </>
+          </Main>
         </>
-      </Main>
+      )}
     </ThemeProvider>
   );
 }
