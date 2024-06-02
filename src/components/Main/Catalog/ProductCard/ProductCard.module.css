@@ -151,7 +151,7 @@
   box-shadow: 0 0 2rem 0.1rem rgb(10, 10, 10);
 }
 
-.product_card:has(.discount_price):hover {
+.product_card:hover {
   box-shadow: 0 0 1.5rem 0.2rem var(--accent-color);
 }
 
