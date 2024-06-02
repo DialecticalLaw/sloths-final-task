@@ -1,4 +1,6 @@
-import type { Customer, ProductData } from '@commercetools/platform-sdk';
+import type { Customer, ProductProjection } from '@commercetools/platform-sdk';
+import type { Planets } from '../../store/slices/planet-slice';
+import type { Subcategories } from '../Sidebar/Subcategories/Subcategories';
 
 export interface StringObj {
   [key: string]: string;
@@ -48,15 +50,25 @@ export interface PasswordEditorValues {
 }
 
 export interface ProductCardProps {
-  product: ProductData;
+  product: ProductProjection;
 }
 
-export interface ProfileAddressProps {
-  index?: number;
-  addressId?: string;
-  customerData?: Customer;
-  isNew?: boolean;
-  setAddingAddress?: React.Dispatch<React.SetStateAction<boolean>>;
+export interface Filter {
+  type: string;
+  value: string;
+}
+
+export enum SortValues {
+  priceUp = 'price asc',
+  priceDown = 'price desc',
+  alphabet = 'name.ru asc'
+}
+
+export interface getProductsRequestProps {
+  planet?: Planets;
+  subcategory?: Subcategories;
+  filter?: Filter;
+  sortValue?: SortValues;
 }
 
 export interface ImageModalProps {
