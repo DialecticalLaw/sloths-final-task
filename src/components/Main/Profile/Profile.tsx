@@ -1,26 +1,17 @@
 import type { Address } from '@commercetools/platform-sdk';
-import { getCustomer } from '../../../api/customers/getCustomer';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useAppSelector } from '../../../store/hooks';
 import type { CustomerSliceState } from '../../../store/slices/customer-slice';
 import styles from './Profile.module.css';
 import { ProfileEditor } from './ProfileEditor/ProfileEditor';
 import { ProfileViewer } from './ProfileViewer/ProfileViewer';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Loader } from '../Loader/Loader';
 import { PasswordEditor } from './PasswordEditor/PasswordEditor';
 
 export function Profile() {
-  const dispatch = useAppDispatch();
-  const customerId: string | null = useAppSelector((state) => state.customer_slice.customerId);
-  const { isCustomerLoading, customerData, errorMessage }: CustomerSliceState = useAppSelector(
+  const { customerId, isCustomerLoading, customerData, errorMessage }: CustomerSliceState = useAppSelector(
     (state) => state.customer_slice
   );
-
-  useEffect(() => {
-    if (customerId) {
-      dispatch(getCustomer(customerId));
-    }
-  }, [customerId, dispatch]);
 
   const shippingAddress = customerData?.addresses.find((address: Address) => {
     if (customerData.shippingAddressIds) return address.id === customerData.shippingAddressIds[0];

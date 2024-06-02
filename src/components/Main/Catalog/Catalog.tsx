@@ -26,7 +26,7 @@ export function Catalog() {
       };
       dispatch(getProducts(actionPayload));
     }
-  }, [dispatch, planet, subcategory, sort, filter.value]);
+  }, [dispatch, planet, subcategory, sort, filter]);
 
   return isProductsLoading ? (
     <Loader />
