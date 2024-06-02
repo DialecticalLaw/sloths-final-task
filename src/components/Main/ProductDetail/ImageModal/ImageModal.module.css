@@ -64,6 +64,27 @@
   margin: auto;
 }
 
+.modal_overlay.closing .modal_content::after,
+.modal_overlay.opening .modal_content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color);
+  box-shadow: 0 0 2rem var(--accent-color);
+  z-index: 1;
+}
+
+.modal_overlay.opening .modal_content::before {
+  animation: flashout 0.5s ease-out forwards;
+}
+
+.modal_overlay.closing .modal_content::after {
+  animation: flash 0.5s ease-out forwards;
+}
+
 @keyframes twinkling {
   0% {
     background-position: 0 0;
@@ -105,27 +126,6 @@
     transform: scaleY(0.003);
     opacity: 0;
   }
-}
-
-.modal_overlay.closing .modal_content::after,
-.modal_overlay.opening .modal_content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--accent-color);
-  box-shadow: 0 0 2rem var(--accent-color);
-  z-index: 1;
-}
-
-.modal_overlay.opening .modal_content::before {
-  animation: flashout 0.5s ease-out forwards;
-}
-
-.modal_overlay.closing .modal_content::after {
-  animation: flash 0.5s ease-out forwards;
 }
 
 @keyframes flash {
