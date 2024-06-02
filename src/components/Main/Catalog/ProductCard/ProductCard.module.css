@@ -91,7 +91,6 @@
 
 .product_card:has(.discount_price) .product_name {
   color: var(--accent-color);
-  text-shadow: 0 0 1.5rem var(--accent-color);
 }
 
 .product_price {
@@ -103,9 +102,7 @@
 .discount_price {
   max-width: max-content;
   color: var(--accent-color);
-  text-shadow:
-    0 0 1.5rem var(--accent-color),
-    0 0 3.5rem var(--accent-color);
+  text-shadow: 0 0 2rem var(--accent-color);
   font-weight: bold;
 }
 
