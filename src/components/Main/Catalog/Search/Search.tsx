@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { useState } from 'react';
 import styles from './Search.module.css';
 import { setProducts, setProductsLoading, setSearchQuery } from '../../../../store/slices/products-slice';
-import { getProducts, getSearchProducts } from '../../../../api/products/getProducts';
+import { getSearchProducts } from '../../../../api/products/getProducts';
 
 export function Search() {
   const dispatch = useAppDispatch();
