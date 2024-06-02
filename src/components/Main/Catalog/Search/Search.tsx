@@ -1,8 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { useState } from 'react';
 import styles from './Search.module.css';
-import { setProducts, setProductsLoading, setSearchQuery } from '../../../../store/slices/products-slice';
-import { getSearchProducts } from '../../../../api/products/getProducts';
+import { resetSearch, setSearchQuery } from '../../../../store/slices/products-slice';
 
 export function Search() {
   const dispatch = useAppDispatch();
@@ -10,21 +9,25 @@ export function Search() {
   const [query, setQuery] = useState(searchQuery);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    const value = e.target.value;
+    setQuery(value);
+
+    if (!value.trim()) {
+      dispatch(resetSearch());
+    }
   };
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setSearchQuery(query));
-    dispatch(setProductsLoading(true));
-    try {
-      const response = await getSearchProducts([], '', query);
-      console.log('Search response:', response.body.results);
-      dispatch(setProducts(response.body.results));
-    } catch (error) {
-      console.error('Ошибка при поиске продуктов:', error);
-    } finally {
-      dispatch(setProductsLoading(false));
+    if (query.trim()) {
+      try {
+        console.log();
+      } catch (error) {
+        console.error('Ошибка при поиске продуктов:', error);
+      }
+    } else {
+      dispatch(resetSearch());
     }
   };
 
@@ -37,7 +40,11 @@ export function Search() {
         className={styles.search_input}
         value={query}
       />
-      <button type="submit" className={styles.search_button}>
+      <button
+        type="submit"
+        className={`${styles.search_button} ${!query.trim() ? styles.disabled : ''}`}
+        disabled={!query.trim()}
+      >
         Поиск
       </button>
     </form>

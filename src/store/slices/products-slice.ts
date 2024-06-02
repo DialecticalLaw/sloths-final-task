@@ -37,6 +37,15 @@ export const productsSlice = createSlice({
     },
     setSort(state: ProductsSliceState, action: PayloadAction<SortValues | null>) {
       state.sort = action.payload;
+    },
+    setSearchQuery(state: ProductsSliceState, action: PayloadAction<string>) {
+      state.searchQuery = action.payload;
+    },
+    resetSearch(state: ProductsSliceState) {
+      state.searchQuery = '';
+      state.products = initialState.products;
+      state.filter = initialState.filter;
+      state.sort = initialState.sort;
     }
   },
   extraReducers: (builder) => {
@@ -56,7 +65,4 @@ export const productsSlice = createSlice({
   }
 });
 
-export const deleteProducts = productsSlice.actions.deleteProducts;
-
-export const setFilter = productsSlice.actions.setFilter;
-export const setSort = productsSlice.actions.setSort;
+export const { deleteProducts, setFilter, setSort, setSearchQuery, resetSearch } = productsSlice.actions;

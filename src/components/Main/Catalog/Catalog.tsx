@@ -15,7 +15,7 @@ import { getPlanetFromLocation, getSubcategoryFromLocation } from '../../../help
 
 export function Catalog() {
   const dispatch = useAppDispatch();
-  const { isProductsLoading, products, filter, sort }: ProductsSliceState = useAppSelector(
+  const { isProductsLoading, products, filter, sort, searchQuery }: ProductsSliceState = useAppSelector(
     (state) => state.products_slice
   );
   const { planet } = useAppSelector((state) => state.planet_slice);
@@ -34,11 +34,12 @@ export function Catalog() {
         planet: locationParts.planet,
         subcategory: locationParts.subcategory ?? undefined,
         filter: filter.value && filter.type ? filter : undefined,
-        sortValue: sort ?? undefined
+        sortValue: sort ?? undefined,
+        searchQuery: searchQuery ?? undefined
       };
       dispatch(getProducts(actionPayload));
     }
-  }, [dispatch, locationParts, sort, filter]);
+  }, [dispatch, locationParts, sort, filter, searchQuery]);
 
   useEffect(() => {
     if (!locationParts.planet) {
