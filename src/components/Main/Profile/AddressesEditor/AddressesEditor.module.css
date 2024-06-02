@@ -15,6 +15,7 @@
 
 .search_icon {
   width: 10rem;
+  margin-bottom: 12rem;
   animation: search_animation 8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -40,5 +41,11 @@
   }
   100% {
     transform: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .search_icon {
+    width: 7rem;
   }
 }
