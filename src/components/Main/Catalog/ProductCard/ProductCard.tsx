@@ -25,7 +25,12 @@ export function ProductCard({ product }: ProductCardProps) {
         }
       }}
     >
-      <div className={styles.product_image} style={{ backgroundImage: `url(${bgImageUrl})` }} />
+      <div className={styles.product_image_wrapper}>
+        <div className={styles.product_image} style={{ backgroundImage: `url(${bgImageUrl})` }} />
+        <div className={styles.product_image_glow_wrapper}>
+          <img src={bgImageUrl || ''} alt="glow" className={styles.product_image_glow} />
+        </div>
+      </div>
       <div className={styles.product_desc_wrapper}>
         <p className={styles.product_desc}>{cutSentence(product.description?.ru)}</p>
       </div>
