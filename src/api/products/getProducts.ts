@@ -7,7 +7,7 @@ import type { getProductsRequestProps } from '../../components/Main/Main.interfa
 export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequestProps>(
   'products/get',
   async ({ planet, subcategory, filter, sortValue }: getProductsRequestProps) => {
-    const searchedValue = () => {
+    const getSearchedValue = () => {
       const categoryCondition =
         subcategory && planet
           ? `categories.id:subtree("${getSubcategoryId(planet, subcategory)}")`
@@ -24,8 +24,8 @@ export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequ
           : [];
     };
     const queryArguments = sortValue
-      ? { filter: searchedValue(), sort: sortValue }
-      : { filter: searchedValue() };
+      ? { filter: getSearchedValue(), sort: sortValue }
+      : { filter: getSearchedValue() };
 
     const response = await apiRoot
       .productProjections()
