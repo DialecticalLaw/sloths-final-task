@@ -35,7 +35,7 @@ export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequ
 
     if (searchQuery) {
       queryArguments['text.ru'] = searchQuery.toLowerCase();
-      queryArguments.fuzzy = false;
+      queryArguments.fuzzy = true;
     }
 
     const response = await apiRoot
