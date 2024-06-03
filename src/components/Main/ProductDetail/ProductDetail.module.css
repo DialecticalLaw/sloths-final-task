@@ -132,7 +132,7 @@
   color: #ffffff;
   font-family: var(--main-font);
   cursor: pointer;
-  letter-spacing: 2px;
+  letter-spacing: 0.2rem;
   font-size: 1.6rem;
   transition: 0.3s;
   padding: 0;
