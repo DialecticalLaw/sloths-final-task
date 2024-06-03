@@ -39,7 +39,7 @@ export function Profile() {
           <PasswordEditor setEditMode={setEditMode} customerData={customerData} />
         ) : (
           <>
-            <ProfileViewer setEditMode={setEditMode} customerData={customerData} />
+            <ProfileViewer customerData={customerData} />
             <Button
               onClick={() =>
                 setEditMode((editModes) => {
