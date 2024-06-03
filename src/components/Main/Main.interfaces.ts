@@ -1,6 +1,6 @@
-import type { Address, Customer, ProductProjection } from '@commercetools/platform-sdk';
+import type { Customer, ProductProjection } from '@commercetools/platform-sdk';
 import type { Planets } from '../../store/slices/planet-slice';
-import type { Subcategories } from '../Sidebar/Subcategories/Subcategories';
+import type { Subcategories } from '../../helpers/translationMapper';
 
 export interface StringObj {
   [key: string]: string;
@@ -11,7 +11,7 @@ export interface LoginValues {
   password: string;
 }
 
-interface BillingAddress {
+export interface BillingAddress {
   street: string;
   city: string;
   postalCode: string;
@@ -31,15 +31,17 @@ export interface RegisterValues extends LoginValues {
   billing: BillingAddress;
 }
 
-export interface ProfileEditorValues extends Omit<RegisterValues, 'shipping' | 'password'> {
-  shipping: BillingAddress;
-}
+export type ProfileEditorValues = Pick<RegisterValues, 'email' | 'firstName' | 'lastName' | 'dateOfBirth'>;
 
-export interface ProfileComponentsProps {
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+export interface EditorProps {
+  setEditMode: React.Dispatch<
+    React.SetStateAction<{
+      isPersonalEdit: boolean;
+      isAddressesEdit: boolean;
+      isPasswordEdit: boolean;
+    }>
+  >;
   customerData: Customer;
-  shippingAddress: Address;
-  billingAddress: Address;
 }
 
 export interface PasswordEditorValues {
@@ -69,7 +71,13 @@ export interface getProductsRequestProps {
   sortValue?: SortValues;
 }
 
+export interface Image {
+  url: string;
+  label?: string;
+}
+
 export interface ImageModalProps {
-  imageUrl: string;
+  images: Image[];
+  startIndex: number;
   onClose: () => void;
 }
