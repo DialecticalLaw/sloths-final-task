@@ -83,6 +83,7 @@ h1 {
 }
 
 .theme_provider {
-  --accent-color: rgb(31, 163, 240);
+  --accent-color-light: rgb(36 174 255);
+  --accent-color-dark: rgb(23 90 130);
   width: 100%;
 }
