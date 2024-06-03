@@ -18,6 +18,7 @@
   justify-content: space-between;
   margin-top: 1rem;
   background-color: var(--transparent-background);
+  border-radius: 1rem;
 }
 
 @media (max-width: 1200px) {
