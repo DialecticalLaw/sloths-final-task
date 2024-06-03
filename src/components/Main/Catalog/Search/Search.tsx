@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Search.module.css';
 import { resetSearch, setSearchQuery } from '../../../../store/slices/products-slice';
 
@@ -8,24 +8,22 @@ export function Search() {
   const searchQuery = useAppSelector((state) => state.products_slice.searchQuery);
   const [query, setQuery] = useState(searchQuery);
 
+  useEffect(() => {
+    setQuery(searchQuery);
+  }, [searchQuery]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
-
     if (!value.trim()) {
       dispatch(resetSearch());
     }
   };
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(setSearchQuery(query));
     if (query.trim()) {
-      try {
-        console.log();
-      } catch (error) {
-        console.error('Ошибка при поиске продуктов:', error);
-      }
+      dispatch(setSearchQuery(query));
     } else {
       dispatch(resetSearch());
     }
@@ -35,8 +33,9 @@ export function Search() {
     <form className={styles.search_wrapper} onSubmit={handleSearch}>
       <input
         type="search"
-        placeholder="Найду все"
+        placeholder="Найдется все!"
         onChange={handleInputChange}
+        autoFocus
         className={styles.search_input}
         value={query}
       />
