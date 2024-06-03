@@ -6,3 +6,7 @@
   border: 2px solid var(--accent-color-light);
   outline: none;
 }
+
+.option {
+  background-color: rgb(65, 65, 65);
+}
