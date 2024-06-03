@@ -13,9 +13,9 @@
   padding: 3rem;
   border-radius: 1rem;
   background-color: rgba(20, 20, 20, 0.9);
-  border: 0.1rem solid var(--accent-color);
+  border: 0.1rem solid var(--accent-color-light);
   box-shadow:
-    0 0 1rem var(--accent-color),
+    0 0 1rem var(--accent-color-light),
     0 0 0.3rem white;
 }
 
@@ -95,7 +95,7 @@
 }
 
 :global(.carousel .thumb.selected) {
-  border: 3px solid var(--accent-color);
+  border: 3px solid var(--accent-color-light);
 }
 
 :global(.carousel .thumbs-wrapper) {
