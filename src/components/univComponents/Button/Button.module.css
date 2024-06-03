@@ -60,6 +60,7 @@
   padding: 1rem 6rem;
   border-radius: 3rem;
   backdrop-filter: blur(15px);
+  transition: 0.3s;
 }
 
 .button_standart .buttonText::after {
@@ -100,6 +101,10 @@
   border-radius: 0 0 1rem 1rem;
 }
 @media (hover: hover) and (pointer: fine) {
+  .button:hover .buttonText {
+    text-shadow: 0.2rem 0.2rem #000000;
+  }
+
   .button_standart .buttonText:hover::after {
     transform: skewX(45deg) translate(110%);
   }
