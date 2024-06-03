@@ -12,7 +12,6 @@ import { setFilter } from '../../store/slices/products-slice';
 export function Sidebar() {
   const dispatch = useAppDispatch();
   const locationPath = useLocation().pathname;
-  // const notShow = ['/login', '/register'].includes(locationPath);
   const isShowSubcategory = locationPath.startsWith('/catalog');
   const { planet } = useAppSelector((state) => state.planet_slice);
   const [isSidebarVisible, setVisibility] = useState<boolean>(false);
@@ -28,7 +27,6 @@ export function Sidebar() {
   };
 
   return (
-    // !notShow && (
     <>
       <BgPlanets />
       <aside className={styles.sidebar + ' ' + (isSidebarVisible ? styles.sidebar__visible : '')}>
@@ -90,5 +88,4 @@ export function Sidebar() {
       </aside>
     </>
   );
-  // );
 }
