@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './Search.module.css';
 import { resetSearch, setSearchQuery } from '../../../../store/slices/products-slice';
 
@@ -7,10 +7,6 @@ export function Search() {
   const dispatch = useAppDispatch();
   const searchQuery = useAppSelector((state) => state.products_slice.searchQuery);
   const [query, setQuery] = useState(searchQuery);
-
-  useEffect(() => {
-    setQuery(searchQuery);
-  }, [searchQuery]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
