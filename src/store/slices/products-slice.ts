@@ -43,9 +43,6 @@ export const productsSlice = createSlice({
     },
     resetSearch(state: ProductsSliceState) {
       state.searchQuery = '';
-      state.products = initialState.products;
-      state.filter = initialState.filter;
-      state.sort = initialState.sort;
     }
   },
   extraReducers: (builder) => {
