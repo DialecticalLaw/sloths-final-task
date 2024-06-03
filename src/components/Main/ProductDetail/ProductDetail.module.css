@@ -57,13 +57,16 @@
 }
 
 .product_price {
-  color: var(--accent-color);
+  color: #ffffff;
+  font-weight: 500;
   font-size: 3rem;
 }
 
 .discount_price {
-  background-color: var(--accent-color);
   max-width: max-content;
+  color: var(--accent-color);
+  text-shadow: 0 0 2rem var(--accent-color);
+  font-weight: bold;
   font-size: 3rem;
 }
 
@@ -72,6 +75,16 @@
   background-color: transparent;
   max-width: max-content;
   font-size: 2rem;
+  color: rgb(220, 220, 220);
+}
+
+.crossed_price::before {
+  position: absolute;
+  content: '';
+  background-color: rgb(220, 220, 220);
+  height: 0.1rem;
+  width: 100%;
+  top: 55%;
 }
 
 :global(.carousel .thumbs-wrapper) {
@@ -97,15 +110,6 @@
   background-image: url('./../../../assets/img/sliderArrow.svg');
   transform: rotate(180deg);
   border: none;
-}
-
-.crossed_price::before {
-  position: absolute;
-  content: '';
-  background-color: var(--accent-color);
-  height: 0.2rem;
-  width: 100%;
-  top: 50%;
 }
 
 .product_desc {
