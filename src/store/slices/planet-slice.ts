@@ -7,12 +7,6 @@ export enum Planets {
   mars = 'mars'
 }
 
-// enum PlanetsColor {
-//   venus = 'rgb(255,219,75)',
-//   earth = 'rgb(31, 163, 240)',
-//   mars = 'rgb(197,42,9)'
-// }
-
 enum VenusColors {
   Light = 'rgb(234 188 0)',
   Dark = 'rgb(126 104 16)'
