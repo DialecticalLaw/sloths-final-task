@@ -7,9 +7,10 @@ import { productsSlice } from './slices/products-slice';
 const rootReducer = combineSlices(planetSlice, customerSlice, productsSlice);
 export type RootState = ReturnType<typeof rootReducer>;
 
-export const makeStore = () => {
+export const makeStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    preloadedState
   });
 };
 
