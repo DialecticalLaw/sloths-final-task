@@ -12,7 +12,7 @@ describe('ProfileViewer', () => {
       dateOfBirth: '10-04-2002'
     } as Customer;
 
-    render(<ProfileViewer customerData={customerData}></ProfileViewer>);
+    render(<ProfileViewer customerData={customerData} />);
 
     expect(screen.getByAltText('avatar')).toBeInTheDocument();
     expect(screen.getByText(/имя/i)).toBeInTheDocument();
