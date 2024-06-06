@@ -7,7 +7,6 @@ import {
   type RefreshAuthMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
-import type { ByProjectKeyRequestBuilder } from '@commercetools/platform-sdk';
 import { ApiData } from './apiData';
 import { myToken } from './tokenCache';
 
@@ -62,7 +61,7 @@ export const getPasswordFlowClient = (email: string, password: string) => {
   return ApiRoot;
 };
 
-export const getRefreshFlowClient = (): ByProjectKeyRequestBuilder => {
+export const getRefreshFlowClient = () => {
   const options: RefreshAuthMiddlewareOptions = {
     host: ApiData.AUTH_URL,
     projectKey: ApiData.PROJECT_KEY,

@@ -5,9 +5,12 @@ import { formatPrice } from '../../../../helpers/formatPrice';
 import { getPlanetFromLocation } from '../../../../helpers/locationHandlers';
 import { getSubcategoryFromProductType } from '../../../../helpers/idsMapper';
 import { cutSentence } from '../../../../helpers/cutSentence';
-import emptyBasket from './../../../../assets/img/emptyBasket.png';
-import basket from './../../../../assets/img/basket.png';
+import emptyCartIcon from './../../../../assets/img/emptyBasket.png';
+import cartIcon from './../../../../assets/img/basket.png';
 import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { createCart, addItemToCart } from '../../../../api/basket/createBasket';
+import { setCart } from '../../../../store/slices/cart-slice';
 
 export function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
@@ -23,44 +26,32 @@ export function ProductCard({ product }: ProductCardProps) {
     navigate({ pathname: `/catalog/${planet}/${subcategory}/${productKey}` });
   };
 
-  const [isInBasket, setIsInBasket] = useState(false);
-
-  interface BasketItem {
-    id: string;
-    quantity: number;
-  }
+  const [isInCart, setIsInCart] = useState(false);
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart_slice.cart);
 
   useEffect(() => {
-    const basketItems: BasketItem[] = JSON.parse(localStorage.getItem('sloth-basket') || '[]');
-    const isProductInBasket = basketItems.some((item) => item.id === product.id);
-    setIsInBasket(isProductInBasket);
+    if (cart) {
+      const isProductInBasket = cart.lineItems.some((item) => item.productId === product.id);
+      setIsInCart(isProductInBasket);
+    }
+  }, [cart, product.id]);
 
-    const handleStorageChange = () => {
-      const updatedBasketItems: BasketItem[] = JSON.parse(localStorage.getItem('sloth-basket') || '[]');
-      const updatedIsProductInBasket = updatedBasketItems.some((item) => item.id === product.id);
-      setIsInBasket(updatedIsProductInBasket);
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, [product.id]);
-
-  const addToBasket = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const addToBasket = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
 
-    const basketItems: BasketItem[] = JSON.parse(localStorage.getItem('sloth-basket') || '[]');
-    if (!basketItems.some((item) => item.id === product.id)) {
-      const updateBasketItem: BasketItem = {
-        id: product.id,
-        quantity: 1
-      };
-      const updatedBasketItems = [...basketItems, updateBasketItem];
-
-      localStorage.setItem('sloth-basket', JSON.stringify(updatedBasketItems));
-      setIsInBasket(true);
+    try {
+      if (!cart) {
+        const newCart = await createCart();
+        const updatedCart = await addItemToCart(newCart.id, product.id, newCart.version);
+        dispatch(setCart(updatedCart));
+      } else {
+        const updatedCart = await addItemToCart(cart.id, product.id, cart.version);
+        dispatch(setCart(updatedCart));
+      }
+      setIsInCart(true);
+    } catch (error) {
+      console.error('Error adding to basket:', error);
     }
   };
 
@@ -93,8 +84,8 @@ export function ProductCard({ product }: ProductCardProps) {
           {discountPrice && <span className={styles.discount_price}>{formatPrice(discountPrice)}</span>}
         </div>
       </div>
-      <button className={styles.basket_button} disabled={isInBasket} onClick={addToBasket}>
-        <img src={isInBasket ? basket : emptyBasket} alt="basket icon" className={styles.basket_icon} />
+      <button className={styles.cart_button} disabled={isInCart} onClick={addToBasket}>
+        <img src={isInCart ? cartIcon : emptyCartIcon} alt="cart icon" className={styles.cart_icon} />
       </button>
     </div>
   );

@@ -179,7 +179,7 @@
   opacity: 0;
 }
 
-.basket_button {
+.cart_button {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
@@ -190,13 +190,13 @@
   z-index: 2;
 }
 
-.basket_icon {
+.cart_icon {
   width: 3rem;
   height: auto;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .basket_icon:hover {
+  .cart_icon:hover {
     transform: scale(1.1);
   }
 }
