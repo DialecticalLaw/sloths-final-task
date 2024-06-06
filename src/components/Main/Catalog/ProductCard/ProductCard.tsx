@@ -9,7 +9,7 @@ import emptyCartIcon from './../../../../assets/img/emptyBasket.png';
 import cartIcon from './../../../../assets/img/basket.png';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { createCart, addItemToCart } from '../../../../api/basket/createBasket';
+import { createCart, addItemToCart } from '../../../../api/cart/createCart';
 import { setCart } from '../../../../store/slices/cart-slice';
 
 export function ProductCard({ product }: ProductCardProps) {
