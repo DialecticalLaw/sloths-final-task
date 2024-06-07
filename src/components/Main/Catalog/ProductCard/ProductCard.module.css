@@ -201,25 +201,13 @@
   }
 }
 
-.basket_button[disabled] .basket_icon {
+.cart_button[disabled] .cart_icon {
   opacity: 0.7;
   pointer-events: none;
 }
 
-.basket_button[disabled] {
+.cart_button[disabled] {
   cursor: default;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spin-reverse {
-  to {
-    transform: rotate(-360deg);
-  }
 }
 
 @media screen and (max-width: 560px) {

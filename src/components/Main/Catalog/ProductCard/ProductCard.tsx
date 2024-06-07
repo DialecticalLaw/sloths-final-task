@@ -7,7 +7,7 @@ import { getSubcategoryFromProductType } from '../../../../helpers/idsMapper';
 import { cutSentence } from '../../../../helpers/cutSentence';
 import emptyCartIcon from './../../../../assets/img/emptyBasket.png';
 import cartIcon from './../../../../assets/img/basket.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { createCart, addItemToCart } from '../../../../api/cart/createCart';
 import { setCart } from '../../../../store/slices/cart-slice';
@@ -31,6 +31,13 @@ export function ProductCard({ product }: ProductCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart_slice.cart);
+
+  useEffect(() => {
+    if (cart) {
+      const isProductInBasket = cart.lineItems.some((item) => item.productId === product.id);
+      setIsInCart(isProductInBasket);
+    }
+  }, [cart, product.id]);
 
   const addToBasket = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
