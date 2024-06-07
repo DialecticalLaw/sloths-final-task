@@ -4,7 +4,7 @@ import styles from './CartIcon.module.css';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import type { CustomNavLinkProps } from '../Header.interfaces';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { getCart } from '../../../api/cart/createCart';
 import { setCart } from '../../../store/slices/cart-slice';
 
@@ -13,19 +13,17 @@ export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
   const customerId = useAppSelector((state) => state.customer_slice.customerId);
   const dispatch = useAppDispatch();
 
-  let totalLineItemQuantity;
-
-  if (cart) {
-    totalLineItemQuantity = cart.totalLineItemQuantity;
-  }
+  const totalLineItemQuantity = useMemo(() => {
+    return cart ? cart.totalLineItemQuantity : '';
+  }, [cart]);
 
   useEffect(() => {
     const fetchCart = async () => {
-      if (customerId) {
+      if (customerId && !cart) {
         try {
           const response = await getCart(customerId);
-          const cart = response.body;
-          dispatch(setCart(cart));
+          const cartData = response.body;
+          dispatch(setCart(cartData));
         } catch (error) {
           console.error('Error fetching cart:', error);
         }
@@ -33,7 +31,7 @@ export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
     };
 
     fetchCart();
-  }, [customerId, dispatch]);
+  }, [customerId, cart, dispatch]);
 
   return (
     <NavLink to={'/cart'} className={styles.cart_link}>
