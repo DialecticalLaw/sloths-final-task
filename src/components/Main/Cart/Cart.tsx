@@ -6,7 +6,6 @@ import { formatPrice } from '../../../helpers/formatPrice';
 
 export function Cart() {
   const cart = useAppSelector((state) => state.cart_slice.cart);
-  console.log(cart?.lineItems);
 
   return (
     <section>
