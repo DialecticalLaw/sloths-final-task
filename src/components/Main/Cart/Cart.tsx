@@ -53,9 +53,7 @@ export function Cart() {
                     </td>
                     <td>+ 1 -</td>
                     <td>
-                      <p className={styles.total}>
-                        Итого: {formatPrice(item.quantity * (discountPrice || price))}
-                      </p>
+                      <p className={styles.total}>{formatPrice(item.quantity * (discountPrice || price))}</p>
                     </td>
                   </tr>
                 </tbody>
