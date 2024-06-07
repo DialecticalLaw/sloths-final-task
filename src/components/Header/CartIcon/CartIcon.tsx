@@ -1,5 +1,5 @@
-import cartIcon from '../../../assets/img/basket.png';
-import emptyCartIcon from '../../../assets/img/emptyBasket.png';
+import cartIcon from '../../../assets/img/cartIcon.png';
+import emptyCartIcon from '../../../assets/img/emptyCartIcon.png';
 import styles from './CartIcon.module.css';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';

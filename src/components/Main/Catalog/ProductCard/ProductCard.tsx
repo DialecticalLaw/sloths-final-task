@@ -5,8 +5,8 @@ import { formatPrice } from '../../../../helpers/formatPrice';
 import { getPlanetFromLocation } from '../../../../helpers/locationHandlers';
 import { getSubcategoryFromProductType } from '../../../../helpers/idsMapper';
 import { cutSentence } from '../../../../helpers/cutSentence';
-import emptyCartIcon from './../../../../assets/img/emptyBasket.png';
-import cartIcon from './../../../../assets/img/basket.png';
+import emptyCartIcon from './../../../../assets/img/emptyCartIcon.png';
+import cartIcon from './../../../../assets/img/cartIcon.png';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { createCart, addItemToCart } from '../../../../api/cart/createCart';
@@ -34,12 +34,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
   useEffect(() => {
     if (cart) {
-      const isProductInBasket = cart.lineItems.some((item) => item.productId === product.id);
-      setIsInCart(isProductInBasket);
+      const isProductInCart = cart.lineItems.some((item) => item.productId === product.id);
+      setIsInCart(isProductInCart);
     }
   }, [cart, product.id]);
 
-  const addToBasket = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const addToCart = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     setIsLoading(true);
 
@@ -54,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
       }
       setIsInCart(true);
     } catch (error) {
-      console.error('Error adding to basket:', error);
+      console.error('Error adding to cart:', error);
     } finally {
       setIsLoading(false);
     }
@@ -89,7 +89,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {discountPrice && <span className={styles.discount_price}>{formatPrice(discountPrice)}</span>}
         </div>
       </div>
-      <button className={styles.cart_button} disabled={isInCart || isLoading} onClick={addToBasket}>
+      <button className={styles.cart_button} disabled={isInCart || isLoading} onClick={addToCart}>
         {isLoading ? (
           <MiniLoader />
         ) : (
