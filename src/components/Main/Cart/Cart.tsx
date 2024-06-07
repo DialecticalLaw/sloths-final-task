@@ -2,6 +2,7 @@ import type { LineItem } from '@commercetools/platform-sdk';
 import { useAppSelector } from '../../../store/hooks';
 import styles from './Cart.module.css';
 import { Price } from '../../univComponents/Price/Price';
+import { formatPrice } from '../../../helpers/formatPrice';
 
 export function Cart() {
   const cart = useAppSelector((state) => state.cart_slice.cart);
@@ -22,6 +23,7 @@ export function Cart() {
                 <div className={styles.product_image} style={{ backgroundImage: `url(${bgImageUrl})` }} />
                 <p>{item.name.ru}</p>
                 <Price classes={[styles.product_price_wrapper]} price={price} discountPrice={discountPrice} />
+                <p>Итого: ${formatPrice(item.quantity * (discountPrice || price))}</p>
               </div>
             );
           })}

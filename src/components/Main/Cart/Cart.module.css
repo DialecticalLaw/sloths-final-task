@@ -27,6 +27,6 @@
 
 @media (hover: hover) and (pointer: fine) {
   .product:hover .product_image {
-    background-size: 130%;
+    background-size: 120%;
   }
 }
