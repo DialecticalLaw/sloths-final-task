@@ -6,6 +6,7 @@ import {
   type PasswordAuthMiddlewareOptions,
   type RefreshAuthMiddlewareOptions
 } from '@commercetools/sdk-client-v2';
+import type { ByProjectKeyRequestBuilder } from '@commercetools/platform-sdk';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 import { ApiData } from './apiData';
 import { myToken } from './tokenCache';
@@ -105,3 +106,20 @@ export const getAnonymousFlowClient = () => {
     projectKey: ApiData.PROJECT_KEY
   });
 };
+
+export async function getClientFlow(): Promise<ByProjectKeyRequestBuilder> {
+  const refreshToken = localStorage.getItem('sloth-refreshToken');
+  let clientFlow;
+
+  if (refreshToken) {
+    try {
+      clientFlow = getRefreshFlowClient();
+    } catch {
+      clientFlow = getAnonymousFlowClient();
+    }
+  } else {
+    clientFlow = getAnonymousFlowClient();
+  }
+
+  return clientFlow;
+}

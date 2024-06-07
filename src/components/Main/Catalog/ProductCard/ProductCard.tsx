@@ -9,7 +9,8 @@ import emptyCartIcon from './../../../../assets/img/emptyCartIcon.png';
 import cartIcon from './../../../../assets/img/cartIcon.png';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { createCart, addItemToCart } from '../../../../api/cart/createCart';
+import { createCart } from '../../../../api/cart/createCart';
+import { addItemToCart } from '../../../../api/cart/addItemToCart';
 import { setCart } from '../../../../store/slices/cart-slice';
 import { MiniLoader } from '../../Loader/Loader';
 

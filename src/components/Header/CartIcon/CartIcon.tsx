@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import type { CustomNavLinkProps } from '../Header.interfaces';
 import { useEffect, useMemo } from 'react';
-import { getCart } from '../../../api/cart/createCart';
+import { getCart } from '../../../api/cart/getCart';
 import { setCart } from '../../../store/slices/cart-slice';
 
 export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
