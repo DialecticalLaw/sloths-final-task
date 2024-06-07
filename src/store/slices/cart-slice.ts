@@ -20,4 +20,3 @@ export const cartSlice = createSlice({
 });
 
 export const { setCart, deleteCart } = cartSlice.actions;
-export const basketReducer = cartSlice.reducer;
