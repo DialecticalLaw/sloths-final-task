@@ -7,10 +7,11 @@ import { getSubcategoryFromProductType } from '../../../../helpers/idsMapper';
 import { cutSentence } from '../../../../helpers/cutSentence';
 import emptyCartIcon from './../../../../assets/img/emptyBasket.png';
 import cartIcon from './../../../../assets/img/basket.png';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { createCart, addItemToCart } from '../../../../api/cart/createCart';
 import { setCart } from '../../../../store/slices/cart-slice';
+import { MiniLoader } from '../../Loader/Loader';
 
 export function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
@@ -27,18 +28,13 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   const [isInCart, setIsInCart] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart_slice.cart);
 
-  useEffect(() => {
-    if (cart) {
-      const isProductInBasket = cart.lineItems.some((item) => item.productId === product.id);
-      setIsInCart(isProductInBasket);
-    }
-  }, [cart, product.id]);
-
   const addToBasket = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
+    setIsLoading(true);
 
     try {
       if (!cart) {
@@ -52,6 +48,8 @@ export function ProductCard({ product }: ProductCardProps) {
       setIsInCart(true);
     } catch (error) {
       console.error('Error adding to basket:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -84,8 +82,12 @@ export function ProductCard({ product }: ProductCardProps) {
           {discountPrice && <span className={styles.discount_price}>{formatPrice(discountPrice)}</span>}
         </div>
       </div>
-      <button className={styles.cart_button} disabled={isInCart} onClick={addToBasket}>
-        <img src={isInCart ? cartIcon : emptyCartIcon} alt="cart icon" className={styles.cart_icon} />
+      <button className={styles.cart_button} disabled={isInCart || isLoading} onClick={addToBasket}>
+        {isLoading ? (
+          <MiniLoader />
+        ) : (
+          <img src={isInCart ? cartIcon : emptyCartIcon} alt="cart icon" className={styles.cart_icon} />
+        )}
       </button>
     </div>
   );

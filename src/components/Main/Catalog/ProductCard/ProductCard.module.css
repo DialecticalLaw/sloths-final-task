@@ -210,6 +210,18 @@
   cursor: default;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
 @media screen and (max-width: 560px) {
   .product_desc_wrapper {
     font-size: 1.3rem;
