@@ -1,0 +1,16 @@
+.products_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.product {
+  outline: 1px solid #ffffff;
+  width: 100%;
+}
+
+.product_price_wrapper {
+  gap: 0.3rem;
+  font-size: 1.8rem;
+}
