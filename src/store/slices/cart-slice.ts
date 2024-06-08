@@ -5,15 +5,13 @@ import { updateCart } from '../../api/cart/updateCart';
 
 export interface CartSliceState {
   cart: Cart | null;
-  isLoadingGet: boolean;
-  isLoadingUpdate: boolean;
+  isLoading: boolean;
   errorMessage?: string;
 }
 
 const initialState: CartSliceState = {
   cart: null,
-  isLoadingGet: false,
-  isLoadingUpdate: false
+  isLoading: false
 };
 
 export const cartSlice = createSlice({
@@ -27,26 +25,21 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCart.pending, (state: CartSliceState) => {
-        state.isLoadingGet = true;
+        state.isLoading = true;
       })
       .addCase(getCart.fulfilled, (state: CartSliceState, action) => {
         state.cart = action.payload;
-        state.isLoadingGet = false;
+        state.isLoading = false;
       })
       .addCase(getCart.rejected, (state: CartSliceState, action) => {
         state.errorMessage = action.error.message;
-        state.isLoadingGet = false;
-      })
-      .addCase(updateCart.pending, (state: CartSliceState) => {
-        state.isLoadingUpdate = true;
+        state.isLoading = false;
       })
       .addCase(updateCart.fulfilled, (state: CartSliceState, action) => {
         state.cart = action.payload;
-        state.isLoadingUpdate = false;
       })
       .addCase(updateCart.rejected, (state: CartSliceState, action) => {
         state.errorMessage = action.error.message;
-        state.isLoadingUpdate = false;
       });
   }
 });
