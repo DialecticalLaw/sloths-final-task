@@ -3,15 +3,19 @@ import { useAppSelector } from '../../../store/hooks';
 import styles from './Cart.module.css';
 import { Price } from '../../univComponents/Price/Price';
 import { formatPrice } from '../../../helpers/formatPrice';
+import { Loader } from '../Loader/Loader';
 
 export function Cart() {
-  const cart = useAppSelector((state) => state.cart_slice.cart);
+  const { cart, isLoading, errorMessage } = useAppSelector((state) => state.cart_slice);
   console.log(cart?.lineItems);
+  if (isLoading) return <Loader />;
 
   return (
     <section>
       <h1 className={styles.title}>Корзина</h1>
-      {cart ? (
+      {errorMessage ? (
+        <p className={styles.error_message}>Хм... {errorMessage}</p>
+      ) : cart?.lineItems.length ? (
         <div className={styles.products_wrapper}>
           {cart.lineItems.map((item: LineItem, index) => {
             const price = item.price.value.centAmount;
@@ -62,7 +66,9 @@ export function Cart() {
           })}
         </div>
       ) : (
-        <p>Корзина пуста... Но космос бесконечен, и так же бесконечны возможности для покупок!</p>
+        <p className={styles.empty_message}>
+          Корзина пуста... Но космос бесконечен, и так же бесконечны возможности для покупок!
+        </p>
       )}
     </section>
   );

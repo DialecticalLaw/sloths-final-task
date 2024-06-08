@@ -41,3 +41,9 @@ export interface UpdatePasswordData extends Omit<UpdateSimpleData, 'actions'> {
   currentPassword: string;
   newPassword: string;
 }
+
+export interface AddCartInfo {
+  cartId: string;
+  productId: string;
+  version: number;
+}

@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { createCart } from '../../../../api/cart/createCart';
 import { addItemToCart } from '../../../../api/cart/addItemToCart';
-import { setCart } from '../../../../store/slices/cart-slice';
 import { MiniLoader } from '../../Loader/Loader';
 import { Price } from '../../../univComponents/Price/Price';
 
@@ -29,9 +28,9 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   const [isInCart, setIsInCart] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart_slice.cart);
+  const { cart } = useAppSelector((state) => state.cart_slice);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (cart) {
@@ -47,11 +46,11 @@ export function ProductCard({ product }: ProductCardProps) {
     try {
       if (!cart) {
         const newCart = await createCart();
-        const updatedCart = await addItemToCart(newCart.id, product.id, newCart.version);
-        dispatch(setCart(updatedCart));
+        await dispatch(
+          addItemToCart({ cartId: newCart.id, productId: product.id, version: newCart.version })
+        );
       } else {
-        const updatedCart = await addItemToCart(cart.id, product.id, cart.version);
-        dispatch(setCart(updatedCart));
+        await dispatch(addItemToCart({ cartId: cart.id, productId: product.id, version: cart.version }));
       }
       setIsInCart(true);
     } catch (error) {
