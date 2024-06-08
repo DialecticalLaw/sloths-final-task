@@ -278,8 +278,14 @@
 
 @media screen and (max-width: 680px) {
   .product {
-    width: max-content;
+    width: 100%;
     padding: 1rem;
+  }
+
+  .product_table {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
   }
 
   .product_prop {
@@ -299,12 +305,6 @@
     width: 100%;
     background-color: #ffffff;
     height: 0.1rem;
-  }
-
-  .product_table {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
   }
 
   .product_props_wrapper,
