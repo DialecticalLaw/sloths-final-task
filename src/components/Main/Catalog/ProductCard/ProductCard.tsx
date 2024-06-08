@@ -9,9 +9,9 @@ import cartIcon from './../../../../assets/img/cartIcon.png';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { createCart } from '../../../../api/cart/createCart';
-import { addItemToCart } from '../../../../api/cart/addItemToCart';
 import { MiniLoader } from '../../Loader/Loader';
 import { Price } from '../../../univComponents/Price/Price';
+import { updateCart } from '../../../../api/cart/updateCart';
 
 export function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
@@ -47,10 +47,20 @@ export function ProductCard({ product }: ProductCardProps) {
       if (!cart) {
         const newCart = await createCart();
         await dispatch(
-          addItemToCart({ cartId: newCart.id, productId: product.id, version: newCart.version })
+          updateCart({
+            actions: [{ action: 'addLineItem', quantity: 1, productId: product.id }],
+            version: newCart.version,
+            ID: newCart.id
+          })
         );
       } else {
-        await dispatch(addItemToCart({ cartId: cart.id, productId: product.id, version: cart.version }));
+        await dispatch(
+          updateCart({
+            actions: [{ action: 'addLineItem', quantity: 1, productId: product.id }],
+            version: cart.version,
+            ID: cart.id
+          })
+        );
       }
       setIsInCart(true);
     } catch (error) {

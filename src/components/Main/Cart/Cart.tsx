@@ -1,12 +1,14 @@
 import type { LineItem } from '@commercetools/platform-sdk';
-import { useAppSelector } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import styles from './Cart.module.css';
 import { Price } from '../../univComponents/Price/Price';
 import { formatPrice } from '../../../helpers/formatPrice';
 import { Loader } from '../Loader/Loader';
+import { updateCart } from '../../../api/cart/updateCart';
 
 export function Cart() {
   const { cart, isLoading, errorMessage } = useAppSelector((state) => state.cart_slice);
+  const dispatch = useAppDispatch();
   console.log(cart?.lineItems);
   if (isLoading) return <Loader />;
 
@@ -57,11 +59,48 @@ export function Cart() {
                     </td>
                     <td>
                       <div className={styles.quantity_wrapper}>
-                        <button type="button" className={styles.increment}>
+                        <button
+                          onClick={() => {
+                            dispatch(
+                              updateCart({
+                                ID: cart.id,
+                                version: cart.version,
+                                actions: [
+                                  {
+                                    action: 'changeLineItemQuantity',
+                                    lineItemId: item.id,
+                                    quantity: item.quantity + 1
+                                  }
+                                ]
+                              })
+                            );
+                          }}
+                          type="button"
+                          className={styles.increment}
+                        >
                           +
                         </button>
                         <span className={styles.quantity}>{item.quantity}</span>
-                        <button type="button" className={styles.decrement}>
+                        <button
+                          type="button"
+                          className={styles.decrement}
+                          disabled={item.quantity < 2}
+                          onClick={() => {
+                            dispatch(
+                              updateCart({
+                                ID: cart.id,
+                                version: cart.version,
+                                actions: [
+                                  {
+                                    action: 'changeLineItemQuantity',
+                                    lineItemId: item.id,
+                                    quantity: item.quantity - 1
+                                  }
+                                ]
+                              })
+                            );
+                          }}
+                        >
                           -
                         </button>
                       </div>

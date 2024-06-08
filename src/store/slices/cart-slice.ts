@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { Cart } from '@commercetools/platform-sdk';
 import { getCart } from '../../api/cart/getCart';
-import { addItemToCart } from '../../api/cart/addItemToCart';
+import { updateCart } from '../../api/cart/updateCart';
 
 export interface CartSliceState {
   cart: Cart | null;
@@ -35,14 +35,14 @@ export const cartSlice = createSlice({
         state.errorMessage = action.error.message;
         state.isLoading = false;
       })
-      .addCase(addItemToCart.pending, (state: CartSliceState) => {
+      .addCase(updateCart.pending, (state: CartSliceState) => {
         state.isLoading = true;
       })
-      .addCase(addItemToCart.fulfilled, (state: CartSliceState, action) => {
+      .addCase(updateCart.fulfilled, (state: CartSliceState, action) => {
         state.cart = action.payload;
         state.isLoading = false;
       })
-      .addCase(addItemToCart.rejected, (state: CartSliceState, action) => {
+      .addCase(updateCart.rejected, (state: CartSliceState, action) => {
         state.errorMessage = action.error.message;
         state.isLoading = false;
       });

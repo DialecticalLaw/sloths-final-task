@@ -160,6 +160,11 @@
   transition: 0.3s;
 }
 
+.decrement[disabled] {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .product:hover {
     transform: scale(1.05);
