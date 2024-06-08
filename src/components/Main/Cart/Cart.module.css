@@ -129,6 +129,37 @@
   font-size: 1.8rem;
 }
 
+.quantity_wrapper {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity {
+  font-weight: bold;
+  font-size: 2.1rem;
+  cursor: default;
+}
+
+.increment,
+.decrement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  user-select: none;
+  background-color: transparent;
+  border: none;
+  outline: 0.2rem solid #ffffff;
+  color: #ffffff;
+  font-size: 2.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .product:hover {
     transform: scale(1.05);
@@ -147,6 +178,16 @@
 
   .product:hover::before {
     transform: translateX(160%);
+  }
+
+  .increment:hover {
+    outline-color: #00ff00;
+    color: #00ff00;
+  }
+
+  .decrement:hover {
+    outline-color: #ff0000;
+    color: #ff0000;
   }
 }
 

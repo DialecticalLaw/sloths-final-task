@@ -55,7 +55,17 @@ export function Cart() {
                         discountPrice={discountPrice}
                       />
                     </td>
-                    <td>+ 1 -</td>
+                    <td>
+                      <div className={styles.quantity_wrapper}>
+                        <button type="button" className={styles.increment}>
+                          +
+                        </button>
+                        <span className={styles.quantity}>{item.quantity}</span>
+                        <button type="button" className={styles.decrement}>
+                          -
+                        </button>
+                      </div>
+                    </td>
                     <td>
                       <p className={styles.total}>{formatPrice(item.totalPrice.centAmount)}</p>
                     </td>
