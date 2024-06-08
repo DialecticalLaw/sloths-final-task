@@ -52,7 +52,7 @@
 }
 
 .product td,
-.product .product_prop {
+.product_prop {
   padding: 1rem;
 }
 
@@ -186,9 +186,151 @@
   }
 }
 
+@media screen and (max-width: 800px) and (hover: hover) and (pointer: fine) {
+  .product:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 0.5rem 0.1rem var(--accent-color-light);
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .product {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .product_image_wrapper {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .product_name {
+    font-size: 1.4rem;
+  }
+
+  .product_table,
+  .product_price_wrapper,
+  .quantity {
+    font-size: 1.5rem;
+  }
+
+  .quantity_wrapper {
+    gap: 1rem;
+  }
+
+  .increment,
+  .decrement {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .product_table,
+  .product_price_wrapper,
+  .quantity {
+    font-size: 1.2rem;
+  }
+
+  .increment,
+  .decrement {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.6rem;
+    outline-width: 0.1rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .product td {
+    padding: 0.5rem;
+  }
+}
+
 @media screen and (max-width: 860px) {
   .product::after,
   .product::before {
     display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .product {
+    box-shadow: inset 0 0 0.5rem 0.1rem #000000;
+  }
+
+  .product_table,
+  .product_price_wrapper,
+  .quantity,
+  .product_name {
+    font-size: 1rem;
+  }
+
+  .increment,
+  .decrement {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .product {
+    width: max-content;
+    padding: 1rem;
+  }
+
+  .product_prop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 0.8rem;
+    padding-left: 0;
+  }
+
+  .product_prop::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    height: 0.1rem;
+  }
+
+  .product_table {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .product_props_wrapper,
+  .product_info_wrapper {
+    display: grid;
+    align-items: center;
+    grid-template: repeat(4, 1fr) / 1fr;
+    height: 100%;
+  }
+
+  .product_image_wrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .product_table,
+  .product_price_wrapper,
+  .quantity,
+  .product_name {
+    word-break: break-all;
+  }
+
+  .increment,
+  .decrement {
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 1.2rem;
   }
 }

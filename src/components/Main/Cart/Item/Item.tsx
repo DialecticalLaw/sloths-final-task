@@ -20,7 +20,7 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
       {isUpdating && <Loader classes={[styles.product_loader]} />}
       <table className={styles.product_table}>
         <thead>
-          <tr>
+          <tr className={styles.product_props_wrapper}>
             <th className={styles.product_prop}>Товар</th>
             <th className={styles.product_prop}>Цена</th>
             <th className={styles.product_prop}>Количество</th>
@@ -28,7 +28,7 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr className={styles.product_info_wrapper}>
             <td className={styles.product_main_info_cell}>
               <div className={styles.product_image_wrapper}>
                 <div className={styles.product_image} style={{ backgroundImage: `url(${bgImageUrl})` }} />
