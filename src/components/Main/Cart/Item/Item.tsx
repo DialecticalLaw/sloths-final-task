@@ -6,6 +6,7 @@ import styles from './Item.module.css';
 import { useAppDispatch } from '../../../../store/hooks';
 import { useState } from 'react';
 import { Loader } from '../../Loader/Loader';
+import { formatForQuantityUpdate } from '../../../../helpers/formatForQuantityUpdate';
 
 export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   const dispatch = useAppDispatch();
@@ -49,17 +50,7 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
                     setIsUpdating(true);
                     try {
                       await dispatch(
-                        updateCart({
-                          ID: cart.id,
-                          version: cart.version,
-                          actions: [
-                            {
-                              action: 'changeLineItemQuantity',
-                              lineItemId: itemData.id,
-                              quantity: itemData.quantity + 1
-                            }
-                          ]
-                        })
+                        updateCart(formatForQuantityUpdate({ action: 'increment', cart, itemData }))
                       );
                     } catch (error) {
                       console.error(error);
@@ -82,17 +73,7 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
                     setIsUpdating(true);
                     try {
                       await dispatch(
-                        updateCart({
-                          ID: cart.id,
-                          version: cart.version,
-                          actions: [
-                            {
-                              action: 'changeLineItemQuantity',
-                              lineItemId: itemData.id,
-                              quantity: itemData.quantity - 1
-                            }
-                          ]
-                        })
+                        updateCart(formatForQuantityUpdate({ action: 'decrement', cart, itemData }))
                       );
                     } catch (error) {
                       console.error(error);
