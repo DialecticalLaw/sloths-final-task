@@ -26,7 +26,7 @@ export function Cart() {
               <table className={styles.product} key={index}>
                 <thead>
                   <tr>
-                    <th className={styles.product_prop}>Продукт</th>
+                    <th className={styles.product_prop}>Товар</th>
                     <th className={styles.product_prop}>Цена</th>
                     <th className={styles.product_prop}>Количество</th>
                     <th className={styles.product_prop}>Итого</th>
@@ -57,7 +57,7 @@ export function Cart() {
                     </td>
                     <td>+ 1 -</td>
                     <td>
-                      <p className={styles.total}>{formatPrice(item.quantity * (discountPrice || price))}</p>
+                      <p className={styles.total}>{formatPrice(item.totalPrice.centAmount)}</p>
                     </td>
                   </tr>
                 </tbody>
