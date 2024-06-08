@@ -7,6 +7,16 @@
   transition: 0.3s;
 }
 
+.product_loader {
+  z-index: 3;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: var(--dark-transparent-background);
+}
+
 .product::after,
 .product::before {
   content: '';
@@ -31,6 +41,10 @@
 .product::before {
   right: 0;
   transform: translateX(300%);
+}
+
+.product_table {
+  width: 100%;
 }
 
 .product_prop {
@@ -129,6 +143,11 @@
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.increment:active,
+.decrement:active {
+  transform: scale(0.9);
 }
 
 .decrement[disabled] {

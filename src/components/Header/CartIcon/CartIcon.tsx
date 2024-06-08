@@ -9,7 +9,7 @@ import { getCart } from '../../../api/cart/getCart';
 import { MiniLoader } from '../../Main/Loader/Loader';
 
 export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
-  const { cart, isLoading } = useAppSelector((state) => state.cart_slice);
+  const { cart, isLoadingGet } = useAppSelector((state) => state.cart_slice);
   const customerId = useAppSelector((state) => state.customer_slice.customerId);
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
     }
   }, [customerId, cart, dispatch]);
 
-  if (isLoading) return <MiniLoader />;
+  if (isLoadingGet) return <MiniLoader />;
 
   return (
     <NavLink to={'/cart'} className={styles.cart_link}>

@@ -5,13 +5,15 @@ import { updateCart } from '../../api/cart/updateCart';
 
 export interface CartSliceState {
   cart: Cart | null;
-  isLoading: boolean;
+  isLoadingGet: boolean;
+  isLoadingUpdate: boolean;
   errorMessage?: string;
 }
 
 const initialState: CartSliceState = {
   cart: null,
-  isLoading: false
+  isLoadingGet: false,
+  isLoadingUpdate: false
 };
 
 export const cartSlice = createSlice({
@@ -25,26 +27,26 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCart.pending, (state: CartSliceState) => {
-        state.isLoading = true;
+        state.isLoadingGet = true;
       })
       .addCase(getCart.fulfilled, (state: CartSliceState, action) => {
         state.cart = action.payload;
-        state.isLoading = false;
+        state.isLoadingGet = false;
       })
       .addCase(getCart.rejected, (state: CartSliceState, action) => {
         state.errorMessage = action.error.message;
-        state.isLoading = false;
+        state.isLoadingGet = false;
       })
       .addCase(updateCart.pending, (state: CartSliceState) => {
-        state.isLoading = true;
+        state.isLoadingUpdate = true;
       })
       .addCase(updateCart.fulfilled, (state: CartSliceState, action) => {
         state.cart = action.payload;
-        state.isLoading = false;
+        state.isLoadingUpdate = false;
       })
       .addCase(updateCart.rejected, (state: CartSliceState, action) => {
         state.errorMessage = action.error.message;
-        state.isLoading = false;
+        state.isLoadingUpdate = false;
       });
   }
 });

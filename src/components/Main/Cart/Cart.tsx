@@ -5,9 +5,8 @@ import { Loader } from '../Loader/Loader';
 import { Item } from './Item/Item';
 
 export function Cart() {
-  const { cart, isLoading, errorMessage } = useAppSelector((state) => state.cart_slice);
-  console.log(cart?.lineItems);
-  if (isLoading) return <Loader />;
+  const { cart, isLoadingGet, errorMessage } = useAppSelector((state) => state.cart_slice);
+  if (isLoadingGet) return <Loader />;
 
   return (
     <section>
