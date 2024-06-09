@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getProduct } from '../../../api/products/getProducts';
 import type { Product } from '@commercetools/platform-sdk';
 import { Loader } from '../Loader/Loader';
@@ -18,6 +18,7 @@ export function ProductDetail() {
   const [modalActive, setModalActive] = useState(true);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const planet = useAppSelector((state) => state.planet_slice.planet);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +65,7 @@ export function ProductDetail() {
       <button
         className={styles.link_back}
         onClick={() => {
-          window.history.back();
+          navigate(-1);
         }}
       >
         НАЗАД
