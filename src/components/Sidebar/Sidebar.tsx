@@ -27,6 +27,7 @@ export function Sidebar() {
     if (e.target instanceof HTMLInputElement) {
       const value = e.target.value as Planets;
       setVisibility(false);
+      localStorage.setItem('sloth-selectedPlanet', value);
       dispatch(setPlanet(value));
       navigation(`/catalog/${value}`);
       dispatch(setFilter(null));

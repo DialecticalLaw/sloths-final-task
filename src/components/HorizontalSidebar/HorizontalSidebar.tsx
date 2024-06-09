@@ -12,6 +12,7 @@ export function HorizontalSidebar() {
   const onPlanetClick: MouseEventHandler<HTMLInputElement> = (e) => {
     if (e.target instanceof HTMLInputElement) {
       const value = e.target.value as Planets;
+      localStorage.setItem('sloth-selectedPlanet', value);
       dispatch(setPlanet(value));
       navigation(`/catalog/${value}`);
       dispatch(setFilter(null));
@@ -20,8 +21,8 @@ export function HorizontalSidebar() {
 
   return (
     <div className={styles.sidebar}>
-      <h2 className={styles.home_page_subtitle}>КАТАЛОГ ТОВАРОВ С РАЗНЫХ ПЛАНЕТ</h2>
-      <form className={styles.form}>
+      <h2>КАТАЛОГ ТОВАРОВ С РАЗНЫХ ПЛАНЕТ</h2>
+      <form>
         <div className={styles.planet_list}>
           <div className={styles.catalog_item}>
             <label className={styles.planet_item}>
