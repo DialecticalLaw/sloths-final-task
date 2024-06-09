@@ -32,8 +32,7 @@ export function Filters() {
   }, [products, location.pathname]);
 
   const handleClick = (atr: Filter) => {
-    const newValue = atr.value === filter?.value ? null : atr.value;
-    dispatch(setFilter(newValue ? { type: atr.type, value: atr.value } : null));
+    dispatch(setFilter(atr.value === filter?.value ? null : { type: atr.type, value: atr.value }));
   };
 
   return (
@@ -44,7 +43,7 @@ export function Filters() {
             atr && (
               <label key={index} className={style.filter_item} onClick={() => handleClick(atr)}>
                 <input
-                  className={`${styles.checkbox} ${filter?.value === atr.value ? styles.checked : ''}`}
+                  className={styles.checkbox}
                   type="checkbox"
                   value={atr.value}
                   defaultChecked={filter.value === atr.value}
