@@ -23,9 +23,9 @@ export function Profile() {
   const [mode, setMode] = useState<ProfileMode>(ProfileMode.Default);
 
   if (isCustomerLoading) return <Loader />;
-  if (errorMessage) return <p>Упс... Что-то пошло не так: {errorMessage}</p>;
+  if (errorMessage || !customerData || !customerId) return <p>Упс... Что-то пошло не так: {errorMessage}</p>;
 
-  return customerData && customerId ? (
+  return (
     <div className={styles.profile}>
       {planet && <BgPlanets />}
       <div className={styles.profile_wrapper}>
@@ -73,7 +73,5 @@ export function Profile() {
         )}
       </div>
     </div>
-  ) : (
-    <p>Не найдены данные пользователя</p>
   );
 }
