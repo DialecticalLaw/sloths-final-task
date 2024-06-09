@@ -37,21 +37,17 @@ export function Filters() {
 
   return (
     <div className={style.filters}>
-      {attributes.length > 0 &&
-        attributes.map(
-          (atr, index) =>
-            atr && (
-              <label key={index} className={style.filter_item} onClick={() => handleClick(atr)}>
-                <input
-                  className={styles.checkbox}
-                  type="checkbox"
-                  value={atr.value}
-                  defaultChecked={filter.value === atr.value}
-                />
-                {atr.value}
-              </label>
-            )
-        )}
+      {attributes.map((atr, index) => (
+        <label key={index} className={style.filter_item} onClick={() => handleClick(atr)}>
+          <input
+            className={styles.checkbox}
+            type="checkbox"
+            value={atr.value}
+            defaultChecked={filter.value === atr.value}
+          />
+          {atr.value}
+        </label>
+      ))}
     </div>
   );
 }
