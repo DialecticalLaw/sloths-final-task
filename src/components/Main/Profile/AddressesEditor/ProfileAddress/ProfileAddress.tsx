@@ -12,6 +12,7 @@ import { getCustomer } from '../../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../../store/hooks';
 import { AddressLabels } from './AddressLabels/AddressLabels';
 import type { ProfileAddressProps } from '../../../Main.interfaces';
+import { useFormikContext } from 'formik';
 
 export function ProfileAddress({
   index,
@@ -22,6 +23,7 @@ export function ProfileAddress({
 }: ProfileAddressProps) {
   const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
+  const { resetForm } = useFormikContext();
   const isDisabled: boolean = isNew ? false : !isEditMode;
 
   return (
@@ -74,7 +76,12 @@ export function ProfileAddress({
           </Button>
           <Button
             onClick={() => {
-              setAddingAddress ? setAddingAddress(false) : setEditMode(false);
+              if (setAddingAddress) {
+                setAddingAddress(false);
+              } else {
+                resetForm();
+                setEditMode(false);
+              }
             }}
             classes={[styles.button]}
             minimal={true}
