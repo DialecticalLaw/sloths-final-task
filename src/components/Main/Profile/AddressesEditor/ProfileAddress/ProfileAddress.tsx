@@ -22,52 +22,50 @@ export function ProfileAddress({
 }: ProfileAddressProps) {
   const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
+  const isDisabled: boolean = isNew ? false : !isEditMode;
 
   return (
     <fieldset className={styles.address}>
       <legend className={styles.legend}>{isNew ? 'Новый адрес' : `Адрес ${(index || 0) + 1}`}</legend>
-      {!isNew && customerData && <AddressLabels customerData={customerData} addressId={addressId} />}
 
       {!isNew && customerData && (
-        <button
-          type="button"
-          className={styles.delete_btn}
-          onClick={() => {
-            const customerPromise: Promise<Customer> = updateSimpleData({
-              version: customerData.version,
-              ID: customerData.id,
-              actions: [
-                {
-                  action: 'removeAddress',
-                  addressId: addressId
-                }
-              ]
-            });
-            showToast({
-              promise: customerPromise,
-              pending: 'Удаляем...',
-              success: 'Адрес удалён!',
-              errorHandler: errorHandler
-            });
-            customerPromise.then(() => {
-              dispatch(getCustomer(customerData.id));
-            });
-          }}
-          title="Удалить адрес"
-        >
-          <img className={styles.delete_icon} src={deleteIcon} alt="delete" />
-        </button>
+        <>
+          <AddressLabels customerData={customerData} addressId={addressId} />
+          <button
+            type="button"
+            className={styles.delete_btn}
+            onClick={() => {
+              const customerPromise: Promise<Customer> = updateSimpleData({
+                version: customerData.version,
+                ID: customerData.id,
+                actions: [
+                  {
+                    action: 'removeAddress',
+                    addressId: addressId
+                  }
+                ]
+              });
+              showToast({
+                promise: customerPromise,
+                pending: 'Удаляем...',
+                success: 'Адрес удалён!',
+                errorHandler: errorHandler
+              });
+              customerPromise.then(() => {
+                dispatch(getCustomer(customerData.id));
+              });
+            }}
+            title="Удалить адрес"
+          >
+            <img className={styles.delete_icon} src={deleteIcon} alt="delete" />
+          </button>
+        </>
       )}
 
-      <CountrySelect disabled={isNew ? false : !isEditMode} name="country"></CountrySelect>
-      <Input disabled={isNew ? false : !isEditMode} name="city" type="text" placeholder="Город"></Input>
-      <Input disabled={isNew ? false : !isEditMode} name="street" type="text" placeholder="Улица"></Input>
-      <Input
-        disabled={isNew ? false : !isEditMode}
-        name="postalCode"
-        type="text"
-        placeholder="Почтовый индекс"
-      ></Input>
+      <CountrySelect disabled={isDisabled} name="country"></CountrySelect>
+      <Input disabled={isDisabled} name="city" type="text" placeholder="Город"></Input>
+      <Input disabled={isDisabled} name="street" type="text" placeholder="Улица"></Input>
+      <Input disabled={isDisabled} name="postalCode" type="text" placeholder="Почтовый индекс"></Input>
 
       {isEditMode || isNew ? (
         <div className={styles.buttons}>
