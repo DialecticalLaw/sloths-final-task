@@ -15,7 +15,7 @@ export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalActive, setModalActive] = useState(true);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const planet = useAppSelector((state) => state.planet_slice.planet);
 
@@ -43,12 +43,7 @@ export function ProductDetail() {
 
   const openModal = (index: number) => {
     setModalImageIndex(index);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalImageIndex(null);
+    setModalActive(true);
   };
 
   if (isLoading) {
@@ -65,49 +60,52 @@ export function ProductDetail() {
   const discountPrice = masterVariant?.prices ? masterVariant.prices[0]?.discounted?.value.centAmount : null;
 
   return (
-    <>
-      <div className={styles.product_wrapper}>
-        <button
-          className={styles.link_back}
-          onClick={() => {
-            window.history.back();
-          }}
-        >
-          НАЗАД
-        </button>
-        <div className={styles.product_detail}>
-          {planet && <BgPlanets />}
-          <h1 className={styles.product_name}>{name?.ru}</h1>
-          <div className={styles.images_gallery}>
-            <Carousel
-              className={styles.images_carousel}
-              centerMode={true}
-              centerSlidePercentage={100}
-              showArrows
-              showIndicators={false}
-              showStatus={false}
-              autoPlay={true}
-              infiniteLoop={true}
-              interval={5000}
-              stopOnHover
-              swipeable
-              useKeyboardArrows
-              thumbWidth={65}
-            >
-              {images.map((image, index) => (
-                <div key={image.url} className={styles.image_container} onClick={() => openModal(index)}>
-                  <img src={image.url} alt={image.label} className={styles.product_image} />
-                </div>
-              ))}
-            </Carousel>
-          </div>
-          <p className={styles.product_desc}>{description?.ru}</p>
-          <Price classes={[styles.product_price_wrapper]} price={price} discountPrice={discountPrice || ''} />
-          {isModalOpen && modalImageIndex !== null && (
-            <ImageModal images={images} startIndex={modalImageIndex} onClose={closeModal} />
-          )}
+    <div className={styles.product_wrapper}>
+      <button
+        className={styles.link_back}
+        onClick={() => {
+          window.history.back();
+        }}
+      >
+        НАЗАД
+      </button>
+      <div className={styles.product_detail}>
+        {planet && <BgPlanets />}
+        <h1 className={styles.product_name}>{name?.ru}</h1>
+        <div className={styles.images_gallery}>
+          <Carousel
+            className={styles.images_carousel}
+            centerMode={true}
+            centerSlidePercentage={100}
+            showArrows
+            showIndicators={false}
+            showStatus={false}
+            autoPlay={true}
+            infiniteLoop={true}
+            interval={5000}
+            stopOnHover
+            swipeable
+            useKeyboardArrows
+            thumbWidth={65}
+          >
+            {images.map((image, index) => (
+              <div key={image.url} className={styles.image_container} onClick={() => openModal(index)}>
+                <img src={image.url} alt={image.label} className={styles.product_image} />
+              </div>
+            ))}
+          </Carousel>
         </div>
+        <p className={styles.product_desc}>{description?.ru}</p>
+        <Price classes={[styles.product_price_wrapper]} price={price} discountPrice={discountPrice || ''} />
+        {modalActive && modalImageIndex !== null && (
+          <ImageModal
+            images={images}
+            startIndex={modalImageIndex}
+            active={modalActive}
+            setActive={setModalActive}
+          />
+        )}
       </div>
-    </>
+    </div>
   );
 }
