@@ -1,8 +1,8 @@
 import styles from './ProfileViewer.module.css';
 import avatarSrc from '../../../../assets/img/avatar.svg';
-import type { EditorProps } from '../../Main.interfaces';
+import type { Customer } from '@commercetools/platform-sdk';
 
-export function ProfileViewer({ customerData }: Partial<EditorProps>) {
+export function ProfileViewer({ customerData }: { customerData: Customer }) {
   return (
     <>
       <img src={avatarSrc} alt="avatar" className={styles.avatar} />

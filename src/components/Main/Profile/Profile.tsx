@@ -12,6 +12,7 @@ import passwordIcon from '../../../assets/img/change_password.svg';
 import addressIcon from '../../../assets/img/address.svg';
 import { Button } from '../../univComponents/Button/Button';
 import { BgPlanets } from '../../Sidebar/Bg-planets';
+import { ProfileMode } from '../Main.interfaces';
 
 export function Profile() {
   const { customerId, isCustomerLoading, customerData, errorMessage }: CustomerSliceState = useAppSelector(
@@ -19,11 +20,7 @@ export function Profile() {
   );
   const planet = useAppSelector((state) => state.planet_slice.planet);
 
-  const [editModes, setEditMode] = useState({
-    isPersonalEdit: false,
-    isAddressesEdit: false,
-    isPasswordEdit: false
-  });
+  const [mode, setMode] = useState<ProfileMode>(ProfileMode.Default);
 
   if (isCustomerLoading) return <Loader />;
   if (errorMessage) return <p>Упс... Что-то пошло не так: {errorMessage}</p>;
@@ -34,44 +31,28 @@ export function Profile() {
       <div className={styles.profile_wrapper}>
         <h1>Профиль</h1>
 
-        {editModes.isPersonalEdit ? (
-          <PersonalEditor setEditMode={setEditMode} customerData={customerData} />
-        ) : editModes.isAddressesEdit ? (
-          <AddressesEditor setEditMode={setEditMode} customerData={customerData} />
-        ) : editModes.isPasswordEdit ? (
-          <PasswordEditor setEditMode={setEditMode} customerData={customerData} />
-        ) : (
+        {mode === ProfileMode.PersonalEdit && (
+          <PersonalEditor setMode={setMode} customerData={customerData} />
+        )}
+
+        {mode === ProfileMode.AddressesEdit && (
+          <AddressesEditor setMode={setMode} customerData={customerData} />
+        )}
+
+        {mode === ProfileMode.PasswordEdit && (
+          <PasswordEditor setMode={setMode} customerData={customerData} />
+        )}
+
+        {mode === ProfileMode.Default && (
           <>
             <ProfileViewer customerData={customerData} />
-            <Button
-              onClick={() =>
-                setEditMode((editModes) => {
-                  return {
-                    ...editModes,
-                    isPersonalEdit: true
-                  };
-                })
-              }
-              classes={[styles.button]}
-              type="button"
-            >
+            <Button onClick={() => setMode(ProfileMode.PersonalEdit)} classes={[styles.button]} type="button">
               <>
                 Редактировать <img src={editIcon} alt="personal" className={styles.icon} />
               </>
             </Button>
 
-            <Button
-              classes={[styles.button]}
-              type="button"
-              onClick={() =>
-                setEditMode((editModes) => {
-                  return {
-                    ...editModes,
-                    isPasswordEdit: true
-                  };
-                })
-              }
-            >
+            <Button classes={[styles.button]} type="button" onClick={() => setMode(ProfileMode.PasswordEdit)}>
               <>
                 Изменить пароль
                 <img className={styles.icon} src={passwordIcon} alt="password" />
@@ -81,14 +62,7 @@ export function Profile() {
             <Button
               classes={[styles.button]}
               type="button"
-              onClick={() =>
-                setEditMode((editModes) => {
-                  return {
-                    ...editModes,
-                    isAddressesEdit: true
-                  };
-                })
-              }
+              onClick={() => setMode(ProfileMode.AddressesEdit)}
             >
               <>
                 Управление адресами
