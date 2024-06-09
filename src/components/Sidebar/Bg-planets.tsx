@@ -15,11 +15,9 @@ export function BgPlanets() {
   const srcSmall = planet === Planets.earth ? earthSmall : planet === Planets.mars ? marsSmall : venusSmall;
 
   return (
-    planet && (
-      <div className={styles.bg}>
-        <img src={srcBig} className={styles.planet_big} alt={'Planet'} />
-        <img src={srcSmall} className={styles.planet_small} alt={'Planet'} />
-      </div>
-    )
+    <div className={styles.bg}>
+      <img src={srcBig} className={styles.planet_big} alt={'Planet'} />
+      <img src={srcSmall} className={styles.planet_small} alt={'Planet'} />
+    </div>
   );
 }
