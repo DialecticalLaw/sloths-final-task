@@ -15,8 +15,8 @@ export function Cart() {
         <p className={styles.error_message}>Хм... {errorMessage}</p>
       ) : cart?.lineItems.length ? (
         <div className={styles.products_wrapper}>
-          {cart.lineItems.map((item: LineItem, index) => {
-            return <Item key={index} itemData={item} cart={cart} />;
+          {cart.lineItems.map((item: LineItem) => {
+            return <Item key={item.id} itemData={item} cart={cart} />;
           })}
         </div>
       ) : (
