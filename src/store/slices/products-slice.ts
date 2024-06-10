@@ -46,7 +46,7 @@ export const productsSlice = createSlice({
     };
 
     const setProducts = (state: ProductsSliceState, action: PayloadAction<ProductProjection[]>) => {
-      state.products = action.payload.map((product) => product);
+      state.products = action.payload;
       state.isProductsLoading = false;
     };
 
