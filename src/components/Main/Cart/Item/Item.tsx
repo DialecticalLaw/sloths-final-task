@@ -46,26 +46,6 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
             <td>
               <div className={styles.quantity_wrapper}>
                 <button
-                  onClick={async () => {
-                    setIsUpdating(true);
-                    try {
-                      await dispatch(
-                        updateCart(formatForQuantityUpdate({ action: 'increment', cart, itemData }))
-                      );
-                    } catch (error) {
-                      console.error(error);
-                      throw error;
-                    } finally {
-                      setIsUpdating(false);
-                    }
-                  }}
-                  type="button"
-                  className={styles.increment}
-                >
-                  +
-                </button>
-                <span className={styles.quantity}>{itemData.quantity}</span>
-                <button
                   type="button"
                   className={styles.decrement}
                   disabled={itemData.quantity < 2}
@@ -84,6 +64,26 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
                   }}
                 >
                   &ndash;
+                </button>
+                <span className={styles.quantity}>{itemData.quantity}</span>
+                <button
+                  onClick={async () => {
+                    setIsUpdating(true);
+                    try {
+                      await dispatch(
+                        updateCart(formatForQuantityUpdate({ action: 'increment', cart, itemData }))
+                      );
+                    } catch (error) {
+                      console.error(error);
+                      throw error;
+                    } finally {
+                      setIsUpdating(false);
+                    }
+                  }}
+                  type="button"
+                  className={styles.increment}
+                >
+                  +
                 </button>
               </div>
             </td>
