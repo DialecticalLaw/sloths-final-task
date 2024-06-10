@@ -16,7 +16,17 @@
   align-items: center;
   gap: 3rem;
   width: 100%;
-  max-width: 70vw;
+  max-width: 140rem;
   margin: 2rem auto 0 auto;
   padding: 2.5rem;
+}
+
+main:has(.cart) {
+  padding: 1rem;
+}
+
+@media screen and (max-width: 640px) {
+  .products_wrapper {
+    gap: 4rem;
+  }
 }

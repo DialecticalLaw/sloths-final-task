@@ -31,15 +31,16 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
     <div className={styles.product}>
       {isUpdating && <Loader classes={[styles.product_loader]} />}
       <table className={styles.product_table}>
-        <thead>
+        <thead className={styles.product_head}>
           <tr className={styles.product_props_wrapper}>
             <th className={styles.product_prop}>Товар</th>
+            <th className={styles.product_prop}>Название</th>
             <th className={styles.product_prop}>Цена</th>
             <th className={styles.product_prop}>Количество</th>
             <th className={styles.product_prop}>Итого</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={styles.product_body}>
           <tr className={styles.product_info_wrapper}>
             <td className={styles.product_main_info_cell}>
               <div className={styles.product_image_wrapper}>
@@ -48,6 +49,8 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
                   <img src={bgImageUrl} alt="glow" className={styles.product_image_glow} />
                 </div>
               </div>
+            </td>
+            <td>
               <p className={`${styles.product_name} ${discountPrice && styles.discount_name}`}>
                 {itemData.name.ru}
               </p>

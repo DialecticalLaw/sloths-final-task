@@ -227,7 +227,7 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 980px) {
   .product_table,
   .product_price_wrapper,
   .quantity {
@@ -256,7 +256,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 750px) {
   .product {
     box-shadow: inset 0 0 0.5rem 0.1rem #000000;
   }
@@ -276,61 +276,100 @@
   }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 640px) {
   .product {
-    width: 100%;
+    width: 90%;
     padding: 1rem;
   }
 
   .product_table {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
   }
 
   .product_prop {
-    position: relative;
     display: flex;
     align-items: center;
     height: 100%;
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     padding-left: 0;
-  }
-
-  .product_prop::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    height: 0.1rem;
   }
 
   .product_props_wrapper,
   .product_info_wrapper {
     display: grid;
-    align-items: center;
-    grid-template: repeat(4, 1fr) / 1fr;
+    grid-template: repeat(5, 1fr) / 1fr;
     height: 100%;
   }
 
+  .product td,
+  .product th {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product td::after,
+  .product th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff7c;
+    height: 0.1rem;
+  }
+
+  .product_head {
+    width: 50%;
+  }
+
+  .product_body {
+    width: 50%;
+  }
+
   .product_image_wrapper {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .increment,
+  .decrement {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 2.2rem;
   }
 
   .product_table,
   .product_price_wrapper,
   .quantity,
   .product_name {
-    word-break: break-all;
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .product_table {
+    gap: 1rem;
+  }
+
+  .product_prop {
+    font-size: 1.1rem;
+  }
+
+  .product_table,
+  .product_price_wrapper,
+  .quantity,
+  .product_name {
+    font-size: 1.3rem;
   }
 
   .increment,
   .decrement {
-    width: 1.6rem;
-    height: 1.6rem;
-    font-size: 1.2rem;
+    width: 2.3rem;
+    height: 2.3rem;
+    font-size: 2rem;
   }
 }

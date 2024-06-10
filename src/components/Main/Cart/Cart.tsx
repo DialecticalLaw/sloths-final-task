@@ -9,7 +9,7 @@ export function Cart() {
   if (isLoading) return <Loader />;
 
   return (
-    <section>
+    <section className={styles.cart}>
       <h1 className={styles.title}>Корзина</h1>
       {errorMessage ? (
         <p className={styles.error_message}>Хм... {errorMessage}</p>
