@@ -23,20 +23,13 @@ export function ProductDetail() {
   useEffect(() => {
     const fetchData = async () => {
       if (!productKey) {
-        setProduct(null);
         setIsLoading(false);
         return;
       }
       setIsLoading(true);
-      try {
-        const fetchedProduct = await getProduct(productKey);
-        setProduct(fetchedProduct || null);
-      } catch (error) {
-        console.error(error);
-        setProduct(null);
-      } finally {
-        setIsLoading(false);
-      }
+      const fetchedProduct = await getProduct(productKey);
+      setProduct(fetchedProduct || null);
+      setIsLoading(false);
     };
 
     fetchData();
@@ -52,7 +45,7 @@ export function ProductDetail() {
   }
 
   if (!product) {
-    return <div>Товар не найден</div>;
+    return <p className={styles.noproduct_message}>Таких товаров к нам еще не завезли...</p>;
   }
 
   const { name, description, masterVariant } = product.masterData.current;
