@@ -15,6 +15,18 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   const discountPrice = itemData.price.discounted?.value.centAmount;
   const bgImageUrl = itemData.variant?.images?.length ? itemData.variant.images[0].url : '';
 
+  const updateQuantity = async (action: 'increment' | 'decrement') => {
+    setIsUpdating(true);
+    try {
+      await dispatch(updateCart(formatForQuantityUpdate({ action, cart, itemData })));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   return (
     <div className={styles.product}>
       {isUpdating && <Loader classes={[styles.product_loader]} />}
@@ -49,36 +61,16 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
                   type="button"
                   className={styles.decrement}
                   disabled={itemData.quantity < 2}
-                  onClick={async () => {
-                    setIsUpdating(true);
-                    try {
-                      await dispatch(
-                        updateCart(formatForQuantityUpdate({ action: 'decrement', cart, itemData }))
-                      );
-                    } catch (error) {
-                      console.error(error);
-                      throw error;
-                    } finally {
-                      setIsUpdating(false);
-                    }
+                  onClick={() => {
+                    updateQuantity('decrement');
                   }}
                 >
                   &ndash;
                 </button>
                 <span className={styles.quantity}>{itemData.quantity}</span>
                 <button
-                  onClick={async () => {
-                    setIsUpdating(true);
-                    try {
-                      await dispatch(
-                        updateCart(formatForQuantityUpdate({ action: 'increment', cart, itemData }))
-                      );
-                    } catch (error) {
-                      console.error(error);
-                      throw error;
-                    } finally {
-                      setIsUpdating(false);
-                    }
+                  onClick={() => {
+                    updateQuantity('increment');
                   }}
                   type="button"
                   className={styles.increment}
