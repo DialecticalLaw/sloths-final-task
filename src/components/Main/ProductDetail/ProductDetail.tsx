@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProduct } from '../../../api/products/getProducts';
 import type { Product } from '@commercetools/platform-sdk';
-import { Loader } from '../Loader/Loader';
+import { Loader, MiniLoader } from '../Loader/Loader';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './ProductDetail.module.css';
 import { BgPlanets } from '../../Sidebar/Bg-planets';
-import { useAppSelector } from '../../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { ImageModal } from './ImageModal/ImageModal';
 import { Price } from '../../univComponents/Price/Price';
+import { updateCart } from '../../../api/cart/updateCart';
+import { createCart } from '../../../api/cart/createCart';
+import { Button } from '../../univComponents/Button/Button';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
@@ -18,6 +21,10 @@ export function ProductDetail() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const planet = useAppSelector((state) => state.planet_slice.planet);
+  const { cart } = useAppSelector((state) => state.cart_slice);
+  const dispatch = useAppDispatch();
+  const [isInCart, setIsInCart] = useState(false);
+  const [isCartLoading, setIsCartLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +48,13 @@ export function ProductDetail() {
     fetchData();
   }, [productKey]);
 
+  useEffect(() => {
+    if (cart && product) {
+      const isProductInCart = cart.lineItems.some((item) => item.productId === product.id);
+      setIsInCart(isProductInCart);
+    }
+  }, [cart, product]);
+
   const openModal = (index: number) => {
     setModalImageIndex(index);
     setIsModalOpen(true);
@@ -49,6 +63,37 @@ export function ProductDetail() {
   const closeModal = () => {
     setIsModalOpen(false);
     setModalImageIndex(null);
+  };
+
+  const addToCart = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    setIsCartLoading(true);
+
+    try {
+      if (!cart) {
+        const newCart = await createCart();
+        await dispatch(
+          updateCart({
+            actions: [{ action: 'addLineItem', quantity: 1, productId: product?.id }],
+            version: newCart.version,
+            ID: newCart.id
+          })
+        );
+      } else {
+        await dispatch(
+          updateCart({
+            actions: [{ action: 'addLineItem', quantity: 1, productId: product?.id }],
+            version: cart.version,
+            ID: cart.id
+          })
+        );
+      }
+      setIsInCart(true);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    } finally {
+      setIsCartLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -103,6 +148,28 @@ export function ProductDetail() {
           </div>
           <p className={styles.product_desc}>{description?.ru}</p>
           <Price classes={[styles.product_price_wrapper]} price={price} discountPrice={discountPrice || ''} />
+          <div className={styles.button_wrapper}>
+            <Button
+              minimal
+              type="button"
+              classes={[styles.cart_button]}
+              disabled={isInCart || isCartLoading}
+              onClick={addToCart}
+            >
+              {isCartLoading ? <MiniLoader /> : isInCart ? 'В корзине' : 'Добавить в корзину'}
+            </Button>
+            {isInCart && (
+              <Button
+                minimal
+                type="button"
+                classes={[styles.cart_button]}
+                disabled={isCartLoading}
+                onClick={() => setIsInCart(false)}
+              >
+                {isCartLoading ? <MiniLoader /> : 'Удалить из корзины'}
+              </Button>
+            )}
+          </div>
           {isModalOpen && modalImageIndex !== null && (
             <ImageModal images={images} startIndex={modalImageIndex} onClose={closeModal} />
           )}
