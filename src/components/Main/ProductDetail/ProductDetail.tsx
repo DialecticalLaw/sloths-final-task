@@ -7,12 +7,11 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './ProductDetail.module.css';
 import { BgPlanets } from '../../Sidebar/Bg-planets';
-import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { useAppSelector } from '../../../store/hooks';
 import { ImageModal } from './ImageModal/ImageModal';
 import { Price } from '../../univComponents/Price/Price';
-import { updateCart } from '../../../api/cart/updateCart';
-import { createCart } from '../../../api/cart/createCart';
 import { Button } from '../../univComponents/Button/Button';
+import { useCart } from '../../../helpers/useCart';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
@@ -21,10 +20,9 @@ export function ProductDetail() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const planet = useAppSelector((state) => state.planet_slice.planet);
-  const { cart } = useAppSelector((state) => state.cart_slice);
-  const dispatch = useAppDispatch();
+
+  const { cart, isCartLoading, addToCart } = useCart();
   const [isInCart, setIsInCart] = useState(false);
-  const [isCartLoading, setIsCartLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,34 +63,11 @@ export function ProductDetail() {
     setModalImageIndex(null);
   };
 
-  const addToCart = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation();
-    setIsCartLoading(true);
-
-    try {
-      if (!cart) {
-        const newCart = await createCart();
-        await dispatch(
-          updateCart({
-            actions: [{ action: 'addLineItem', quantity: 1, productId: product?.id }],
-            version: newCart.version,
-            ID: newCart.id
-          })
-        );
-      } else {
-        await dispatch(
-          updateCart({
-            actions: [{ action: 'addLineItem', quantity: 1, productId: product?.id }],
-            version: cart.version,
-            ID: cart.id
-          })
-        );
-      }
+  const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (product) {
+      e.stopPropagation();
+      await addToCart(product.id);
       setIsInCart(true);
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-    } finally {
-      setIsCartLoading(false);
     }
   };
 
@@ -154,7 +129,7 @@ export function ProductDetail() {
               type="button"
               classes={[styles.cart_button]}
               disabled={isInCart || isCartLoading}
-              onClick={addToCart}
+              onClick={handleAddToCart}
             >
               {isCartLoading ? <MiniLoader /> : isInCart ? 'В корзине' : 'Добавить в корзину'}
             </Button>
