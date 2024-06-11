@@ -13,6 +13,7 @@ import { showToast } from '../../../../helpers/showToast';
 import { errorHandler } from '../../../../helpers/errorHandler';
 import { getCustomer } from '../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../store/hooks';
+import { NewAddress } from './NewAddress';
 
 export function AddressesEditor({ customerData, setMode }: EditorProps) {
   const dispatch = useAppDispatch();
@@ -36,45 +37,11 @@ export function AddressesEditor({ customerData, setMode }: EditorProps) {
       </Button>
 
       {isAddingAddress && (
-        <Formik
-          initialValues={{
-            country: 'RU',
-            city: '',
-            street: '',
-            postalCode: ''
-          }}
-          onSubmit={(values: Omit<BillingAddress, 'isDefault'>) => {
-            const customerPromise: Promise<Customer> = updateSimpleData({
-              version: customerData.version,
-              ID: customerData.id,
-              actions: [
-                {
-                  action: 'addAddress',
-                  address: {
-                    country: values.country,
-                    city: values.city,
-                    streetName: values.street,
-                    postalCode: values.postalCode
-                  }
-                }
-              ]
-            });
-            showToast({
-              promise: customerPromise,
-              pending: 'Добавляем...',
-              success: 'Адрес добавлен!',
-              errorHandler: errorHandler
-            });
-            customerPromise.then(() => {
-              dispatch(getCustomer(customerData.id));
-            });
-          }}
-          validationSchema={AddressSchema}
-        >
-          <Form className={styles.address_form}>
-            <ProfileAddress isNew={true} setAddingAddress={setAddingAddress} />
-          </Form>
-        </Formik>
+        <NewAddress
+          customerData={customerData}
+          setAddingAddress={setAddingAddress}
+          formStyles={styles.address_form}
+        />
       )}
 
       {!addresses.length ? (
