@@ -8,7 +8,6 @@ import { Loader } from '../Loader/Loader';
 import { PasswordEditor } from './PasswordEditor/PasswordEditor';
 import { AddressesEditor } from './AddressesEditor/AddressesEditor';
 import { Button } from '../../univComponents/Button/Button';
-import { BgPlanets } from '../../Sidebar/Bg-planets';
 import { ProfileMode } from '../Main.interfaces';
 import { setProfileModeButtons } from '../../../helpers/profileConfig';
 
@@ -16,7 +15,6 @@ export function Profile() {
   const { customerId, isCustomerLoading, customerData, errorMessage }: CustomerSliceState = useAppSelector(
     (state) => state.customer_slice
   );
-  const planet = useAppSelector((state) => state.planet_slice.planet);
 
   const [mode, setMode] = useState<ProfileMode>(ProfileMode.Default);
 
@@ -31,7 +29,6 @@ export function Profile() {
 
   return (
     <div className={styles.profile}>
-      {planet && <BgPlanets />}
       <div className={styles.profile_wrapper}>
         <h1>Профиль</h1>
 
