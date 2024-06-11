@@ -1,6 +1,7 @@
 import type { Customer, ProductProjection } from '@commercetools/platform-sdk';
 import type { Planets } from '../../store/slices/planet-slice';
 import type { Subcategories } from '../../helpers/translationMapper';
+import type { AddressesActions } from '../../helpers/helpers.interfaces';
 
 export interface StringObj {
   [key: string]: string;
@@ -90,4 +91,13 @@ export enum ProfileMode {
   PersonalEdit,
   AddressesEdit,
   PasswordEdit
+}
+
+export type AddressType = 'shipping' | 'billing' | 'defaultShipping' | 'defaultBilling';
+
+export interface AddressFlag {
+  action: AddressesActions;
+  checked: boolean;
+  styles: string[];
+  addressId?: string;
 }
