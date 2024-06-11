@@ -34,6 +34,7 @@ export function AddressesEditor({ customerData, setMode }: EditorProps) {
       <Button onClick={() => setAddingAddress(true)} classes={[styles.add_address_btn]} type="button">
         Добавить адрес
       </Button>
+
       {isAddingAddress && (
         <Formik
           initialValues={{

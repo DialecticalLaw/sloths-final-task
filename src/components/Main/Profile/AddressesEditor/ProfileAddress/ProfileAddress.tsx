@@ -4,15 +4,11 @@ import { Input } from '../../../../univComponents/CustomForm/Input/Input';
 import { CountrySelect } from '../../../../univComponents/CustomForm/RegisterAddress/CountrySelect/CountrySelect';
 import deleteIcon from '../../../../../assets/img/delete.svg';
 import styles from './ProfileAddress.module.css';
-import { updateSimpleData } from '../../../../../api/customers/updateSimpleData';
-import type { Customer } from '@commercetools/platform-sdk';
-import { showToast } from '../../../../../helpers/showToast';
-import { errorHandler } from '../../../../../helpers/errorHandler';
-import { getCustomer } from '../../../../../api/customers/getCustomer';
 import { useAppDispatch } from '../../../../../store/hooks';
 import { AddressLabels } from './AddressLabels/AddressLabels';
 import type { ProfileAddressProps } from '../../../Main.interfaces';
 import { useFormikContext } from 'formik';
+import { updateAddress } from '../../../../../helpers/updateAddress';
 
 export function ProfileAddress({
   index,
@@ -37,24 +33,12 @@ export function ProfileAddress({
             type="button"
             className={styles.delete_btn}
             onClick={() => {
-              const customerPromise: Promise<Customer> = updateSimpleData({
+              updateAddress({
+                action: 'removeAddress',
+                addressId,
                 version: customerData.version,
-                ID: customerData.id,
-                actions: [
-                  {
-                    action: 'removeAddress',
-                    addressId: addressId
-                  }
-                ]
-              });
-              showToast({
-                promise: customerPromise,
-                pending: 'Удаляем...',
-                success: 'Адрес удалён!',
-                errorHandler: errorHandler
-              });
-              customerPromise.then(() => {
-                dispatch(getCustomer(customerData.id));
+                customerId: customerData.id,
+                dispatch
               });
             }}
             title="Удалить адрес"

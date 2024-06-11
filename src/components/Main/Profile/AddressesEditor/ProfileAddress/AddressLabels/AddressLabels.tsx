@@ -1,7 +1,7 @@
 import type { Customer } from '@commercetools/platform-sdk';
 import styles from './AddressLabels.module.css';
 import { useAppDispatch } from '../../../../../../store/hooks';
-import { updateAddressType } from '../../../../../../helpers/updateAddressType';
+import { updateAddress } from '../../../../../../helpers/updateAddress';
 import { Hint } from '../../../../../univComponents/Hint/Hint';
 import { hints } from '../../../../../../helpers/profileConfig';
 import type { AddressFlag, AddressType } from '../../../../Main.interfaces';
@@ -52,7 +52,7 @@ export function AddressLabels({ customerData, addressId }: { customerData: Custo
           <Hint key={hint.text} hint={hint.text}>
             <input
               onClick={() => {
-                updateAddressType({
+                updateAddress({
                   action: addressFlags[hint.type].action,
                   addressId: addressFlags[hint.type].addressId,
                   version: customerData?.version,
