@@ -148,7 +148,7 @@
   cursor: default;
   pointer-events: none;
   background-color: var(--accent-color-light);
-  opacity: 0.5;
+  opacity: 0.9;
 }
 
 @media (hover: hover) and (pointer: fine) {
