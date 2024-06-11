@@ -16,9 +16,9 @@ export async function updatePassword({
         .post({
           body: {
             id: ID,
-            version: version,
-            currentPassword: currentPassword,
-            newPassword: newPassword
+            version,
+            currentPassword,
+            newPassword
           }
         })
         .execute()
