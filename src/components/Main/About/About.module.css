@@ -1,0 +1,33 @@
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: url('../../../assets/img/bg-planet.jpg') no-repeat bottom;
+  background-size: cover;
+}
+.people {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+}
+.astronaut {
+  display: flex;
+  width: 8rem;
+  cursor: pointer;
+  transition: ease-in 300ms;
+}
+
+.astronaut img {
+  width: 100%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .astronaut:hover {
+    scale: 1.2;
+  }
+}
