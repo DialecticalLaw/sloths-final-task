@@ -8,7 +8,7 @@
   padding: 0.5rem;
   background-color: var(--bg-color);
   text-align: center;
-  box-shadow: inset 0 0 1rem 0.1rem #000000;
+  box-shadow: 0 0 1rem 0.1rem #000000;
   transition: 0.5s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
@@ -91,7 +91,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   clip-path: polygon(20% 0%, 100% 0, 100% 20%, 100% 80%, 80% 100%, 0 100%, 0% 80%, 0% 20%);
-  transition: 0.3s;
 }
 
 .product_image_glow_wrapper {
@@ -99,7 +98,6 @@
   width: 103%;
   height: 103%;
   filter: blur(0.5rem);
-  transition: 0.3s;
 }
 
 .product_image_glow {
@@ -190,7 +188,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .product:hover {
-    box-shadow: inset 0 0 1.2rem 0.1rem var(--accent-color-light);
+    box-shadow: 0 0 1.2rem 0.1rem var(--accent-color-light);
   }
 
   .product:hover .left_line,
@@ -314,7 +312,7 @@
 
 @media screen and (max-width: 750px) {
   .product {
-    box-shadow: inset 0 0 0.5rem 0.1rem #000000;
+    box-shadow: 0 0 0.5rem 0.1rem #000000;
   }
 
   .left_line_wrapper,
