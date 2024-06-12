@@ -1,5 +1,9 @@
 .product {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   padding: 0.5rem;
   text-align: center;
@@ -153,6 +157,10 @@
 .decrement[disabled] {
   pointer-events: none;
   opacity: 0.3;
+}
+
+.delete_product_btn {
+  margin: 1rem 0 0.5rem 0;
 }
 
 @media (hover: hover) and (pointer: fine) {

@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../../store/hooks';
 import { useState } from 'react';
 import { Loader } from '../../Loader/Loader';
 import { formatForQuantityUpdate } from '../../../../helpers/formatForQuantityUpdate';
+import { Button } from '../../../univComponents/Button/Button';
 
 export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   const dispatch = useAppDispatch();
@@ -88,6 +89,9 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
           </tr>
         </tbody>
       </table>
+      <Button classes={[styles.delete_product_btn]} minimal type="button">
+        Удалить из корзины
+      </Button>
     </div>
   );
 }
