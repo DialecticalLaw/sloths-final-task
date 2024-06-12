@@ -32,6 +32,13 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   return (
     <div className={styles.product}>
       {isUpdating && <Loader classes={[styles.product_loader]} />}
+      <div className={styles.left_line_wrapper}>
+        <div className={styles.left_line}></div>
+      </div>
+      <div className={styles.right_line_wrapper}>
+        <div className={styles.right_line}></div>
+      </div>
+
       <button
         onClick={() => updateQuantity('remove')}
         title="Удалить из корзины"
