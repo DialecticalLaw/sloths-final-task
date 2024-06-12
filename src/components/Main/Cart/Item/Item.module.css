@@ -159,8 +159,20 @@
   opacity: 0.3;
 }
 
-.delete_product_btn {
-  margin: 1rem 0 0.5rem 0;
+.delete_btn {
+  position: absolute;
+  right: -2rem;
+  top: -2rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.delete_icon {
+  width: 4rem;
+  height: 4rem;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -191,6 +203,10 @@
   .decrement:hover {
     outline-color: #ff0000;
     color: #ff0000;
+  }
+
+  .delete_btn:hover {
+    transform: scale(1.15);
   }
 }
 

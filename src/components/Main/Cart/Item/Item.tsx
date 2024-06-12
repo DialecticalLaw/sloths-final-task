@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../../../store/hooks';
 import { useState } from 'react';
 import { Loader } from '../../Loader/Loader';
 import { formatForQuantityUpdate } from '../../../../helpers/formatForQuantityUpdate';
-import { Button } from '../../../univComponents/Button/Button';
+import deleteIcon from '../../../../assets/img/delete.svg';
 
 export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   const dispatch = useAppDispatch();
@@ -31,6 +31,9 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   return (
     <div className={styles.product}>
       {isUpdating && <Loader classes={[styles.product_loader]} />}
+      <button title="Удалить из корзины" className={styles.delete_btn} type="button">
+        <img className={styles.delete_icon} src={deleteIcon} alt="delete" />
+      </button>
       <table className={styles.product_table}>
         <thead className={styles.product_head}>
           <tr className={styles.product_props_wrapper}>
@@ -89,9 +92,6 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
           </tr>
         </tbody>
       </table>
-      <Button classes={[styles.delete_product_btn]} minimal type="button">
-        Удалить из корзины
-      </Button>
     </div>
   );
 }
