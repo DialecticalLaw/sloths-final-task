@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Loader } from '../../Loader/Loader';
 import { formatForQuantityUpdate } from '../../../../helpers/formatForQuantityUpdate';
 import deleteIcon from '../../../../assets/img/delete.svg';
+import { productHeaders } from '../../../../helpers/cartConfig';
 
 export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
   const dispatch = useAppDispatch();
@@ -43,11 +44,13 @@ export function Item({ itemData, cart }: { itemData: LineItem; cart: Cart }) {
       <table className={styles.product_table}>
         <thead className={styles.product_head}>
           <tr className={styles.product_props_wrapper}>
-            <th className={styles.product_prop}>Товар</th>
-            <th className={styles.product_prop}>Название</th>
-            <th className={styles.product_prop}>Цена</th>
-            <th className={styles.product_prop}>Количество</th>
-            <th className={styles.product_prop}>Итого</th>
+            {productHeaders.map((header) => {
+              return (
+                <th key={header} className={styles.product_prop}>
+                  {header}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody className={styles.product_body}>
