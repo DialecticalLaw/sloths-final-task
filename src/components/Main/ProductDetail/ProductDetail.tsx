@@ -68,7 +68,7 @@ export function ProductDetail() {
   const { name, description, masterVariant } = product.masterData.current;
   const images = masterVariant?.images || [];
   const price = masterVariant?.prices ? masterVariant.prices[0]?.value.centAmount : null;
-  const discountPrice = masterVariant?.prices ? masterVariant.prices[0]?.discounted?.value.centAmount : null;
+  const discountPrice = masterVariant?.prices ? masterVariant.prices[0]?.discounted?.value.centAmount : '';
 
   return (
     <div className={styles.product_wrapper}>
@@ -106,7 +106,7 @@ export function ProductDetail() {
           </Carousel>
         </div>
         <p className={styles.product_desc}>{description?.ru}</p>
-        <Price classes={[styles.product_price_wrapper]} price={price} discountPrice={discountPrice || ''} />
+        <Price classes={[styles.product_price_wrapper]} price={price} discountPrice={discountPrice} />
         <div className={styles.button_wrapper}>
           <Button
             minimal
