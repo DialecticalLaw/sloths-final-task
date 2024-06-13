@@ -5,6 +5,7 @@ export function About() {
   const astronauts = ['Валерия', 'Денис', 'Наталья'];
   return (
     <section className={styles.bg}>
+      <h1 className={styles.title}>О нас</h1>
       <ul className={styles.people}>
         {astronauts.map((astronaut) => {
           return (
