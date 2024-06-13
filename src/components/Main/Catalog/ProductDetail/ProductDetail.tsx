@@ -10,7 +10,6 @@ import { ImageModal } from './ImageModal/ImageModal';
 import { Price } from '../../../univComponents/Price/Price';
 import { Button } from '../../../univComponents/Button/Button';
 import { useCart } from '../../../../helpers/useCart';
-import { showToast } from '../../../../helpers/showToast';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
@@ -64,10 +63,6 @@ export function ProductDetail() {
       try {
         await updateQuantity('remove', itemData);
         setIsInCart(false);
-        showToast({
-          type: 'success',
-          text: 'Товар удален из корзины'
-        });
       } catch (error) {
         console.error('Error removing from cart:', error);
       }
