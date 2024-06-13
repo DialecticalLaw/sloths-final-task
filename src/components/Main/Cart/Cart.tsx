@@ -23,7 +23,7 @@ export function Cart() {
       {cart?.lineItems.length ? (
         <div className={styles.products_wrapper}>
           {cart.lineItems.map((item: LineItem) => {
-            return <Item key={item.id} itemData={item} cart={cart} />;
+            return <Item key={item.id} itemData={item} />;
           })}
         </div>
       ) : (

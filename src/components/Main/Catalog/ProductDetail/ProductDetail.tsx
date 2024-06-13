@@ -19,7 +19,7 @@ export function ProductDetail() {
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  const { cart, isCartLoading, addToCart, removeFromCart } = useCart();
+  const { cart, isCartLoading, updateQuantity, addToCart } = useCart();
   const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
@@ -49,9 +49,8 @@ export function ProductDetail() {
     setModalActive(true);
   };
 
-  const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleAddToCart = async () => {
     if (product) {
-      e.stopPropagation();
       await addToCart(product.id);
       setIsInCart(true);
     }
@@ -62,12 +61,10 @@ export function ProductDetail() {
       const itemData = cart.lineItems.find((item) => item.productId === product.id);
       if (!itemData) return;
       try {
-        await removeFromCart(itemData.id);
+        await updateQuantity('remove', itemData);
         setIsInCart(false);
       } catch (error) {
         console.error('Error removing from cart:', error);
-      } finally {
-        // setIsCartLoading(false);
       }
     }
   };
