@@ -18,6 +18,7 @@ export function ProductDetail() {
   const [modalActive, setModalActive] = useState(true);
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const navigate = useNavigate();
+
   const { cart, isCartLoading, addToCart } = useCart();
   const [isInCart, setIsInCart] = useState(false);
 
