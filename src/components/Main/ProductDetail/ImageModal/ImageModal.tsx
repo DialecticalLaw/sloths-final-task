@@ -8,7 +8,7 @@ export function ImageModal({ images, startIndex, active, setActive }: ImageModal
   const [closing, setClosing] = useState(false);
 
   const handleAnimationEnd: React.AnimationEventHandler<HTMLDivElement> = (event) => {
-    if (event.animationName === '_close-stripe_jln8z_1') {
+    if (event.animationName === styles['close-stripe']) {
       setActive(false);
     }
   };
