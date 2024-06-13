@@ -19,6 +19,32 @@ export function NewAddress({
   formStyles: string;
 }) {
   const dispatch = useAppDispatch();
+  const handleSubmit = (values: Omit<BillingAddress, 'isDefault'>) => {
+    const customerPromise: Promise<Customer> = updateSimpleData({
+      version: customerData.version,
+      ID: customerData.id,
+      actions: [
+        {
+          action: 'addAddress',
+          address: {
+            country: values.country,
+            city: values.city,
+            streetName: values.street,
+            postalCode: values.postalCode
+          }
+        }
+      ]
+    });
+    showToast({
+      promise: customerPromise,
+      pending: 'Добавляем...',
+      success: 'Адрес добавлен!',
+      errorHandler: errorHandler
+    });
+    customerPromise.then(() => {
+      dispatch(getCustomer(customerData.id));
+    });
+  };
 
   return (
     <Formik
@@ -28,32 +54,7 @@ export function NewAddress({
         street: '',
         postalCode: ''
       }}
-      onSubmit={(values: Omit<BillingAddress, 'isDefault'>) => {
-        const customerPromise: Promise<Customer> = updateSimpleData({
-          version: customerData.version,
-          ID: customerData.id,
-          actions: [
-            {
-              action: 'addAddress',
-              address: {
-                country: values.country,
-                city: values.city,
-                streetName: values.street,
-                postalCode: values.postalCode
-              }
-            }
-          ]
-        });
-        showToast({
-          promise: customerPromise,
-          pending: 'Добавляем...',
-          success: 'Адрес добавлен!',
-          errorHandler: errorHandler
-        });
-        customerPromise.then(() => {
-          dispatch(getCustomer(customerData.id));
-        });
-      }}
+      onSubmit={handleSubmit}
       validationSchema={AddressSchema}
     >
       <Form className={formStyles}>
