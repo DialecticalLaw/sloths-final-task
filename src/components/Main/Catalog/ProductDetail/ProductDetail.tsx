@@ -19,7 +19,7 @@ export function ProductDetail() {
   const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  const { cart, isCartLoading, addToCart } = useCart();
+  const { cart, isCartLoading, addToCart, removeFromCart } = useCart();
   const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
@@ -54,6 +54,21 @@ export function ProductDetail() {
       e.stopPropagation();
       await addToCart(product.id);
       setIsInCart(true);
+    }
+  };
+
+  const handleRemoveFromCart = async () => {
+    if (cart && product) {
+      const itemData = cart.lineItems.find((item) => item.productId === product.id);
+      if (!itemData) return;
+      try {
+        await removeFromCart(itemData.id);
+        setIsInCart(false);
+      } catch (error) {
+        console.error('Error removing from cart:', error);
+      } finally {
+        // setIsCartLoading(false);
+      }
     }
   };
 
@@ -123,7 +138,7 @@ export function ProductDetail() {
               type="button"
               classes={[styles.cart_button]}
               disabled={isCartLoading}
-              onClick={() => setIsInCart(false)}
+              onClick={handleRemoveFromCart}
             >
               {isCartLoading ? <MiniLoader /> : 'Удалить из корзины'}
             </Button>
