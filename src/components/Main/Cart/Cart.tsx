@@ -30,7 +30,7 @@ export function Cart() {
           </div>
           <div className={styles.cart_total}>
             <p>Цена товаров в корзине: {formatPrice(cart.totalPrice.centAmount)}</p>
-            <p>Количество уникальных товаров: {cart.totalLineItemQuantity}</p>
+            <p>Общее количество: {cart.totalLineItemQuantity}</p>
           </div>
         </div>
       ) : (
