@@ -4,6 +4,7 @@ import styles from './Cart.module.css';
 import { Loader } from '../Loader/Loader';
 import { Item } from './Item/Item';
 import { formatPrice } from '../../../helpers/formatPrice';
+import { HorizontalSidebar } from '../../HorizontalSidebar/HorizontalSidebar';
 
 export function Cart() {
   const { cart, isLoading, errorMessage } = useAppSelector((state) => state.cart_slice);
@@ -12,7 +13,10 @@ export function Cart() {
     return (
       <section className={styles.cart}>
         <h1 className={styles.title}>Корзина</h1>
-        <p className={styles.error_message}>Хм... {errorMessage}</p>
+        <p className={styles.error_message}>
+          Хм... {errorMessage}
+          <HorizontalSidebar />
+        </p>
       </section>
     );
   }
@@ -36,6 +40,7 @@ export function Cart() {
       ) : (
         <p className={styles.empty_message}>
           Корзина пуста... Но космос бесконечен, и так же бесконечны возможности для покупок!
+          <HorizontalSidebar />
         </p>
       )}
     </section>
