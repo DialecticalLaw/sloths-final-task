@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './ImageModal.module.css';
-import { Button } from '../../../univComponents/Button/Button';
-import type { ImageModalProps } from '../../Main.interfaces';
+import { Button } from '../../../../univComponents/Button/Button';
+import type { ImageModalProps } from '../../../Main.interfaces';
 import { Carousel } from 'react-responsive-carousel';
 
 const animationTime = 500;

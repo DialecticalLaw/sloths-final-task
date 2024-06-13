@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProduct } from '../../../api/products/getProducts';
+import { getProduct } from '../../../../api/products/getProducts';
 import type { Product } from '@commercetools/platform-sdk';
-import { Loader, MiniLoader } from '../Loader/Loader';
+import { Loader, MiniLoader } from '../../Loader/Loader';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './ProductDetail.module.css';
 import { ImageModal } from './ImageModal/ImageModal';
-import { Price } from '../../univComponents/Price/Price';
-import { Button } from '../../univComponents/Button/Button';
-import { useCart } from '../../../helpers/useCart';
+import { Price } from '../../../univComponents/Price/Price';
+import { Button } from '../../../univComponents/Button/Button';
+import { useCart } from '../../../../helpers/useCart';
 
 export function ProductDetail() {
   const { productKey } = useParams<{ productKey: string }>();
