@@ -2,6 +2,8 @@ import styles from './About.module.css';
 import { Carousel } from 'react-responsive-carousel';
 import { Modal } from '../../Modal/Modal';
 import type { MemberProps } from '../Main.interfaces';
+import { Link } from 'react-router-dom';
+import githubLogo from '../../../assets/img/github-logo-white.svg';
 
 export function Member({ member, onClose }: MemberProps) {
   return (
@@ -17,7 +19,6 @@ export function Member({ member, onClose }: MemberProps) {
           stopOnHover
           swipeable
           showThumbs={false}
-          className={styles.carousel}
         >
           {member.photos.map((photo, index) => (
             <img
@@ -28,7 +29,10 @@ export function Member({ member, onClose }: MemberProps) {
             />
           ))}
         </Carousel>
-        <h1 className={styles.member_name}>{member.name}</h1>
+        <h1>{member.name}</h1>
+        <Link to={member.gitHub} target={'_blank'} className={styles.link}>
+          <img src={githubLogo} alt={'github'} />
+        </Link>
       </div>
       <div className={styles.desc_wrapper}>
         <div className={styles.member_description}>{member.description}</div>

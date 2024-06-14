@@ -7,6 +7,7 @@ export interface MemberData {
   name: string;
   description: ReactNode;
   photos: string[];
+  gitHub: string;
 }
 const NataliaDescription = (
   <>
@@ -61,16 +62,19 @@ export const members: MemberData[] = [
   {
     name: 'Валерия',
     description: LeraDescription,
-    photos: [LeraPhoto, LeraReal]
+    photos: [LeraPhoto, LeraReal],
+    gitHub: 'https://github.com/ValeriiaKuz'
   },
   {
     name: 'Денис',
     description: <></>,
-    photos: []
+    photos: [],
+    gitHub: 'https://github.com/DialecticalLaw'
   },
   {
     name: 'Наталья',
     description: NataliaDescription,
-    photos: [NataliaPhoto, NataliaReal]
+    photos: [NataliaPhoto, NataliaReal],
+    gitHub: 'https://github.com/SplitCode'
   }
 ];

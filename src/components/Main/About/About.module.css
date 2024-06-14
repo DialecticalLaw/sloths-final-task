@@ -52,6 +52,9 @@
   text-align: center;
   max-width: 75%;
   z-index: 2;
+  background-color: var(--transparent-background);
+  padding: 3rem;
+  border-radius: 1rem;
 }
 
 .member_modal {
@@ -74,6 +77,10 @@
   max-width: 30%;
 }
 
+.link img {
+  max-width: 3rem;
+  transition: ease-in 300ms;
+}
 .desc_wrapper {
   max-height: 60dvh;
   overflow-x: hidden;
@@ -90,13 +97,13 @@
   .member_info {
     max-width: 40%;
   }
-  .desc_wrapper{
-    max-width: 50%
+  .desc_wrapper {
+    max-width: 50%;
   }
 }
 
-@media (max-width: 640px){
-  .member_modal{
+@media (max-width: 640px) {
+  .member_modal {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -104,22 +111,25 @@
   .member_info {
     max-width: 50%;
   }
-  .desc_wrapper{
-    max-width: 100%
+  .desc_wrapper {
+    max-width: 100%;
   }
   .desc_wrapper {
     max-height: 40dvh;
   }
 }
 
-@media (max-width: 480px){
-  .member_modal{
+@media (max-width: 480px) {
+  .member_modal {
     max-width: 90%;
   }
 }
 
-@media (hover: hover) and (pointer: fine){
-  .astronaut:hover{
+@media (hover: hover) and (pointer: fine) {
+  .astronaut:hover {
+    scale: 1.1;
+  }
+  .link img:hover {
     scale: 1.1;
   }
 }
