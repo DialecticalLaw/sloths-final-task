@@ -34,23 +34,20 @@ export function Filters() {
 
   const filterValue = filter?.value;
 
-  const handleClick = (atr: Filter) => {
+  const handleChange = (atr: Filter) => {
     dispatch(setFilter(atr.value === filterValue ? null : atr));
   };
 
   return (
     <div className={style.filters}>
       {attributes.map((atr) => (
-        <label
-          key={`${atr.type}-${atr.value}`}
-          className={style.filter_item}
-          onClick={() => handleClick(atr)}
-        >
+        <label key={`${atr.type}-${atr.value}`} className={style.filter_item}>
           <input
             className={styles.checkbox}
             type="checkbox"
             value={atr.value}
             checked={filterValue === atr.value}
+            onChange={() => handleChange(atr)}
           />
           {atr.value}
         </label>
