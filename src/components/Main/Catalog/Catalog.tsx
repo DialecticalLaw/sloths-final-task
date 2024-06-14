@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getProducts } from '../../../api/products/getProducts';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { Loader } from '../Loader/Loader';
@@ -22,6 +22,8 @@ export function Catalog() {
   const { planet } = useAppSelector((state) => state.planet_slice);
   const navigate = useNavigate();
   const location = useLocation();
+  const [limit] = useState(3);
+  const [offset, setOffset] = useState(0);
 
   const locationParts = useMemo(() => {
     const planet = getPlanetFromLocation(location.pathname);
@@ -36,11 +38,13 @@ export function Catalog() {
         ...(locationParts.subcategory && { subcategory: locationParts.subcategory }),
         ...(filter?.value && filter?.type && { filter }),
         ...(sort && { sortValue: sort }),
-        ...(searchQuery && { searchQuery })
+        ...(searchQuery && { searchQuery }),
+        limit,
+        offset
       };
       dispatch(getProducts(actionPayload));
     }
-  }, [dispatch, locationParts, sort, filter, searchQuery]);
+  }, [dispatch, locationParts, sort, filter, searchQuery, limit, offset]);
 
   useEffect(() => {
     if (!locationParts.planet) {
@@ -48,7 +52,15 @@ export function Catalog() {
     }
   }, [locationParts.planet, planet, navigate]);
 
-  return isProductsLoading ? (
+  useEffect(() => {
+    setOffset(0);
+  }, [filter, sort, searchQuery, locationParts]);
+
+  const loadMoreProducts = () => {
+    setOffset((prevOffset) => prevOffset + limit);
+  };
+
+  return isProductsLoading && offset === 0 ? (
     <Loader />
   ) : (
     <>
@@ -64,6 +76,8 @@ export function Catalog() {
           <ProductCard product={productData} key={index} />
         ))}
       </section>
+      {/* {isProductsLoading && <Loader />} */}
+      {!isProductsLoading && <button onClick={loadMoreProducts}>Load More</button>}
     </>
   );
 }
