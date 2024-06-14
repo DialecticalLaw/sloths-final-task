@@ -30,20 +30,6 @@ export function Sidebar() {
           <div className={styles.planet_list}>
             {planetsConfig.map((planetItem) => (
               <div className={styles.catalog_item} key={planetItem.value}>
-                {/* <label className={styles.planet_item}>
-                  <input
-                    type="radio"
-                    name="picked"
-                    value={planetItem.value}
-                    className={`${styles.planet} ${styles[planetItem.className]}`}
-                    defaultChecked={planetItem.value === planet}
-                    onClick={(e) => {
-                      onPlanetClick(e);
-                      setVisibility(false);
-                    }}
-                  />
-                  {planetItem.label}
-                </label> */}
                 <Planet
                   key={planetItem.value}
                   planetItem={planetItem}
