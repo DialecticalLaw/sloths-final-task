@@ -12,17 +12,13 @@ export function CartSummary({ cart }: { cart: Cart }) {
   const [promoCode, setPromoCode] = useState('');
 
   const applyPromoCode = async () => {
-    try {
-      dispatch(
-        updateCart({
-          ID: cart.id,
-          version: cart.version,
-          actions: [{ action: 'addDiscountCode', code: promoCode }]
-        })
-      );
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(
+      updateCart({
+        ID: cart.id,
+        version: cart.version,
+        actions: [{ action: 'addDiscountCode', code: promoCode }]
+      })
+    );
   };
 
   return (

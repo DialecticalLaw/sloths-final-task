@@ -1,5 +1,5 @@
 .title {
-  margin-top: 2rem;
+  margin: 3rem 0;
   text-align: center;
   font-size: 3rem;
 }
@@ -26,7 +26,7 @@
 
 @media screen and (max-width: 980px) {
   .title {
-    margin-top: var(--header-height);
+    margin-top: calc(var(--header-height) + 5rem);
   }
 
   .products_wrapper {

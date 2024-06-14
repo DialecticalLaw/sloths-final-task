@@ -17,6 +17,8 @@ export function errorHandler(error: ErrorResponse): string {
     return ErrorMessages.DuplicateField;
   } else if (errorCode === 'InvalidCurrentPassword') {
     return ErrorMessages.InvalidCurrentPassword;
+  } else if (errorCode === 'DiscountCodeNonApplicable') {
+    return ErrorMessages.DiscountCodeNonApplicable;
   } else {
     return error.message;
   }
