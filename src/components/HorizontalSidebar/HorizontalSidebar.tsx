@@ -8,7 +8,7 @@ export function HorizontalSidebar() {
 
   return (
     <div className={styles.sidebar}>
-      <h2 className={styles.subtitle}>КАТАЛОГ ТОВАРОВ С РАЗНЫХ ПЛАНЕТ</h2>
+      <h2 className={styles.subtitle}>Загляните в каталог - найдётся всё, что нужно для счастья.</h2>
       <div className={styles.planet_list}>
         {planetsConfig.map((planetItem) => (
           <label key={planetItem.value} className={styles.planet_item}>
@@ -20,7 +20,10 @@ export function HorizontalSidebar() {
               defaultChecked={planetItem.value === planet}
               onClick={onPlanetClick}
             />
-            {planetItem.label}
+            <div className={styles.planet_name}>
+              <span className={styles.underline}>_</span>
+              {planetItem.label}
+            </div>
           </label>
         ))}
       </div>

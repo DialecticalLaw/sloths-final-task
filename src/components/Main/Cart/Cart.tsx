@@ -13,10 +13,10 @@ export function Cart() {
     return (
       <section className={styles.cart}>
         <h1 className={styles.title}>Корзина</h1>
-        <p className={styles.error_message}>
+        <div className={styles.error_message}>
           Хм... {errorMessage}
           <HorizontalSidebar />
-        </p>
+        </div>
       </section>
     );
   }
