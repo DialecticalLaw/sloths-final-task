@@ -43,6 +43,7 @@ export function CartSummary({ cart }: { cart: Cart }) {
           <div className={styles.line} />
         </label>
         <Button
+          classes={[styles.submit_promo]}
           onClick={(e) => {
             e.preventDefault();
             applyPromoCode();

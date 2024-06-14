@@ -74,7 +74,7 @@ export function Item({ itemData }: { itemData: LineItem }) {
           </div>
 
           <p
-            className={`${styles.product_name} ${discountPrice && styles.discount_name} ${styles.product_cell}`}
+            className={`${styles.product_name} ${(discountPrice || promoCodePrice) && styles.discount_name} ${styles.product_cell}`}
           >
             {itemData.name.ru}
           </p>
