@@ -4,9 +4,26 @@ import { formatPrice } from '../../../../helpers/formatPrice';
 import { Button } from '../../../univComponents/Button/Button';
 import voucherIcon from '../../../../assets/img/voucher.svg';
 import { useState } from 'react';
+import { useAppDispatch } from '../../../../store/hooks';
+import { updateCart } from '../../../../api/cart/updateCart';
 
 export function CartSummary({ cart }: { cart: Cart }) {
+  const dispatch = useAppDispatch();
   const [promoCode, setPromoCode] = useState('');
+
+  const applyPromoCode = async () => {
+    try {
+      dispatch(
+        updateCart({
+          ID: cart.id,
+          version: cart.version,
+          actions: [{ action: 'addDiscountCode', code: promoCode }]
+        })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={styles.cart_total}>
@@ -28,7 +45,7 @@ export function CartSummary({ cart }: { cart: Cart }) {
         <Button
           onClick={(e) => {
             e.preventDefault();
-            console.log(promoCode);
+            applyPromoCode();
           }}
           minimal
           type="submit"

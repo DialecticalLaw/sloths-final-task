@@ -17,6 +17,8 @@ export function Cart() {
     );
   }
 
+  console.log(cart);
+
   return (
     <section className={styles.cart}>
       <h1 className={styles.title}>Корзина</h1>
