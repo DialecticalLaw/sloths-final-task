@@ -2,6 +2,7 @@ import type { Customer, ProductProjection } from '@commercetools/platform-sdk';
 import type { Planets } from '../../store/slices/planet-slice';
 import type { Subcategories } from '../../helpers/translationMapper';
 import type { AddressesActions } from '../../helpers/helpers.interfaces';
+import type { MemberData } from './About/membersConfig';
 
 export interface StringObj {
   [key: string]: string;
@@ -101,4 +102,17 @@ export interface AddressFlag {
   checked: boolean;
   styles: string[];
   addressId?: string;
+}
+
+export interface MemberProps {
+  member: MemberData;
+  onClose: () => void;
+}
+
+export interface ModalProps {
+  modalCallback: (isActive: boolean) => void;
+  className: string;
+  children: React.ReactNode;
+  modalState?: boolean;
+  bg?: React.ReactNode;
 }
