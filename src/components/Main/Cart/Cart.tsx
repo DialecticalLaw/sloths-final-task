@@ -38,10 +38,10 @@ export function Cart() {
           </div>
         </div>
       ) : (
-        <p className={styles.empty_message}>
+        <div className={styles.empty_message}>
           Корзина пуста... Но космос бесконечен, и так же бесконечны возможности для покупок!
           <HorizontalSidebar />
-        </p>
+        </div>
       )}
     </section>
   );
