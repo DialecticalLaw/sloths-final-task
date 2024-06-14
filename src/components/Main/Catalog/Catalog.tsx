@@ -16,9 +16,8 @@ import { Sidebar } from '../../Sidebar/Sidebar';
 
 export function Catalog() {
   const dispatch = useAppDispatch();
-  const { isProductsLoading, products, filter, sort, searchQuery }: ProductsSliceState = useAppSelector(
-    (state) => state.products_slice
-  );
+  const { isProductsLoading, products, filter, sort, searchQuery, total }: ProductsSliceState =
+    useAppSelector((state) => state.products_slice);
   const { planet } = useAppSelector((state) => state.planet_slice);
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,6 +59,8 @@ export function Catalog() {
     setOffset((prevOffset) => prevOffset + limit);
   };
 
+  const hasMoreProducts = products.length < total;
+
   return isProductsLoading && offset === 0 ? (
     <Loader />
   ) : (
@@ -76,8 +77,7 @@ export function Catalog() {
           <ProductCard product={productData} key={index} />
         ))}
       </section>
-      {/* {isProductsLoading && <Loader />} */}
-      {!isProductsLoading && <button onClick={loadMoreProducts}>Load More</button>}
+      {!isProductsLoading && hasMoreProducts && <button onClick={loadMoreProducts}>Показать еще</button>}
     </>
   );
 }

@@ -4,7 +4,12 @@ import type { Product, ProductProjection } from '@commercetools/platform-sdk';
 import type { getProductsRequestProps } from '../../components/Main/Main.interfaces';
 import { mapQueryArguments } from '../../helpers/queryArguments';
 
-export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequestProps>(
+export interface GetProductsResponse {
+  products: ProductProjection[];
+  total: number;
+}
+
+export const getProducts = createAsyncThunk<GetProductsResponse, getProductsRequestProps>(
   'products/get',
   async (requestProps: getProductsRequestProps) => {
     const queryArguments = mapQueryArguments(requestProps);
@@ -15,7 +20,10 @@ export const getProducts = createAsyncThunk<ProductProjection[], getProductsRequ
         queryArgs: queryArguments
       })
       .execute();
-    return response.body.results;
+    return {
+      products: response.body.results,
+      total: response.body.total ?? 0
+    };
   }
 );
 

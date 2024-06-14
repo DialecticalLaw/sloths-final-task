@@ -11,6 +11,7 @@ export function Filters() {
   const dispatch = useAppDispatch();
   const { products, filter } = useAppSelector((state) => state.products_slice);
   const location = useLocation();
+
   const attributes = useMemo(() => {
     const subcategory = location.pathname.split('/').find((part) => isSubcategory(part));
     if (!subcategory || !products.length) return [];
@@ -34,7 +35,7 @@ export function Filters() {
   const filterValue = filter?.value;
 
   const handleClick = (atr: Filter) => {
-    dispatch(setFilter(atr.value === filterValue ? null : { type: atr.type, value: atr.value }));
+    dispatch(setFilter(atr.value === filterValue ? null : atr));
   };
 
   return (
@@ -49,7 +50,7 @@ export function Filters() {
             className={styles.checkbox}
             type="checkbox"
             value={atr.value}
-            defaultChecked={filterValue === atr.value}
+            checked={filterValue === atr.value}
           />
           {atr.value}
         </label>
