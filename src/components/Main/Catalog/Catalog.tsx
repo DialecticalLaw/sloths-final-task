@@ -21,7 +21,7 @@ export function Catalog() {
   const { planet } = useAppSelector((state) => state.planet_slice);
   const navigate = useNavigate();
   const location = useLocation();
-  const [limit] = useState(3);
+  const [limit] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(total / limit);
