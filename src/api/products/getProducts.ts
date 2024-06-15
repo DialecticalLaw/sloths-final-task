@@ -1,13 +1,9 @@
 import { apiRoot } from '../apiRoot';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { Product, ProductProjection } from '@commercetools/platform-sdk';
+import type { Product } from '@commercetools/platform-sdk';
 import type { getProductsRequestProps } from '../../components/Main/Main.interfaces';
 import { mapQueryArguments } from '../../helpers/queryArguments';
-
-export interface GetProductsResponse {
-  products: ProductProjection[];
-  total: number;
-}
+import type { GetProductsResponse } from '../api.interfaces';
 
 export const getProducts = createAsyncThunk<GetProductsResponse, getProductsRequestProps>(
   'products/get',

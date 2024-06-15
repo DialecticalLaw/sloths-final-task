@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { ProductProjection } from '@commercetools/platform-sdk';
-import type { GetProductsResponse } from '../../api/products/getProducts';
+import type { GetProductsResponse } from '../../api/api.interfaces';
 import { getProducts } from '../../api/products/getProducts';
 import type { Filter, SortValues } from '../../components/Main/Main.interfaces';
 
