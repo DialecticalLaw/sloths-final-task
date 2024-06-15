@@ -1,9 +1,10 @@
 import styles from './About.module.css';
 import spaceman from '../../../assets/img/spaceman.png';
-import type { MemberData } from './membersConfig';
-import { members } from './membersConfig';
 import { useCallback, useState } from 'react';
 import { Member } from './Member';
+import { Accordion } from './Accordion/Accordion';
+import type { MemberData } from '../../../helpers/membersConfig';
+import { AboutUsInfo, members } from '../../../helpers/membersConfig';
 
 export function About() {
   const [selectedMember, setSelectedMember] = useState<MemberData | null>(null);
@@ -20,20 +21,7 @@ export function About() {
     <section className={styles.bg}>
       <h1 className={styles.title}>О нас</h1>
       <div className={styles.info}>
-        <p>
-          Мы три космонавта-программиста: Денис — капитан нашего звездного судна, Наталья и Лера — супер
-          помощницы, готовые к любым задачам в мире кода.
-        </p>
-        <p>
-          Хотите узнать о нас чуть больше? Просто кликните на одного из космонавтов и ознакомьтесь с нашими
-          историям!
-        </p>
-        <p>
-          В нашем проекте каждый привнес свою искру таланта! Мы как команда всегда на одной волне. Лера с
-          Натальей создали волшебные картинки и запоминающиеся описания, а Денис умело вдохновлял наши идеи
-          анимациями и крутыми дизайнерскими штрихами. А что касается логики, то мы разделили её поровну между
-          собой, чтобы наш проект был ещё более крутым!
-        </p>
+        <Accordion data={AboutUsInfo} />
       </div>
       <ul className={styles.people}>
         {members.map((member: MemberData) => (
