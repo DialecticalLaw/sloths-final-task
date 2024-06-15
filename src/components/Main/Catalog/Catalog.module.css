@@ -76,6 +76,7 @@
 .pagination .page-number.active {
   background-color: var(--accent-color-light);
   border: 2px solid var(--accent-color-light);
+  cursor: default;
   box-shadow:
     inset 0 0 0.5rem var(--accent-color-light),
     0 0 0.5rem var(--accent-color-light),
