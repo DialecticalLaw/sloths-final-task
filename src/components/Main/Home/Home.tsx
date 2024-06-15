@@ -36,18 +36,18 @@ export function Home() {
         <h3 className={styles.home_page_subtitle}>Доступны промокоды!</h3>
         {salesConfig.map((sale) => (
           <div className={styles.sale} key={sale.code}>
-            <p className={styles.sale_text}>
+            <div className={styles.sale_text}>
               Промокод <span className={styles.accent_text}>{sale.code}</span>
               <div className={styles.line}></div>
-            </p>
-            <p className={styles.sale_text}>
+            </div>
+            <div className={styles.sale_text}>
               Скидка<span className={styles.accent_text}>&nbsp;{sale.discountSize}</span>
               <div className={styles.line}></div>
-            </p>
-            <p className={styles.sale_text}>
+            </div>
+            <div className={styles.sale_text}>
               на<span className={styles.accent_text}>&nbsp;{sale.discountFor}</span>!
               <div className={styles.line}></div>
-            </p>
+            </div>
             <img src={sale.img} className={styles.sale_img} alt="sale" />
           </div>
         ))}

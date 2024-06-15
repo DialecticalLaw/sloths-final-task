@@ -2,16 +2,17 @@ import type { Cart } from '@commercetools/platform-sdk';
 import styles from './CartSummary.module.css';
 import { formatPrice } from '../../../../helpers/formatPrice';
 import { Button } from '../../../univComponents/Button/Button';
-import voucherIcon from '../../../../assets/img/voucher.svg';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../../store/hooks';
 import { updateCart } from '../../../../api/cart/updateCart';
+import arrowIcon from '../../../../assets/img/arrow.svg';
 
 export function CartSummary({ cart }: { cart: Cart }) {
   const dispatch = useAppDispatch();
   const [promoCode, setPromoCode] = useState('');
+  const [isShow, setShow] = useState(false);
 
-  const applyPromoCode = async () => {
+  const applyPromoCode = () => {
     dispatch(
       updateCart({
         ID: cart.id,
@@ -23,33 +24,44 @@ export function CartSummary({ cart }: { cart: Cart }) {
 
   return (
     <div className={styles.cart_total}>
-      <p>Цена товаров в корзине: {formatPrice(cart.totalPrice.centAmount)}</p>
-      <p>Общее количество: {cart.totalLineItemQuantity}</p>
+      <button onClick={() => setShow(!isShow)} className={styles.arrow_wrapper}>
+        <img src={arrowIcon} className={`${styles.arrow} ${isShow ? styles.active : ''}`} alt="arrow" />
+      </button>
 
-      <form className={styles.promo_code}>
-        <img className={styles.voucher_icon} src={voucherIcon} alt="voucher" />
-        <label className={styles.label}>
-          <input
-            className={styles.input}
-            type={'text'}
-            placeholder={'Промокод'}
-            value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value)}
-          />
-          <div className={styles.line} />
-        </label>
-        <Button
-          classes={[styles.submit_promo]}
-          onClick={(e) => {
-            e.preventDefault();
-            applyPromoCode();
-          }}
-          minimal
-          type="submit"
-        >
-          Применить
-        </Button>
-      </form>
+      <div className={styles.cart_total_content}>
+        <div className={styles.cart_info}>
+          <p>
+            Цена товаров в корзине:
+            <span className={styles.accent_text}>&nbsp;{formatPrice(cart.totalPrice.centAmount)}</span>
+          </p>
+          <p>
+            Общее количество: <span className={styles.accent_text}>{cart.totalLineItemQuantity}</span>
+          </p>
+        </div>
+
+        <form className={styles.promo_code}>
+          <label className={styles.label}>
+            <input
+              className={styles.input}
+              type={'text'}
+              placeholder={'Промокод'}
+              value={promoCode}
+              onChange={(e) => setPromoCode(e.target.value)}
+            />
+          </label>
+          <Button
+            classes={[styles.submit_promo]}
+            onClick={(e) => {
+              e.preventDefault();
+              applyPromoCode();
+            }}
+            minimal
+            type="submit"
+          >
+            Применить
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
