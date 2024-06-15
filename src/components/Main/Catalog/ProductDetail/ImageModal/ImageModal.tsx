@@ -1,7 +1,7 @@
 import styles from './ImageModal.module.css';
-import type { ImageModalProps } from '../../Main.interfaces';
 import { Carousel } from 'react-responsive-carousel';
-import { Modal } from '../../../Modal/Modal';
+import { ImageModalProps } from '../../../Main.interfaces';
+import { Modal } from '../../../../Modal/Modal';
 
 export function ImageModal({ images, startIndex, active, setActive }: ImageModalProps) {
   const bg = <div className={styles.starry_background} />;
