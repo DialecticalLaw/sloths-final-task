@@ -22,7 +22,9 @@ export function Catalog() {
   const navigate = useNavigate();
   const location = useLocation();
   const [limit] = useState(3);
-  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(total / limit);
 
   const locationParts = useMemo(() => {
     const planet = getPlanetFromLocation(location.pathname);
@@ -39,11 +41,11 @@ export function Catalog() {
         ...(sort && { sortValue: sort }),
         ...(searchQuery && { searchQuery }),
         limit,
-        offset
+        offset: (currentPage - 1) * limit
       };
       dispatch(getProducts(actionPayload));
     }
-  }, [dispatch, locationParts, sort, filter, searchQuery, limit, offset]);
+  }, [dispatch, locationParts, sort, filter, searchQuery, limit, currentPage]);
 
   useEffect(() => {
     if (!locationParts.planet) {
@@ -52,16 +54,14 @@ export function Catalog() {
   }, [locationParts.planet, planet, navigate]);
 
   useEffect(() => {
-    setOffset(0);
+    setCurrentPage(1);
   }, [filter, sort, searchQuery, locationParts]);
 
-  const loadMoreProducts = () => {
-    setOffset((prevOffset) => prevOffset + limit);
+  const handlePageClick = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
-  const hasMoreProducts = products.length < total;
-
-  return isProductsLoading && offset === 0 ? (
+  return isProductsLoading ? (
     <Loader />
   ) : (
     <>
@@ -77,7 +77,23 @@ export function Catalog() {
           <ProductCard product={productData} key={index} />
         ))}
       </section>
-      {!isProductsLoading && hasMoreProducts && <button onClick={loadMoreProducts}>Показать еще</button>}
+      <div className={styles.pagination}>
+        <button onClick={() => handlePageClick(currentPage - 1)} disabled={currentPage === 1}>
+          &lt;
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <span
+            key={index + 1}
+            className={`${styles['page-number']} ${currentPage === index + 1 ? styles['active'] : ''}`}
+            onClick={() => handlePageClick(index + 1)}
+          >
+            {index + 1}
+          </span>
+        ))}
+        <button onClick={() => handlePageClick(currentPage + 1)} disabled={currentPage === totalPages}>
+          &gt;
+        </button>
+      </div>
     </>
   );
 }

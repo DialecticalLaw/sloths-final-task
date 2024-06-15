@@ -32,15 +32,12 @@ export const productsSlice = createSlice({
     },
     setFilter(state: ProductsSliceState, action: PayloadAction<Filter | null>) {
       state.filter = action.payload;
-      state.products = [];
     },
     setSort(state: ProductsSliceState, action: PayloadAction<SortValues | null>) {
       state.sort = action.payload;
-      state.products = [];
     },
     setSearchQuery(state: ProductsSliceState, action: PayloadAction<string>) {
       state.searchQuery = action.payload;
-      state.products = [];
     },
     resetSearch(state: ProductsSliceState) {
       state.searchQuery = '';
@@ -52,7 +49,7 @@ export const productsSlice = createSlice({
     };
 
     const setProducts = (state: ProductsSliceState, action: PayloadAction<GetProductsResponse>) => {
-      state.products = [...state.products, ...action.payload.products];
+      state.products = action.payload.products;
       state.total = action.payload.total;
       state.isProductsLoading = false;
     };
