@@ -4,7 +4,7 @@ import { myToken } from '../tokenCache';
 
 export async function loginCustomer(email: string, password: string): Promise<CustomerSignInResult> {
   const anonymousCartId = localStorage.getItem('sloth-CartId');
-  const anonymousId = localStorage.getItem('sloth-anonymousId') || undefined;
+  const anonymousId = localStorage.getItem('sloth-anonymousId');
 
   myToken.set({
     token: '',
@@ -19,10 +19,8 @@ export async function loginCustomer(email: string, password: string): Promise<Cu
         body: {
           email,
           password,
-          anonymousCart: anonymousCartId
-            ? { typeId: 'cart', id: localStorage.getItem('sloth-CartId') || '' }
-            : undefined,
-          anonymousId: anonymousId ? anonymousId : undefined,
+          anonymousCart: anonymousCartId ? { typeId: 'cart', id: anonymousCartId } : undefined,
+          anonymousId: anonymousId || undefined,
           anonymousCartSignInMode: 'MergeWithExistingCustomerCart'
         }
       })
