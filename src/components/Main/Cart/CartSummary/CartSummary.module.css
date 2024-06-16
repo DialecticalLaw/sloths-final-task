@@ -72,14 +72,6 @@
   padding: 1rem;
 }
 
-.cart_info {
-  transform-origin: left;
-}
-
-.promo_code {
-  transform-origin: right;
-}
-
 .cart_total:has(.arrow.active) .promo_code,
 .cart_total:has(.arrow.active) .cart_info {
   animation: appear 0.35s 0.1s forwards;
@@ -110,7 +102,7 @@
 @keyframes appear {
   from {
     opacity: 0;
-    transform: translateY(50%) scale(0.7);
+    transform: translateY(50%);
   }
   to {
     opacity: 1;

@@ -9,7 +9,7 @@ export function Price({
 }: {
   price: number | null;
   discountPrice?: number | '';
-  promoCodePrice?: number;
+  promoCodePrice?: number | '';
   classes?: string[];
 }) {
   return (
