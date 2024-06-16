@@ -8,7 +8,9 @@ export const BurgerButton = ({ toggleMenuOpen, menuOpen }: BurgerButtonProps) =>
       onClick={toggleMenuOpen}
       className={`${styles.burger_button} ${menuOpen ? styles.open : ''}`}
     >
-      <span className={styles.line}></span>
+      <div className={styles.line} />
+      <div className={styles.line} />
+      <div className={styles.line} />
     </button>
   );
 };
