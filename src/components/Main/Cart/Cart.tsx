@@ -5,6 +5,7 @@ import { Loader } from '../Loader/Loader';
 import { Item } from './Item/Item';
 import { CartSummary } from './CartSummary/CartSummary';
 import { HorizontalSidebar } from '../../HorizontalSidebar/HorizontalSidebar';
+import { ClearCartBtn } from './ClearCartBtn/ClearCartBtn';
 
 export function Cart() {
   const { cart, isLoading, errorMessage } = useAppSelector((state) => state.cart_slice);
@@ -24,6 +25,7 @@ export function Cart() {
   return (
     <section className={styles.cart}>
       <h1 className={styles.title}>Корзина</h1>
+      <ClearCartBtn />
 
       {cart?.lineItems.length ? (
         <div className={styles.cart_content}>

@@ -1,6 +1,6 @@
 .cart_total {
   --arrow-size: 5rem;
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   bottom: 0;
   right: 0;
