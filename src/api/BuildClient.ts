@@ -10,7 +10,6 @@ import type { ByProjectKeyRequestBuilder } from '@commercetools/platform-sdk';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 import { ApiData } from './apiData';
 import { myToken } from './tokenCache';
-import { v4 as uuidv4 } from 'uuid';
 
 const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: ApiData.AUTH_URL,
@@ -88,7 +87,7 @@ export const getRefreshFlowClient = () => {
 };
 
 export const getAnonymousFlowClient = () => {
-  const anonymousId = uuidv4();
+  const anonymousId = crypto.randomUUID();
   localStorage.setItem('sloth-anonymousId', anonymousId);
   const options: AnonymousAuthMiddlewareOptions = {
     host: ApiData.AUTH_URL,
