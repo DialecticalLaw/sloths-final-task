@@ -35,7 +35,7 @@
     content: '';
     position: absolute;
     left: calc(100% + 0.25rem);
-    top: -0.25rem;
+    top: -0.21rem;
     width: 0.7rem;
     height: 0.7rem;
     background-color: var(--accent-color-light);
