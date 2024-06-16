@@ -17,7 +17,7 @@ export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
     return cart ? cart.totalLineItemQuantity : '';
   }, [cart]);
 
-  const lageNumber = 99;
+  const largeNumber = 99;
 
   useEffect(() => {
     if (customerId && !cart) {
@@ -38,7 +38,7 @@ export function CartIcon({ toggleMenuOpen }: CustomNavLinkProps) {
       {totalLineItemQuantity && (
         <div
           className={
-            totalLineItemQuantity > lageNumber
+            totalLineItemQuantity > largeNumber
               ? styles.cart_quantity_big + ' ' + styles.cart_quantity
               : styles.cart_quantity
           }
