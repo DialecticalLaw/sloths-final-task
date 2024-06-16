@@ -25,10 +25,10 @@ export function Cart() {
   return (
     <section className={styles.cart}>
       <h1 className={styles.title}>Корзина</h1>
-      <ClearCartBtn />
 
       {cart?.lineItems.length ? (
         <div className={styles.cart_content}>
+          <ClearCartBtn />
           <div className={styles.products_wrapper}>
             {cart.lineItems.map((item: LineItem) => {
               return <Item key={item.id} itemData={item} />;
