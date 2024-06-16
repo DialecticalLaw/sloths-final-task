@@ -11,6 +11,7 @@
     visibility 0s,
     opacity 0.8s linear;
 }
+
 .modal_content {
   display: flex;
   justify-content: center;
@@ -100,5 +101,17 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .modal_content {
+    width: 75vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal_content {
+    width: 90vw;
   }
 }
