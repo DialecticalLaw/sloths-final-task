@@ -23,11 +23,6 @@
   padding: 1rem;
 }
 
-.title_wrapper:hover {
-  cursor: pointer;
-  box-shadow: 0 0 1.5rem 0.2rem var(--accent-color-light);
-}
-
 .highlighted {
   box-shadow: 0 0 1.5rem 0.2rem var(--accent-color-light);
 }
@@ -69,5 +64,12 @@
 @media screen and (max-width: 768px) {
   .open {
     height: 20rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .title_wrapper:hover {
+    cursor: pointer;
+    box-shadow: 0 0 1.5rem 0.2rem var(--accent-color-light);
   }
 }

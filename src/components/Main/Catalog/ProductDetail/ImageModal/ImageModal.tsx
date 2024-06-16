@@ -1,6 +1,6 @@
 import styles from './ImageModal.module.css';
 import { Carousel } from 'react-responsive-carousel';
-import { ImageModalProps } from '../../../Main.interfaces';
+import type { ImageModalProps } from '../../../Main.interfaces';
 import { Modal } from '../../../../Modal/Modal';
 
 export function ImageModal({ images, startIndex, active, setActive }: ImageModalProps) {
