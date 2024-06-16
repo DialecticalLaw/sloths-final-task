@@ -15,11 +15,16 @@ export async function loginCustomer(email: string, password: string): Promise<Cu
       .post({
         body: {
           email,
-          password
+          password,
+          anonymousCart: { typeId: 'cart', id: localStorage.getItem('sloth-CartId') || '' },
+          anonymousId: localStorage.getItem('sloth-anonymousId') || '',
+          anonymousCartSignInMode: 'MergeWithExistingCustomerCart'
         }
       })
       .execute();
     localStorage.setItem('sloth-refreshToken', myToken.get().refreshToken || '');
+    localStorage.removeItem('sloth-CartId');
+    localStorage.removeItem('sloth-anonymousId');
     return response.body;
   } catch (error) {
     console.error('Error occurred during login:', error);
