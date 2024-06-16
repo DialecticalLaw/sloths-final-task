@@ -3,6 +3,9 @@ import { getPasswordFlowClient } from '../BuildClient';
 import { myToken } from '../tokenCache';
 
 export async function loginCustomer(email: string, password: string): Promise<CustomerSignInResult> {
+  const anonymousCartId = localStorage.getItem('sloth-CartId');
+  const anonymousId = localStorage.getItem('sloth-anonymousId') || undefined;
+
   myToken.set({
     token: '',
     expirationTime: 0,
@@ -16,8 +19,10 @@ export async function loginCustomer(email: string, password: string): Promise<Cu
         body: {
           email,
           password,
-          anonymousCart: { typeId: 'cart', id: localStorage.getItem('sloth-CartId') || '' },
-          anonymousId: localStorage.getItem('sloth-anonymousId') || '',
+          anonymousCart: anonymousCartId
+            ? { typeId: 'cart', id: localStorage.getItem('sloth-CartId') || '' }
+            : undefined,
+          anonymousId: anonymousId ? anonymousId : undefined,
           anonymousCartSignInMode: 'MergeWithExistingCustomerCart'
         }
       })
