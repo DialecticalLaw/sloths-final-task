@@ -1,6 +1,6 @@
 import styles from './BurgerButton.module.css';
-import type { BurgerButtonProps } from '../../Header.interfaces';
-import { useAppSelector } from '../../../../store/hooks';
+import type { BurgerButtonProps } from '../Header.interfaces';
+import { useAppSelector } from '../../../store/hooks';
 
 export const BurgerButton = ({ toggleMenuOpen, menuOpen }: BurgerButtonProps) => {
   const cart = useAppSelector((state) => state.cart_slice.cart);
