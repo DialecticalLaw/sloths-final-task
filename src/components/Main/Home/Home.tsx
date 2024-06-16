@@ -1,27 +1,27 @@
 import styles from './Home.module.css';
 import { HorizontalSidebar } from '../../HorizontalSidebar/HorizontalSidebar';
-// import fluffyIcon from '../../../assets/img/fluffy.png';
-// import plasticIcon from '../../../assets/img/plastic.png';
-// import foodIcon from '../../../assets/img/food.png';
+import fluffyIcon from '../../../assets/img/fluffy.png';
+import plasticIcon from '../../../assets/img/plastic.png';
+import foodIcon from '../../../assets/img/food.png';
 
 const salesConfig = [
   {
     code: 'LoveFluffy',
     discountSize: '20%',
-    discountFor: 'всех Пушистиков'
-    // img: fluffyIcon
+    discountFor: 'всех Пушистиков',
+    img: fluffyIcon
   },
   {
     code: 'FOODIE',
     discountSize: '15%',
-    discountFor: 'всё съедобное'
-    // img: foodIcon
+    discountFor: 'всё съедобное',
+    img: foodIcon
   },
   {
     code: 'PlasticWorldHasWon',
     discountSize: '10%',
-    discountFor: 'товары из пластика'
-    // img: plasticIcon
+    discountFor: 'товары из пластика',
+    img: plasticIcon
   }
 ];
 
@@ -48,7 +48,7 @@ export function Home() {
               на<span className={styles.accent_text}>&nbsp;{sale.discountFor}</span>!
               <div className={styles.line}></div>
             </div>
-            {/* <img src={sale.img} className={styles.sale_img} alt="sale" /> */}
+            <img src={sale.img} className={styles.sale_img} alt="sale" />
           </div>
         ))}
       </div>
