@@ -46,8 +46,8 @@ export function Item({ itemData }: { itemData: LineItem }) {
 
     const product = await getProduct(itemData.productKey);
     if (!product) return;
-
-    const planet = getPlanetByCatalogId(product.masterData.current.categories[1].id);
+    const categoryIds = product.masterData.current.categories.map((category) => category.id);
+    const planet = getPlanetByCatalogId(categoryIds[1]) || getPlanetByCatalogId(categoryIds[0]);
     const subcategory = getSubcategoryFromProductType(product.productType.id);
     const productKey = product.key;
 
