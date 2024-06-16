@@ -1,9 +1,9 @@
-import NataliaPhoto from '../assets/img/membersPhotos/Natalia.png';
+import NataliaPhoto from '../assets/img/membersPhotos/Natalia.webp';
 import NataliaReal from '../assets/img/membersPhotos/Natalia_real.webp';
-import DenisPhoto from '../assets/img/membersPhotos/Denis.jpg';
-import DenisReal from '../assets/img/membersPhotos/Denis_real.jpg';
-import LeraPhoto from '../assets/img/membersPhotos/Lera.png';
-import LeraReal from '../assets/img/membersPhotos/Lera_real.jpg';
+import DenisPhoto from '../assets/img/membersPhotos/Denis.webp';
+import DenisReal from '../assets/img/membersPhotos/Denis_real.webp';
+import LeraPhoto from '../assets/img/membersPhotos/Lera.webp';
+import LeraReal from '../assets/img/membersPhotos/Lera_real.webp';
 import type { ReactNode } from 'react';
 export interface MemberData {
   name: string;
