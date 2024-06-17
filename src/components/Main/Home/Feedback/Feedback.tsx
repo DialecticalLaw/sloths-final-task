@@ -1,22 +1,7 @@
 import styles from './Feedback.module.css';
 import { Carousel } from 'react-responsive-carousel';
-import slothExpertIcon from '../../../../assets/img/sloth_expert.png';
 import { getRatingElems } from '../../../../helpers/getRatingElems';
-
-const feedbackConfig = [
-  {
-    img: slothExpertIcon,
-    name: 'Reviewer 1',
-    review: 'Ну, в целом всё хорошо',
-    rating: 1
-  },
-  {
-    img: 'd',
-    name: 'Test',
-    review: 'Отзыв',
-    rating: 3
-  }
-];
+import { feedbackConfig } from '../../../../helpers/feedbackConfig';
 
 export function Feedback() {
   return (
@@ -25,10 +10,12 @@ export function Feedback() {
       showArrows
       showIndicators={false}
       centerMode
+      centerSlidePercentage={100}
       showStatus={false}
       infiniteLoop
-      useKeyboardArrows
       autoPlay
+      interval={5000}
+      useKeyboardArrows
       stopOnHover
       swipeable
       showThumbs={false}
@@ -36,10 +23,11 @@ export function Feedback() {
       {feedbackConfig.map((feedback) => {
         return (
           <div key={feedback.name} className={styles.feedback}>
-            <div className={styles.avatar} style={{ backgroundImage: `url(${feedback.img})` }} />
-            <p className={styles.text}>{feedback.review}</p>
+            <div className={styles.avatar} style={{ backgroundImage: `url(${feedback.avatar})` }} />
+            <p className={`${styles.text} ${styles.name}`}>{feedback.name}</p>
+            <p className={styles.text}>{feedback.comment}</p>
             <div className={styles.rating}>
-              {...getRatingElems({ rating: feedback.rating, classes: [styles.star] })}
+              {...getRatingElems({ rating: feedback.stars, classes: [styles.star] })}
             </div>
           </div>
         );

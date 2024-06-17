@@ -6,6 +6,7 @@
 }
 
 .carousel {
+  width: 95%;
   margin-top: 5rem;
 }
 
@@ -18,7 +19,13 @@
   background-repeat: no-repeat;
 }
 
+.name {
+  font-weight: bold;
+  color: var(--accent-color-light);
+}
+
 .text {
+  width: 90%;
   font-size: 1.8rem;
 }
 
@@ -38,4 +45,26 @@
 .star[data-active] {
   color: gold;
   text-shadow: 1px 1px #c60;
+}
+
+@media screen and (max-width: 1000px) {
+  .carousel {
+    width: 100%;
+  }
+
+  .text {
+    width: 80%;
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .carousel {
+    width: 100%;
+  }
+
+  .text {
+    width: 70%;
+    font-size: 1.4rem;
+  }
 }
