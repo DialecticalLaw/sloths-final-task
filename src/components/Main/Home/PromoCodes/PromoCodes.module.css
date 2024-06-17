@@ -11,6 +11,7 @@
   align-items: center;
   gap: 3rem;
   width: 100%;
+  max-width: 135rem;
 }
 
 .sales_wrapper {
@@ -131,10 +132,6 @@
 @media (hover: hover) and (pointer: fine) {
   .sale:hover .sale_image_glow_wrapper {
     transform: scale(3);
-  }
-
-  .sale:hover {
-    transform: scale(1.05);
   }
 }
 
