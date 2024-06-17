@@ -27,24 +27,29 @@ const salesConfig = [
 export function PromoCodes() {
   return (
     <div className={styles.sales}>
-      <h3 className={styles.home_page_subtitle}>Доступны промокоды!</h3>
-      {salesConfig.map((sale) => (
-        <div className={styles.sale} key={sale.code}>
-          <div className={styles.sale_text}>
-            Промокод <span className={styles.accent_text}>{sale.code}</span>
-            <div className={styles.line}></div>
+      <h3 className={styles.title}>Доступны промокоды!</h3>
+      <div className={styles.sales_wrapper}>
+        {salesConfig.map((sale) => (
+          <div className={styles.sale} key={sale.code}>
+            <div className={styles.sale_image_wrapper}>
+              <div className={styles.sale_image} style={{ backgroundImage: `url(${sale.img})` }} />
+              <div className={styles.sale_image_glow_wrapper}>
+                <img src={sale.img} alt="glow" className={styles.sale_image_glow} />
+              </div>
+            </div>
+
+            <div className={`${styles.sale_text} ${styles.code}`}>
+              Промокод <span className={styles.accent_text}>{sale.code}</span>
+            </div>
+            <div className={`${styles.sale_text} ${styles.discount_size}`}>
+              Скидка<span className={styles.accent_text}>&nbsp;{sale.discountSize}</span>
+            </div>
+            <div className={`${styles.sale_text} ${styles.discount_for}`}>
+              на<span className={styles.accent_text}>&nbsp;{sale.discountFor}</span>!
+            </div>
           </div>
-          <div className={styles.sale_text}>
-            Скидка<span className={styles.accent_text}>&nbsp;{sale.discountSize}</span>
-            <div className={styles.line}></div>
-          </div>
-          <div className={styles.sale_text}>
-            на<span className={styles.accent_text}>&nbsp;{sale.discountFor}</span>!
-            <div className={styles.line}></div>
-          </div>
-          <img src={sale.img} className={styles.sale_img} alt="sale" />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
