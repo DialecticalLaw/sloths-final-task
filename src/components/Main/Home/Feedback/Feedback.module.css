@@ -11,12 +11,35 @@
 }
 
 .avatar {
+  position: relative;
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.avatar::after,
+.avatar::before {
+  content: '';
+  position: absolute;
+  width: 3rem;
+  height: 0.2rem;
+  background-color: var(--accent-color-light);
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+.avatar::after {
+  right: 100%;
+  transform: translateX(-80%);
+}
+
+.avatar::before {
+  left: 100%;
+  transform: translateX(80%);
 }
 
 .name {
