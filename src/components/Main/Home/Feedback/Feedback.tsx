@@ -14,7 +14,7 @@ export function Feedback() {
       showStatus={false}
       infiniteLoop
       autoPlay
-      interval={5000}
+      interval={8000}
       useKeyboardArrows
       stopOnHover
       swipeable
