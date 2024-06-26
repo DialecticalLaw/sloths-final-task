@@ -1,0 +1,152 @@
+.bg {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.planet_big {
+  position: absolute;
+  height: 80vh;
+  right: -20rem;
+  top: 8rem;
+}
+
+.planet_small {
+  position: absolute;
+  height: 50vh;
+  left: -2rem;
+  bottom: -7rem;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 0 2rem;
+}
+
+.planet_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.planet {
+  transform: scale(0.7);
+  margin-bottom: -2rem;
+}
+
+.arrow_wrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  background-color: var(--dark-transparent-background);
+  border-radius: 0 20rem 20rem 0;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.catalog_item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .planet_big {
+    height: 60vh;
+  }
+
+  .planet_small {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 860px) {
+  .arrow_wrapper {
+    display: flex;
+  }
+
+  .sidebar {
+    z-index: 1;
+    position: fixed;
+    left: 1rem;
+    padding-left: 0;
+    transform: translateX(calc(-100% + 5rem));
+    transition: 0.4s;
+  }
+
+  .planet_list {
+    background-color: var(--bg-color);
+    padding: 2rem 1rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .arrow {
+    width: 4rem;
+    transition: 0.1s;
+  }
+
+  .sidebar__visible {
+    transform: none;
+  }
+
+  .sidebar__visible .arrow {
+    transform: rotate(-180deg);
+  }
+}
+
+@media (max-width: 580px) {
+  .planet_big {
+    filter: brightness(80%);
+    height: 50vh;
+    right: -15rem;
+    top: -2rem;
+  }
+
+  .planet_small {
+    height: 30vh;
+    left: -1rem;
+    bottom: -5rem;
+  }
+
+  .planet {
+    transform: scale(1);
+    margin-bottom: 0;
+  }
+
+  .sidebar {
+    left: 0;
+    padding: 0;
+    transform: translateX(calc(-100% + 4rem));
+  }
+
+  .sidebar__visible {
+    transform: none;
+  }
+
+  .planet_list {
+    width: calc(100vw - 4rem);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+}

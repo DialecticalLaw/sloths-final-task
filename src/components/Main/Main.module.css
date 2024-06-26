@@ -1,0 +1,29 @@
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
+  padding-top: var(--header-height);
+}
+
+.main:has(aside) {
+  padding-left: 16rem;
+  padding-right: 16rem;
+}
+
+@media (max-width: 860px) {
+  .main:has(aside) {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .main:has(aside) {
+    padding-left: 5rem;
+    padding-right: 1rem;
+  }
+}
