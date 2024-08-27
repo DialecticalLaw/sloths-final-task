@@ -1,0 +1,66 @@
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 120rem;
+  gap: 5rem;
+  margin: 0 auto;
+  padding: 5rem;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 5rem;
+  height: 5rem;
+  border-left: 0.2rem solid var(--accent-color-light);
+  border-top: 0.2rem solid var(--accent-color-light);
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 5rem;
+  height: 5rem;
+  border-right: 0.2rem solid var(--accent-color-light);
+  border-bottom: 0.2rem solid var(--accent-color-light);
+}
+
+.subtitle {
+  font-family: var(--main-font);
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+}
+
+.planet_list {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+@media screen and (max-width: 800px) {
+  .subtitle {
+    font-size: 2.2rem;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .sidebar {
+    gap: 2.5rem;
+    padding: 2rem;
+  }
+
+  .planet_list {
+    gap: 2rem;
+  }
+}
